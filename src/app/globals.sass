@@ -10,6 +10,22 @@
 :root
     @apply bg-black text-white
 
+@layer base
+    h1
+        @apply text-5xl
+    h2
+        @apply text-3xl
+    h3
+        @apply text-2xl
+    h4
+        @apply text-xl
+    h5
+        @apply text-lg
+    h1,h2,h3,h4,h5,h6
+        @apply capitalize font-striking
+
 @layer components
     .line-icon
-        @apply stroke-slate-300 hover:stroke-white active:stroke-slate-400 fill-none stroke-2
+        @apply stroke-slate-300 hover:stroke-white active:stroke-slate-400 fill-none stroke-2 cursor-pointer select-none
+    .text-glow
+        text-shadow: 0px 0px 5px var(--tw-shadow-color)
