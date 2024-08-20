@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Open_Sans, Libre_Baskerville } from "next/font/google";
 import "./globals.sass";
-import NavBar from "./NavBar";
+import NavBar from "../components/nav/NavBar";
 
 const strikingFont = Libre_Baskerville({
     weight: "400",
@@ -27,6 +27,11 @@ export default function RootLayout({
 }>) {
     return (
         <html lang="en">
+            {/* 
+                May the passion of this project
+                bring a little more joy to the 
+                viewers of this troubled world
+            */}
             <body
                 className={`${strikingFont.variable} ${simpleFont.variable} ${simpleFont.className}`}
             >

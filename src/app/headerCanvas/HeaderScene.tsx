@@ -1,9 +1,14 @@
-import { useTexture, PresentationControls } from "@react-three/drei";
+import {
+    useTexture,
+    PresentationControls,
+    CameraControls,
+} from "@react-three/drei";
 import { useState } from "react";
 import * as THREE from "three";
 import { PerspectiveCamera } from "@react-three/drei";
 import SpinningBox from "./SpinningBox";
 import HeaderPostProcess from "./HeaderPostProcess";
+import Spaceship from "./Spaceship";
 
 const HeaderScene = () => {
     const [texture] = useTexture(["textures/GridTexture.png"]);
@@ -15,17 +20,20 @@ const HeaderScene = () => {
 
     return (
         <>
-            <PresentationControls snap>
-                <group dispose={null}>
-                    <SpinningBox
+            {/* <PresentationControls snap> */}
+            <ambientLight intensity={Math.PI * 3} />
+            <CameraControls />
+            <group dispose={null}>
+                {/* <SpinningBox
                         args={[1, 1, 1]}
                         canSpin={canSpin}
                         position={[0, 0, 0]}
                         onPointerDown={() => setCanSpin(false)}
                         onPointerUp={() => setCanSpin(true)}
-                    />
-                </group>
-            </PresentationControls>
+                    /> */}
+                <Spaceship />
+            </group>
+            {/* </PresentationControls> */}
             <PerspectiveCamera
                 makeDefault
                 position={[-5, 0, -2]}

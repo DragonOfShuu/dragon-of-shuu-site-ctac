@@ -1,0 +1,10 @@
+.navLink
+    display: flex
+    flex-direction: column
+
+    & > a
+        @apply p-2 flex justify-center items-center hover:text-amber-400
+    
+    &[data-curr-path=true]
+        @apply text-glow shadow-amber-500 text-orange-500
+    

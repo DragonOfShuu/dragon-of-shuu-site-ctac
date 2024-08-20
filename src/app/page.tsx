@@ -1,4 +1,3 @@
-import HeaderCanvas from "./headerCanvas/HeaderCanvas";
 import SpecialButton from "@/components/SpecialButton";
 import Link from "next/link";
 import DisableHeaderCanvas from "./DisablableHeaderCanvas";
