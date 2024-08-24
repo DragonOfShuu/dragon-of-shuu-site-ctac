@@ -1,18 +1,16 @@
-import HamburgerMenuIcon from "@/assets/lineIcons/hamburgerMenu.svg";
+"use client";
+
 import Link from "next/link";
-import LineIconButton from "@/components/LineIconButton";
-import NavLink from "./NavLink";
-import styles from './NavBar.module.sass'
+import NavLink, { NavLinkType } from "./NavLink";
+import LineIconButton from "../LineIconButton";
+import HamburgerMenuIcon from "@/assets/lineIcons/hamburgerMenu.svg";
+import { useState } from "react";
+// import MobileNav from "./MobileNav";
 
 type Props = {};
 
-type NavLinks = {
-    name: string;
-    href: string;
-};
-
 const NavBar = (props: Props) => {
-    const navLinks: NavLinks[] = [
+    const navLinks: NavLinkType[] = [
         {
             name: "Home",
             href: "/",
@@ -23,9 +21,19 @@ const NavBar = (props: Props) => {
         },
     ];
 
+    const [mobileNavVis, setMobileNavVis] = useState<boolean>(false);
+
+    function menuIconClick() {
+        setMobileNavVis(!mobileNavVis)
+    }
+
+    const navClicked = () => {
+        setTimeout(()=> setMobileNavVis(false), 1000);
+    }
+
     return (
-        <nav className={`fixed top-0 left-0 right-0 z-50`}>
-            <div className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 h-14 px-3 py-2`}>
+        <nav className={`fixed inset-0 z-50 ${mobileNavVis?`backdrop-blur-md pointer-events-auto`:`pointer-events-none`}`}>
+            <div className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 h-18 pointer-events-auto`}>
                 <h1
                     className={`text-3xl text-amber-500 text-glow shadow-amber-500`}
                 >
@@ -37,7 +45,7 @@ const NavBar = (props: Props) => {
                         <NavLink
                             href={l.href}
                             text={l.name}
-                            mobile={true}
+                            mobile={false}
                             key={l.name}
                         />
                     ))}
@@ -47,8 +55,22 @@ const NavBar = (props: Props) => {
                     <LineIconButton
                         svg={HamburgerMenuIcon}
                         className={`w-14`}
+                        onClick={menuIconClick}
                     />
                 </div>
+            </div>
+            <div className={`pointer-events-auto ${mobileNavVis?`flex`:`hidden`} flex-col p-2 items-start`}>
+                {
+                    navLinks.map((l) => (
+                        <NavLink
+                            href={l.href}
+                            text={l.name}
+                            mobile={true}
+                            key={l.name}
+                            onClick={navClicked}
+                        />
+                    ))
+                }
             </div>
         </nav>
     );

@@ -1,11 +1,12 @@
 .navLink
-    display: flex
-    flex-direction: column
-
-    & > a
-        @apply p-2 flex justify-center items-center hover:text-amber-400
+    @apply p-2 flex justify-center items-center hover:text-amber-400
     
     &[data-curr-path=true]
         text-shadow: 0px 0px 10px var(--tw-shadow-color)
         @apply shadow-amber-500 text-orange-500
     
+    &[data-mobile=true]
+        @apply text-6xl font-striking border-l-4 border-transparent
+
+        &[data-curr-path=true]
+            @apply border-amber-600
