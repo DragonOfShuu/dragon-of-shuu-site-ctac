@@ -1,11 +1,11 @@
 import SpecialButton from "@/components/SpecialButton";
 import Link from "next/link";
-import DisableHeaderCanvas from "./DisablableHeaderCanvas";
+import DisableableHeaderCanvas from "./DisablableHeaderCanvas";
 
 export default function Home() {
     return (
         <div className={`h-screen relative`}>
-            <DisableHeaderCanvas className={`size-full -z-10`} />
+            <DisableableHeaderCanvas className={`size-full -z-10`} />
             <div
                 className={`absolute inset-0 flex flex-col justify-center items-start p-4 md:p-16 space-y-5 pointer-events-none`}
             >

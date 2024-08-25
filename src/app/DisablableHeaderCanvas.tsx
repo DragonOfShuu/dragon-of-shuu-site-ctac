@@ -9,7 +9,7 @@ type Props = {
     className?: string;
 };
 
-const DisableHeaderCanvas = (props: Props) => {
+const DisableableHeaderCanvas = (props: Props) => {
     const [canvasEnabled, setCanvasEnabled] = useState<boolean>(true);
 
     const { width } = useWindowDimensions();
@@ -32,4 +32,4 @@ const DisableHeaderCanvas = (props: Props) => {
     );
 };
 
-export default DisableHeaderCanvas;
+export default DisableableHeaderCanvas;
