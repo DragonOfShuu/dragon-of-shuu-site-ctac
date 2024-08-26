@@ -31,18 +31,18 @@ export const EXTRA_SCREEN_SIZE = 1080;
 
 export const aboveSm = (width: number) => {
     return width >= SMALL_SCREEN_SIZE;
-}
+};
 
 export const aboveMd = (width: number) => {
     return width >= MEDIUM_SCREEN_SIZE;
-}
+};
 
 export const aboveLg = (width: number) => {
     return width >= LARGE_SCREEN_SIZE;
-}
+};
 
 export const aboveXl = (width: number) => {
     return width >= EXTRA_SCREEN_SIZE;
-}
+};
 
 export default useWindowDimensions;

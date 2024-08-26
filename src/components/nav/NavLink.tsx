@@ -11,7 +11,10 @@ type Props = {
     href: string;
     mobile?: boolean;
     icon?: SVGRPropsType;
-} & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
+} & React.DetailedHTMLProps<
+    React.AnchorHTMLAttributes<HTMLAnchorElement>,
+    HTMLAnchorElement
+>;
 
 export type NavLinkType = {
     text: string;
@@ -20,17 +23,26 @@ export type NavLinkType = {
 };
 
 const NavLink = (props: Props) => {
-    const {text, href, mobile, icon, ...anchorProps} = props;
+    const { text, href, mobile, icon, ...anchorProps } = props;
 
     const isMobile = mobile ?? false;
     const pathname = usePathname();
 
     return (
-        <Link {...anchorProps} href={href} className={`${styles.navLink}`} data-mobile={isMobile} data-curr-path={pathname === props.href}>
-            {
-                !props.icon?null:
-                    <LineIconButton svg={props.icon} className={`h-full w-auto`} iconClassName={``} />
-            }
+        <Link
+            {...anchorProps}
+            href={href}
+            className={`${styles.navLink}`}
+            data-mobile={isMobile}
+            data-curr-path={pathname === props.href}
+        >
+            {!props.icon ? null : (
+                <LineIconButton
+                    svg={props.icon}
+                    className={`h-full w-auto`}
+                    iconClassName={``}
+                />
+            )}
             {text}
         </Link>
     );

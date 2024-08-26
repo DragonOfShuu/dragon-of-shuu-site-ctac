@@ -1,10 +1,11 @@
 import { DetailedHTMLProps, FormHTMLAttributes } from "react";
-import styles from './EpicForms.module.sass'
+import styles from "./EpicForms.module.sass";
 import EpicFormContextComp from "@/components/epicForms/EpicFormContextComp";
 
-type EpicFormPropType = {
-
-} & DetailedHTMLProps<FormHTMLAttributes<HTMLFormElement>, HTMLFormElement>
+type EpicFormPropType = {} & DetailedHTMLProps<
+    FormHTMLAttributes<HTMLFormElement>,
+    HTMLFormElement
+>;
 
 /**
  * Acts as a wrapper for Epic Forms, and adds context
@@ -15,18 +16,17 @@ const EpicForm = (props: EpicFormPropType) => {
         <EpicFormContextComp>
             <EpicFormInner {...props} />
         </EpicFormContextComp>
-    )
-}
+    );
+};
 
 const EpicFormInner = (props: EpicFormPropType) => {
-    const {className, ...formProps} = props;
-    
+    const { className, ...formProps } = props;
+
     return (
         <div className={className}>
             <form {...formProps} className={`${styles.formRoot}`} />
         </div>
-    )
-
-}
+    );
+};
 
 export default EpicForm;

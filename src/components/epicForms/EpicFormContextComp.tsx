@@ -1,18 +1,25 @@
-import { EpicFormContext, epicFormReducer } from "@/components/epicForms/EpicFormContext"
-import { ReactNode, useReducer } from "react"
+import {
+    EpicFormContext,
+    epicFormReducer,
+} from "@/components/epicForms/EpicFormContext";
+import { ReactNode, useReducer } from "react";
 
 type EpicFormContextCompPropType = {
-    children?: ReactNode,
-}
+    children?: ReactNode;
+};
 
 const EpicFormContextComp = (props: EpicFormContextCompPropType) => {
-    const [epicFormData, epicFormDataDispatch] = useReducer(epicFormReducer, { errors: {} })
-    
+    const [epicFormData, epicFormDataDispatch] = useReducer(epicFormReducer, {
+        errors: {},
+    });
+
     return (
-        <EpicFormContext.Provider value={{epicFormData, epicFormDataDispatch}} >
+        <EpicFormContext.Provider
+            value={{ epicFormData, epicFormDataDispatch }}
+        >
             {props.children}
         </EpicFormContext.Provider>
-    )
-}
+    );
+};
 
 export default EpicFormContextComp;

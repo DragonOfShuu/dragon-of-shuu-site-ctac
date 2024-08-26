@@ -2,7 +2,7 @@ import { ButtonHTMLAttributes, DetailedHTMLProps, FC, SVGProps } from "react";
 
 type Props = {
     svg: SVGRPropsType;
-    iconClassName?: string,
+    iconClassName?: string;
 } & Omit<
     DetailedHTMLProps<
         ButtonHTMLAttributes<HTMLButtonElement>,
@@ -16,7 +16,9 @@ const LineIconButton = (props: Props) => {
 
     return (
         <button {...buttonProps}>
-            <CustomSvg className={`${iconClassName??`line-icon`} size-full object-contain`} />
+            <CustomSvg
+                className={`${iconClassName ?? `line-icon`} size-full object-contain`}
+            />
         </button>
     );
 };
