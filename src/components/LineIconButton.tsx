@@ -1,7 +1,7 @@
 import { ButtonHTMLAttributes, DetailedHTMLProps, FC, SVGProps } from "react";
 
 type Props = {
-    svg: FC<SVGProps<SVGElement>>;
+    svg: SVGRPropsType;
     iconClassName?: string,
 } & Omit<
     DetailedHTMLProps<

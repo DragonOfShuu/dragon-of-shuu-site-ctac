@@ -10,13 +10,13 @@ type Props = {
     text: string;
     href: string;
     mobile?: boolean;
-    icon?: FC<SVGProps<SVGElement>>;
+    icon?: SVGRPropsType;
 } & React.DetailedHTMLProps<React.AnchorHTMLAttributes<HTMLAnchorElement>, HTMLAnchorElement>;
 
 export type NavLinkType = {
     text: string;
     href: string;
-    icon?: FC<SVGProps<SVGElement>>;
+    icon?: SVGRPropsType;
 };
 
 const NavLink = (props: Props) => {
