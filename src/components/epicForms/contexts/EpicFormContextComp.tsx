@@ -1,7 +1,9 @@
+'use client'
+
 import {
     EpicFormContext,
     epicFormReducer,
-} from "@/components/epicForms/EpicFormContext";
+} from "@/components/epicForms/contexts/EpicFormContext";
 import { ReactNode, useReducer } from "react";
 
 type EpicFormContextCompPropType = {

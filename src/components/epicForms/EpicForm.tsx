@@ -1,6 +1,8 @@
+'use client';
+
 import { DetailedHTMLProps, FormHTMLAttributes } from "react";
 import styles from "./EpicForms.module.sass";
-import EpicFormContextComp from "@/components/epicForms/EpicFormContextComp";
+import EpicFormContextComp from "@/components/epicForms/contexts/EpicFormContextComp";
 
 type EpicFormPropType = {} & DetailedHTMLProps<
     FormHTMLAttributes<HTMLFormElement>,

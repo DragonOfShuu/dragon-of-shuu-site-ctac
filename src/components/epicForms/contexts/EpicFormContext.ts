@@ -1,3 +1,5 @@
+'use client';
+
 import { createContext, useContext } from "react";
 
 export type EpicFormDataType = {
@@ -23,10 +25,14 @@ export const epicFormReducer = (
     oldState: EpicFormDataType,
     action: EpicFormDataAction,
 ): EpicFormDataType => {
-    const newState: EpicFormDataType = JSON.parse(JSON.stringify(oldState));
+    const newState = {...oldState}; // Shallow new object
     switch (action.type) {
         case "editError": {
-            newState.errors[action.param] = action.error;
+            if (oldState.errors[action.param]===action.error) 
+                return oldState;
+
+            newState.errors = {...oldState.errors, [action.param]: action.error}
+
             return newState;
         }
         case "removeError": {
