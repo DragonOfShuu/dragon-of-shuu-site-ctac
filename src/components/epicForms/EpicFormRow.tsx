@@ -1,4 +1,4 @@
-"use client"
+"use client";
 
 import { ReactNode, useMemo } from "react";
 import styles from "./EpicForms.module.sass";
@@ -11,24 +11,29 @@ export type EpicFormRowPropType = {
     paramName: string;
 };
 
-const EpicFormRow = ({children, displayname, paramName}: EpicFormRowPropType) => {
-    const {epicFormData} = useEpicFormData();
+const EpicFormRow = ({
+    children,
+    displayname,
+    paramName,
+}: EpicFormRowPropType) => {
+    const { epicFormData } = useEpicFormData();
 
-    const error: string|undefined = useMemo(()=> epicFormData.errors?.[paramName], [epicFormData.errors, paramName])
+    const error: string | undefined = useMemo(
+        () => epicFormData.errors?.[paramName],
+        [epicFormData.errors, paramName],
+    );
 
     return (
-        <EpicFormRowComp displayName={displayname} paramName={paramName} error={error}>
+        <EpicFormRowComp
+            displayName={displayname}
+            paramName={paramName}
+            error={error}
+        >
             <div className={`${styles.formRow}`}>
                 <label htmlFor={paramName}>{displayname}</label>
                 <div className={`${styles.formRowChildren}`}>{children}</div>
             </div>
-            {
-                error?null:(
-                    <div className={`${styles.error}`}>
-                        {error}
-                    </div>
-                )
-            }
+            {error ? null : <div className={`${styles.error}`}>{error}</div>}
         </EpicFormRowComp>
     );
 };

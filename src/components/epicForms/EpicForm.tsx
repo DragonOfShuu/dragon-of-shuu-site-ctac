@@ -1,4 +1,4 @@
-'use client';
+"use client";
 
 import { DetailedHTMLProps, FormHTMLAttributes } from "react";
 import styles from "./EpicForms.module.sass";

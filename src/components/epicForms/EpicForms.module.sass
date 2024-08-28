@@ -5,10 +5,10 @@
 
     & > .formRow
         grid-column: 1 / 3
-        @apply grid grid-flow-col md:grid-cols-subgrid p-4
+        @apply md:grid md:grid-flow-col md:grid-cols-subgrid p-4
     
         & > label
-            @apply text-right px-4 py-2 border-t-[1px] border-t-orange-400
+            @apply md:text-right px-4 py-2 md:border-t-[1px] md:border-t-orange-400
 
         & > .formRowChildren
             @apply px-2

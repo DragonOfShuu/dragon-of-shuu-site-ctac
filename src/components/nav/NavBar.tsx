@@ -10,6 +10,7 @@ import useWindowDimensions, {
 } from "@/components/hooks/useWindowDimensions";
 import houseIcon from "@/assets/lineIcons/houseIcon.svg";
 import mailIcon from "@/assets/lineIcons/mailIcon.svg";
+import useWindowScroll from "@/components/hooks/useWindowScroll";
 
 type Props = {};
 
@@ -43,6 +44,7 @@ const NavBar = (props: Props) => {
     ];
 
     const { mobileNavVis, setMobileNavVis } = useMobileNavOnlySmall();
+    const { scrollY } = useWindowScroll();
 
     function menuIconClick() {
         setMobileNavVis(!mobileNavVis);
@@ -57,7 +59,7 @@ const NavBar = (props: Props) => {
             className={`fixed inset-0 z-50 ${mobileNavVis ? `backdrop-blur-md pointer-events-auto` : `pointer-events-none`}`}
         >
             <div
-                className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 h-18 pointer-events-auto`}
+                className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 h-18 pointer-events-auto ${scrollY > 0 && !mobileNavVis ? `bg-orange-950 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
             >
                 <h1
                     className={`text-xl sm:text-3xl text-amber-500 text-glow shadow-amber-500`}

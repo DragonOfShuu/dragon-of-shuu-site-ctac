@@ -2,19 +2,19 @@ import { DetailedHTMLProps, ButtonHTMLAttributes } from "react";
 import styles from "./SpecialButton.module.sass";
 
 type Props = {
-    prominent?: boolean;
+    notProminent?: boolean;
 } & DetailedHTMLProps<
     ButtonHTMLAttributes<HTMLButtonElement>,
     HTMLButtonElement
 >;
 
 const SpecialButton = (props: Props) => {
-    const { prominent, ...buttonProps } = props;
+    const { notProminent, ...buttonProps } = props;
 
     return (
         <button
             {...buttonProps}
-            data-prominent={prominent ?? true}
+            data-prominent={!(notProminent ?? false)}
             className={`${props.className ?? ""} ${styles.specialButton}`}
         />
     );

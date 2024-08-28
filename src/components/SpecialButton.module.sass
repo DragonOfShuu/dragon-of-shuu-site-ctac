@@ -1,5 +1,5 @@
 .specialButton
-    @apply rounded-md p-4
+    @apply rounded-md px-4 py-2
     
     &[data-prominent = true]
         @apply bg-amber-500
@@ -9,3 +9,12 @@
         
         &:active
             @apply bg-amber-600
+
+    &[data-prominent = false]
+        @apply border-amber-500 border-2 transition-colors
+
+        &:hover
+            @apply bg-amber-600
+        
+        &:active
+            @apply border-amber-600

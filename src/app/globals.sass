@@ -31,10 +31,12 @@
         
         &:focus
             @apply border-orange-300
-
+    
 @layer components
     .line-icon
         @apply stroke-slate-300 hover:stroke-white active:stroke-slate-400 fill-none stroke-2 cursor-pointer select-none
     .text-glow
         text-shadow: 0px 0px 5px var(--tw-shadow-color)
-        
+    .background-dark-double-shade
+        background: rgb(0,0,0)
+        background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)
