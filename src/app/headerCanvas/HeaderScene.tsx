@@ -7,8 +7,8 @@ import { useState } from "react";
 import * as THREE from "three";
 import { PerspectiveCamera } from "@react-three/drei";
 import SpinningBox from "./SpinningBox";
-import HeaderPostProcess from "./HeaderPostProcess";
 import Spaceship from "./Spaceship";
+import SpaceshipScene from '@/assets/3d/scenes/SpaceshipScene'
 
 const HeaderScene = () => {
     const [texture] = useTexture(["textures/GridTexture.png"]);
@@ -21,8 +21,8 @@ const HeaderScene = () => {
     return (
         <>
             {/* <PresentationControls snap> */}
-            <ambientLight intensity={Math.PI * 3} />
-            <CameraControls />
+            {/* <ambientLight intensity={Math.PI * 3} /> */}
+            {/* <CameraControls /> */}
             <group dispose={null}>
                 {/* <SpinningBox
                         args={[1, 1, 1]}
@@ -31,10 +31,11 @@ const HeaderScene = () => {
                         onPointerDown={() => setCanSpin(false)}
                         onPointerUp={() => setCanSpin(true)}
                     /> */}
-                <Spaceship />
+                {/* <Spaceship /> */}
+                <SpaceshipScene />
             </group>
             {/* </PresentationControls> */}
-            <PerspectiveCamera
+            {/* <PerspectiveCamera
                 makeDefault
                 position={[-5, 0, -2]}
                 rotation={[0, -89.6, 0]}
@@ -52,7 +53,7 @@ const HeaderScene = () => {
                 />
             </mesh>
             <pointLight intensity={Math.PI * 3} position={[-2, 2, 2]} />
-            <pointLight intensity={Math.PI * 3} position={[-2, 0, -2]} />
+            <pointLight intensity={Math.PI * 3} position={[-2, 0, -2]} /> */}
             {/** Too much overhead :/ */}
             {/* <HeaderPostProcess /> */}
         </>
