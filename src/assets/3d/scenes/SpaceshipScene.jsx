@@ -18,6 +18,7 @@ export default function SpaceshipScene(props) {
   const { actions } = useAnimations(animations, group)
 
   useRandomSelection(Object.values(actions), 100, (anim)=> {
+    console.log("Playing anim...")
     anim?.play();
   })
 

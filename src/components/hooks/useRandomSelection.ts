@@ -11,7 +11,7 @@ const useRandomSelection = <T>(items: T[], interval: number, runnable: (item: T)
         return () => {
             clearInterval(runnerInterval)
         }
-    })
+    }, [interval, items, runnable])
 }
 
 export default useRandomSelection;
