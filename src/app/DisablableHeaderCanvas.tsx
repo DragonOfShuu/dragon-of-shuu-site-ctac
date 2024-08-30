@@ -6,6 +6,7 @@ import { useState } from "react";
 import useWindowDimensions from "@/components/hooks/useWindowDimensions";
 import Image from "next/image";
 import headerImage from "@/assets/abstractCommon/HeaderBackground.png";
+import headerImage3D from '@/assets/abstractCommon/HeaderBackgroundFor3d.png'
 
 type Props = {
     className?: string;
@@ -34,7 +35,12 @@ const DisableableHeaderCanvas = (props: Props) => {
                 {!canvasEnabled || !allowedWidth ? (
                     backupContent
                 ) : (
-                    <HeaderCanvas />
+                    <>
+                        <HeaderCanvas />
+                        <div className={`absolute inset-0 -z-10`}>
+                            <Image src={headerImage3D} className={`object-cover size-full hue-rotate-15 brightness-[.1]`} alt={`Header background`} />
+                        </div>
+                    </>
                 )}
                 {!allowedWidth ? (
                     <></>
