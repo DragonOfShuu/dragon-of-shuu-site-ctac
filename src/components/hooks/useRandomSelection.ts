@@ -1,17 +1,21 @@
 import { randomItem } from "@/components/libs/random";
-import { useEffect } from "react"
+import { useEffect } from "react";
 
-const useRandomSelection = <T>(items: T[], interval: number, runnable: (item: T)=> unknown) => {
+const useRandomSelection = <T>(
+    items: T[],
+    interval: number,
+    runnable: (item: T) => unknown,
+) => {
     useEffect(() => {
         const runnerInterval = setInterval(() => {
             const item = randomItem(items);
-            runnable(item)
-        }, interval)
+            runnable(item);
+        }, interval);
 
         return () => {
-            clearInterval(runnerInterval)
-        }
-    }, [interval, items, runnable])
-}
+            clearInterval(runnerInterval);
+        };
+    }, [interval, items, runnable]);
+};
 
 export default useRandomSelection;

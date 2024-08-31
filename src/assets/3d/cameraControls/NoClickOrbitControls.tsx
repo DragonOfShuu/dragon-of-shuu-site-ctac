@@ -1,15 +1,15 @@
-import { CameraControls } from "@react-three/drei"
-import { useFrame, useThree } from "@react-three/fiber"
-import { useRef } from "react"
+import { CameraControls } from "@react-three/drei";
+import { useFrame, useThree } from "@react-three/fiber";
+import { useRef } from "react";
 
 export type NoClickOrbitControlsPropType = {
-    makeDefault?: boolean,
-}
+    makeDefault?: boolean;
+};
 
 function NoClickTruckControls(props: NoClickOrbitControlsPropType) {
-    const ref = useRef<CameraControls>(null)
-    const camera = useThree((state) => state.camera)
-    const gl = useThree((state) => state.gl)
+    const ref = useRef<CameraControls>(null);
+    const camera = useThree((state) => state.camera);
+    const gl = useThree((state) => state.gl);
 
     const truckX = useRef(0);
     const truckY = useRef(0);
@@ -23,10 +23,17 @@ function NoClickTruckControls(props: NoClickOrbitControlsPropType) {
         truckY.current = state.pointer.y;
 
         ref.current.truck(truckXDelta, truckYDelta, true);
-        ref.current.update(delta)
-    })
- 
-    return <CameraControls ref={ref} args={[camera, gl.domElement]} enabled={false} makeDefault={props.makeDefault} />
+        ref.current.update(delta);
+    });
+
+    return (
+        <CameraControls
+            ref={ref}
+            args={[camera, gl.domElement]}
+            enabled={false}
+            makeDefault={props.makeDefault}
+        />
+    );
 }
 
 export default NoClickTruckControls;
