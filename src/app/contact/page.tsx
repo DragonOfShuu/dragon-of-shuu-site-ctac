@@ -25,6 +25,8 @@ const ContactUs = () => {
         redirect(redirURL)
     }
 
+    // Do I know how RegEx works? Yes
+    // Do I want to figure all THIS out by hand? Absolutely not
     const emailAddrRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
 
     return (
@@ -38,7 +40,9 @@ const ContactUs = () => {
                     className={`w-full lg:w-[900px]`}
                 >
                     <EpicFormRow displayname={`Name`} paramName={`name`}>
-                        <input
+                        <EpicFormRegExInput
+                            error={`Must be a valid name`}
+                            regex={/\w{1,50}( [\w-]{1,50}){1,2}/.source}
                             id={`name`}
                             name={`name`}
                             type={`text`}
@@ -51,6 +55,7 @@ const ContactUs = () => {
                             id={`message`}
                             name={`message`}
                             placeholder={`Message...`}
+                            charmax={1000}
                             required
                         />
                     </EpicFormRow>
@@ -59,8 +64,8 @@ const ContactUs = () => {
                         paramName={`ret_addr`}
                     >
                         <EpicFormRegExInput 
-                            error={`Input must be an email address`}
-                            regex={emailAddrRegex}
+                            error={`Must be a valid email address`}
+                            regex={emailAddrRegex.source}
                             id={`ret_addr`}
                             name={`ret_addr`}
                             placeholder={`johndoe@example.com`}

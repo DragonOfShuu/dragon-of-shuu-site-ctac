@@ -9,3 +9,9 @@ export const contactSubmissionKeys: (keyof ContactSubmissionType)[] = [
     'message',
     'ret_addr'
 ]
+
+export const contactSubmissionDisplay: {[x in keyof ContactSubmissionType]: string} = {
+    name: 'Name',
+    message: 'Message',
+    ret_addr: 'Return Address',
+}

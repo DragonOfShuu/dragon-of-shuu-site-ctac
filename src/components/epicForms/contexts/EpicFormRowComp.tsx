@@ -18,6 +18,7 @@ const useFormRowError = (paramName: string, initError: string | null) => {
 
     const _setError = useCallback(
         (value: string | null) => {
+            console.log(`running set error. Error is: ${value}`)
             epicFormDataDispatch(
                 value === null
                     ? { type: "removeError", param: paramName }

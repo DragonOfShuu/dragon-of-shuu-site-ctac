@@ -33,7 +33,7 @@ const EpicFormRow = ({
                 <label htmlFor={paramName}>{displayname}</label>
                 <div className={`${styles.formRowChildren}`}>{children}</div>
             </div>
-            {error ? null : <div className={`${styles.error}`}>{error}</div>}
+            {error ? <div className={`${styles.error}`}>{error}</div> : null}
         </EpicFormRowComp>
     );
 };

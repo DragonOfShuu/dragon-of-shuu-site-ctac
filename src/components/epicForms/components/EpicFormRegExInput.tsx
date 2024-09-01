@@ -4,13 +4,14 @@ import useEpicRow from "@/components/epicForms/contexts/EpicFormRowContext";
 import { DetailedHTMLProps, InputHTMLAttributes } from "react"
 
 export type EpicFormRegExInputPropType = {
-    regex: RegExp,
+    regex: string,
     error: string,
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>
 
 const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
-    const {regex, error: regexFailError, ...inputProps} = props;
+    const {regex: regexString, error: regexFailError, ...inputProps} = props;
     const {setFormError} = useEpicRow();
+    const regex = new RegExp(regexString);
 
     const removeError = () => {
         setFormError(null);

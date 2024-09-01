@@ -1,3 +1,14 @@
+@keyframes hoverSubmitButton
+    0%
+        transform: rotate(8deg)
+        @apply bg-amber-400
+    50%
+        transform: rotate(-8deg)
+        @apply bg-amber-300
+    100%
+        transform: rotate(8deg)
+        @apply bg-amber-400
+    
 .specialButton
     @apply rounded-md px-4 py-2
     
@@ -6,6 +17,8 @@
 
         &:hover
             @apply bg-amber-400
+            &[type='submit']
+                animation: 0.5s infinite hoverSubmitButton
         
         &:active
             @apply bg-amber-600
@@ -18,3 +31,6 @@
         
         &:active
             @apply border-amber-600
+
+    &:disabled
+        @apply bg-gray-700 hover:bg-gray-700
