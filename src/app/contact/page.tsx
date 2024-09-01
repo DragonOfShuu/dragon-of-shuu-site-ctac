@@ -4,30 +4,37 @@ import EpicFormRow from "@/components/epicForms/bases/EpicFormRow";
 import EpicFormSubmit from "@/components/epicForms/components/EpicFormSubmit";
 import PageHeader from "@/components/PageHeader";
 import { redirect } from "next/navigation";
-import { contactSubmissionKeys, ContactSubmissionType } from "@/app/contact/contactTypes";
+import {
+    contactSubmissionKeys,
+    ContactSubmissionType,
+} from "@/app/contact/contactTypes";
 import EpicFormRegExInput from "@/components/epicForms/components/EpicFormRegExInput";
 
 const ContactUs = () => {
-
     const submitContactInfo = async (formData: FormData) => {
         "use server";
 
-        const rawFormData = contactSubmissionKeys.reduce<Partial<ContactSubmissionType>>((prev, curr) => {
+        const rawFormData = contactSubmissionKeys.reduce<
+            Partial<ContactSubmissionType>
+        >((prev, curr) => {
             // Some may call this lazy. I call it ✨fashionable✨
-            prev[curr] = (formData.get(curr)??undefined) as string|undefined;
-            return prev
+            prev[curr] = (formData.get(curr) ?? undefined) as
+                | string
+                | undefined;
+            return prev;
         }, {});
 
-        console.log("Emailing data (and more!)", rawFormData)
+        console.log("Emailing data (and more!)", rawFormData);
 
-        const redirURL = `/contact/thank-you/?${new URLSearchParams(rawFormData)}`
+        const redirURL = `/contact/thank-you/?${new URLSearchParams(rawFormData)}`;
 
-        redirect(redirURL)
-    }
+        redirect(redirURL);
+    };
 
     // Do I know how RegEx works? Yes
     // Do I want to figure all THIS out by hand? Absolutely not
-    const emailAddrRegex = /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/
+    const emailAddrRegex =
+        /(?:[a-z0-9!#$%&'*+/=?^_`{|}~-]+(?:\.[a-z0-9!#$%&'*+/=?^_`{|}~-]+)*|"(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21\x23-\x5b\x5d-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])*")@(?:(?:[a-z0-9](?:[a-z0-9-]*[a-z0-9])?\.)+[a-z0-9](?:[a-z0-9-]*[a-z0-9])?|\[(?:(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9]))\.){3}(?:(2(5[0-5]|[0-4][0-9])|1[0-9][0-9]|[1-9]?[0-9])|[a-z0-9-]*[a-z0-9]:(?:[\x01-\x08\x0b\x0c\x0e-\x1f\x21-\x5a\x53-\x7f]|\\[\x01-\x09\x0b\x0c\x0e-\x7f])+)\])/;
 
     return (
         <>
@@ -63,7 +70,7 @@ const ContactUs = () => {
                         displayname={`Return Email`}
                         paramName={`ret_addr`}
                     >
-                        <EpicFormRegExInput 
+                        <EpicFormRegExInput
                             error={`Must be a valid email address`}
                             regex={emailAddrRegex.source}
                             id={`ret_addr`}

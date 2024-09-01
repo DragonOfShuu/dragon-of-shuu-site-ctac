@@ -19,7 +19,7 @@ const MarkdownTextbox = (props: MarkdownTextboxPropType) => {
     const { setFormError } = useEpicRow();
 
     const setTextAreaText = (newValue: string) => {
-        _setTextAreaText(newValue)
+        _setTextAreaText(newValue);
         const currTextLength = newValue.length;
         return setFormError(
             currTextLength > props.charmax

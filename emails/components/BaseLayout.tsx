@@ -1,45 +1,45 @@
 import React from "react";
 import {
-  Mjml,
-  MjmlBody,
-  MjmlHead,
-  MjmlFont,
-  MjmlStyle,
-  MjmlAttributes,
-  MjmlAll,
+    Mjml,
+    MjmlBody,
+    MjmlHead,
+    MjmlFont,
+    MjmlStyle,
+    MjmlAttributes,
+    MjmlAll,
 } from "@faire/mjml-react";
 import {
-  screens,
-  themeDefaults,
-  spacing,
-  colors,
-  fontFamily,
-  fontSize,
-  borderRadius,
+    screens,
+    themeDefaults,
+    spacing,
+    colors,
+    fontFamily,
+    fontSize,
+    borderRadius,
 } from "../theme";
 
 type BaseLayoutProps = {
-  width?: number;
-  style?: string;
-  children: React.ReactNode;
+    width?: number;
+    style?: string;
+    children: React.ReactNode;
 };
 
 export default function BaseLayout({
-  width,
-  children,
-  style,
+    width,
+    children,
+    style,
 }: BaseLayoutProps) {
-  return (
-    <Mjml>
-      <MjmlHead>
-        <MjmlFont
-          name="neue-haas-unica"
-          href="https://use.typekit.net/qqd8jtb.css"
-        />
-        <MjmlAttributes>
-          <MjmlAll {...themeDefaults} />
-        </MjmlAttributes>
-        <MjmlStyle>{`
+    return (
+        <Mjml>
+            <MjmlHead>
+                <MjmlFont
+                    name="neue-haas-unica"
+                    href="https://use.typekit.net/qqd8jtb.css"
+                />
+                <MjmlAttributes>
+                    <MjmlAll {...themeDefaults} />
+                </MjmlAttributes>
+                <MjmlStyle>{`
           body {
             -webkit-font-smoothing: antialiased;
             min-width: 320px;
@@ -103,9 +103,9 @@ export default function BaseLayout({
           /* Email specific Styles */
           ${style}
       `}</MjmlStyle>
-      </MjmlHead>
+            </MjmlHead>
 
-      <MjmlBody width={width}>{children}</MjmlBody>
-    </Mjml>
-  );
+            <MjmlBody width={width}>{children}</MjmlBody>
+        </Mjml>
+    );
 }

@@ -25,9 +25,9 @@ const config: Config = {
             },
             colors: {
                 orange: {
-                    '975': '#170703',
-                }
-            }
+                    "975": "#170703",
+                },
+            },
         },
     },
     plugins: [],
