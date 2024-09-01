@@ -23,6 +23,11 @@ const config: Config = {
                 striking: ["var(--striking-font)"],
                 simple: ["var(--simple-font)"],
             },
+            colors: {
+                orange: {
+                    '975': '#170703',
+                }
+            }
         },
     },
     plugins: [],

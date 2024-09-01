@@ -1,0 +1,14 @@
+.viewer
+    grid-template-columns: auto 1fr
+    flex-direction: column
+    @apply flex lg:grid w-full lg:w-auto
+
+    .dataBox
+        grid-column: 1 / 3
+        @apply p-2 grid grid-cols-subgrid gap-x-2
+
+        .key
+            @apply capitalize text-xl p-2 border-b-2 lg:border-r-2 lg:border-b-0 border-orange-600 lg:text-right
+
+        .value
+            @apply self-center p-2 ml-2 max-h-56 overflow-y-auto

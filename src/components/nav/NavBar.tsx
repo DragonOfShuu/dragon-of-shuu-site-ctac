@@ -62,7 +62,7 @@ const NavBar = (props: Props) => {
                 className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 h-18 pointer-events-auto ${scrollY > 0 && !mobileNavVis ? `bg-orange-950 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
             >
                 <h1
-                    className={`text-xl sm:text-3xl text-amber-500 text-glow shadow-amber-500`}
+                    className={`text-lg sm:text-3xl text-amber-500 text-glow shadow-amber-500`}
                 >
                     <Link href={`/`}>Dragon of Shuu</Link>
                 </h1>

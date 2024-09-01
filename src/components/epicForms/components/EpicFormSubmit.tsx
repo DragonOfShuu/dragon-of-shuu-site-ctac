@@ -1,8 +1,8 @@
 "use client";
 
-import SpecialButton from "../SpecialButton";
-import useEpicFormData from "./contexts/EpicFormContext";
-import EpicFormLabelless from "./EpicFormLabelless";
+import SpecialButton from "../../SpecialButton";
+import useEpicFormData from "../contexts/EpicFormContext";
+import EpicFormLabelless from "../bases/EpicFormLabelless";
 
 type EpicFormSubmitPropsType = {
     submitText?: string;

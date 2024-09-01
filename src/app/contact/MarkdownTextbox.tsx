@@ -21,6 +21,7 @@ const MarkdownTextbox = (props: MarkdownTextboxPropType) => {
                 className={`w-full h-48 ${isMarkdown ? `` : `hidden`}`}
                 onChange={(e) => setTextAreaText(e.target.value)}
             />
+            {/* Create a reusable class named "docs" that allows you to have margins beneath headings, etc */}
             <Markdown
                 className={`w-full h-48 overflow-y-scroll ${isMarkdown ? `hidden` : ``}`}
             >
