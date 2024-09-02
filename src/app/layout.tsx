@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import { Open_Sans, Libre_Baskerville } from "next/font/google";
 import "./globals.sass";
-import NavBar from "../components/nav/NavBar";
+import NavBar from "../components/nav/navBar/NavBar";
+import Footer from "@/components/nav/footer/Footer";
 
 const strikingFont = Libre_Baskerville({
     weight: "400",
@@ -36,7 +37,10 @@ export default function RootLayout({
                 className={`${strikingFont.variable} ${simpleFont.variable} ${simpleFont.className}`}
             >
                 <NavBar />
-                {children}
+                <div className={`min-h-screen`}>
+                    {children}
+                </div>
+                <Footer />
             </body>
         </html>
     );

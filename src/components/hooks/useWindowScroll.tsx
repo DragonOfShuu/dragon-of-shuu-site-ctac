@@ -7,6 +7,8 @@ const useWindowScroll = () => {
     const [scrollX, setScrollX] = useState<number>(0);
 
     useEffect(() => {
+        setScrollX(window.scrollX);
+        setScrollY(window.scrollY);
         const onScroll = () => {
             setScrollX(window.scrollX);
             setScrollY(window.scrollY);
@@ -17,7 +19,7 @@ const useWindowScroll = () => {
         return () => {
             document.removeEventListener("scroll", onScroll);
         };
-    });
+    }, []);
 
     return { scrollX, scrollY };
 };

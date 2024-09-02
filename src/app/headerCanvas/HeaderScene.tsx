@@ -10,8 +10,8 @@ const HeaderScene = () => {
     // texture.repeat.set(10, 10);
 
     const shakeMax = 0.005;
-    const shakeFrequency = 2;
-    const shakeIntensity = 1;
+    const shakeFrequency = 1;
+    const shakeIntensity = 0.5;
 
     return (
         <>
