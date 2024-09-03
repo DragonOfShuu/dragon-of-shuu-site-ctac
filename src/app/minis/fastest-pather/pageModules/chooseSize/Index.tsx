@@ -89,7 +89,7 @@ const ChooseSize = () => {
                 min={1}
                 max={limit} 
                 title="X length of the board" />
-            <h2 className={`align-middle`}>X</h2>
+            <h2 className={`self-center`}>X</h2>
             <input 
                 type="number"
                 onChange={(event)=> setTempY(Number.parseInt(event.target.value)??'')}

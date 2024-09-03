@@ -20,11 +20,6 @@
     user-select: none
     -webkit-user-select: none
 
-    &:hover
-        div
-            img
-                animation: 0.5s cubic-bezier(0, 0, 0.74, 1.6) flagAnim, 0.5s cubic-bezier(0.61, 1.43, 1, 1) flagRotate, 0.8s flagWiggle infinite
-
 .ghost
     border-width: 1px
     background-color: #000000
@@ -98,6 +93,8 @@
     grid-column: 1
     grid-row: 1
 
+    @apply size-full
+
 .flagText
     // backdrop-filter: blur(24px) invert(20%)
     animation-delay: 0.5s
@@ -120,3 +117,7 @@
 
 .baseOverlay
     transition: border-width 0.3s
+
+    &:hover
+        .flag
+            animation: 0.5s cubic-bezier(0, 0, 0.74, 1.6) flagAnim, 0.5s cubic-bezier(0.61, 1.43, 1, 1) flagRotate, 0.8s flagWiggle infinite

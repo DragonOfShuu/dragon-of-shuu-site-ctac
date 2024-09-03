@@ -65,7 +65,7 @@ const NavBar = (props: Props) => {
             className={`fixed inset-0 z-50 ${mobileNavVis ? `backdrop-blur-md pointer-events-auto` : `pointer-events-none`}`}
         >
             <div
-                className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 h-18 pointer-events-auto ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
+                className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 pointer-events-auto ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
             >
                 <h1
                     className={`text-lg sm:text-3xl text-amber-500 text-glow shadow-amber-500`}

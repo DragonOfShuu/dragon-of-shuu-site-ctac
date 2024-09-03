@@ -1,21 +1,21 @@
-// import TextualHeader from "@/app/components/pageBases/TextualHeader"
 import Pager from "./Pager";
 import HowOnStart from "./help/HowOnStart";
 import SettingsContextComp from "./contexts/SettingsContextComp";
-import PageContextComp from "./contexts/PageContextComp";
+import NavMargin from "@/components/nav/navBar/NavMargin";
 
 const Page = () => {
     return (
-        // <TextualHeader pagePadding="" childrenPadding="px-4" text="Fastest **Pather**">
-        <div className={`flex-grow`}>
-            <HowOnStart />
-            <div className={`flex flex-col w-full flex-grow`}>
-                <SettingsContextComp>
-                    <Pager />
-                </SettingsContextComp>
+        <>
+            <NavMargin />
+            <div className="flex flex-grow p-12">
+                <HowOnStart />
+                <div className={`flex flex-col w-full flex-grow`}>
+                    <SettingsContextComp>
+                        <Pager />
+                    </SettingsContextComp>
+                </div>
             </div>
-        </div>
-        // {/* // </TextualHeader> */}
+        </>
     )
 }
 

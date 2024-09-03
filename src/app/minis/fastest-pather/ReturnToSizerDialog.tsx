@@ -3,6 +3,7 @@ import backIcon from './icons/leftArrow.svg'
 import ToolBarButton from './toolBarElements/ToolBarButton'
 import BaseDialog from './BaseDialog'
 import { usePages } from './contexts/PageContext'
+import SpecialButton from '@/components/SpecialButton'
 
 type Props = {
 
@@ -23,12 +24,12 @@ const ReturnToSizerDialog = (props: Props) => {
                     {`Are you sure you want to return to the sizer?`}
                 </p>
                 <div className='flex flex-row gap-2 items-stretch'>
-                    <button onClick={()=>setPage('SIZER')} className={`${buttonClassnames}`}>
+                    <SpecialButton onClick={()=>setPage('SIZER')} className={`${buttonClassnames}`}>
                         Yes
-                    </button>
-                    <button onClick={()=>dialogRef.current?.close()} className={`${buttonClassnames}`}>
+                    </SpecialButton>
+                    <SpecialButton onClick={()=>dialogRef.current?.close()} className={`${buttonClassnames}`}>
                         No
-                    </button>
+                    </SpecialButton>
                 </div>
             </BaseDialog>
         </>

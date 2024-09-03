@@ -51,8 +51,7 @@ const BaseDialog = (props: BaseDialogProps) => {
                 <div className={`flex flex-row items-center`}>
                     {
                         props.topBar?.map((icon, index) => (
-                            <Image 
-                                src={icon.image} 
+                            <icon.image
                                 alt={icon.alt} 
                                 title={icon.alt} 
                                 width={20} height={20} 
@@ -62,7 +61,7 @@ const BaseDialog = (props: BaseDialogProps) => {
                         ))
                     }
                     <div className={`grow`} />
-                    <Image src={Plus} alt='Exit Dialog' title='Exit Dialog' width={20} height={20} className='cursor-pointer opacity-40 hover:opacity-90 rotate-45' onClick={close} />
+                    <Plus alt='Exit Dialog' title='Exit Dialog' width={20} height={20} className='cursor-pointer opacity-40 hover:opacity-90 rotate-45' onClick={close} />
                 </div>
                 <div className={`${styles.innerDialogDiv}`}>
                     {props.children}
