@@ -88,7 +88,7 @@ const Runner = ({}: Props) => {
     useEffect(() => {
         let pointLoc = vData.pointPos as StartEnd;
         let state = new StarState(pointLoc.start, pointLoc.end);
-        let leInterval: undefined | NodeJS.Timer;
+        let leInterval: undefined | NodeJS.Timeout;
 
         function clearCallback() {
             clearInterval(leInterval);
