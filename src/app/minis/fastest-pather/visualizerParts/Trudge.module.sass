@@ -1,0 +1,76 @@
+@keyframes toGrass
+    0%
+        z-index: auto
+        transform: scale(1) rotate(0)
+    50%
+        z-index: 20
+        transform: scale(1.3)
+        background-color: #b4ffb9
+    100%
+        z-index: auto
+        background-color: #4eff5f
+        transform: none
+
+.grass
+    &:not(:has(img))
+        animation: 0.5s toGrass
+        animation-fill-mode: both
+    &:has(img)
+        background-color: #4eff5f
+        // background-color: #ccff7a
+
+@keyframes toWater
+    0%
+        transform: scale(1) skew(0deg)
+    33%
+        transform: scale(0.3) skew(10deg)
+    67%
+        transform: skew(-10deg)
+    100%
+        transform: scale(1) skew(0)
+        background-color: #72d7ff
+
+.water
+    &:not(:has(img))
+        animation: 0.5s toWater
+        animation-fill-mode: both
+    &:has(img)
+        background-color: #72d7ff
+
+@keyframes toMud
+    0%
+        transform: scale(1) rotate(0deg)
+    50%
+        transform: scale(0.5) rotate(180deg)
+    100%
+        transform: scale(1) rotate(360deg)
+        background-color: #845543
+
+.mud
+    &:not(:has(img))
+        animation: 0.5s toMud
+        animation-fill-mode: both
+    &:has(img)
+        background-color: #845543
+
+@keyframes toAsphalt
+    0%
+        transform: scale(1) 
+        z-index: 1
+    33%
+        transform: scale(0.7) 
+        z-index: 1
+    66%
+        transform: scale(1.3)
+        z-index: 20
+    100%
+        transform: scale(1) 
+        background-color: #454d4f
+        z-index: 1
+
+.asphalt
+    &:not(:has(img))
+        animation: 0.3s toAsphalt
+        animation-fill-mode: both
+    &:has(img)
+        background-color: #454d4f

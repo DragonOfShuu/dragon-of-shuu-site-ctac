@@ -4,6 +4,7 @@ import Link from "next/link";
 import NavLink, { NavLinkType } from "./NavLink";
 import LineIconButton from "../../LineIconButton";
 import HamburgerMenuIcon from "@/assets/lineIcons/hamburgerMenu.svg";
+import ProjectIcon from "@/assets/lineIcons/projectIcon.svg";
 import { useEffect, useState } from "react";
 import useWindowDimensions, {
     aboveMd,
@@ -41,6 +42,11 @@ const NavBar = (props: Props) => {
             href: "/contact",
             icon: mailIcon,
         },
+        {
+            text: "Minis",
+            href: "/minis",
+            icon: ProjectIcon
+        }
     ];
 
     const { mobileNavVis, setMobileNavVis } = useMobileNavOnlySmall();

@@ -1,0 +1,46 @@
+.range
+    --c: theme("colors.orange.500") /* active color */
+    --g: 8px /* the gap */
+    --l: 5px /* line thickness*/
+    --s: 30px /* thumb size*/
+
+    width: 400px
+    height: var(--s) /* needed for Firefox*/
+    --_c: color-mix(in srgb, var(--c), #000 var(--p,20%))
+    -webkit-appearance :none
+    -moz-appearance: none
+    appearance: none
+    background: none
+    cursor: pointer
+    overflow: hidden
+
+    &:focus-visible, &:hover
+        --p: 0%
+
+    &:active, &:focus-visible
+        --_b: var(--s)
+
+    /* chromium */
+    // input[type="range" i]
+    &::-webkit-slider-thumb
+        height: var(--s)
+        aspect-ratio: 1
+        border-radius: 50%
+        box-shadow: 0 0 0 var(--_b,var(--l)) inset var(--_c)
+        border-image: linear-gradient(90deg,var(--_c) 50%,#ababab 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g))
+        -webkit-appearance: none
+        appearance: none
+        transition: .3s
+
+    /* Firefox */
+    // input[type="range"]
+    &::-moz-range-thumb 
+        height: var(--s)
+        width: var(--s)
+        background: none
+        border-radius: 50%
+        box-shadow: 0 0 0 var(--_b,var(--l)) inset var(--_c)
+        border-image: linear-gradient(90deg,var(--_c) 50%,#ababab 0) 0 1/calc(50% - var(--l)/2) 100vw/0 calc(100vw + var(--g))
+        -moz-appearance: none
+        appearance: none
+        transition: .3s

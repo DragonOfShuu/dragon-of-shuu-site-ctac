@@ -1,0 +1,122 @@
+@keyframes flagWiggle
+    0%
+        transform: rotate(0deg)
+    33%
+        transform: rotate(10deg)
+    66%
+        transform: rotate(-10deg)
+    100%
+        transform: rotate(0deg)
+
+@keyframes textFadeIn
+    0%
+        opacity: 0
+        
+    100%
+        opacity: 1
+
+.block
+    transition: all 0.3s
+    user-select: none
+    -webkit-user-select: none
+
+    &:hover
+        div
+            img
+                animation: 0.5s cubic-bezier(0, 0, 0.74, 1.6) flagAnim, 0.5s cubic-bezier(0.61, 1.43, 1, 1) flagRotate, 0.8s flagWiggle infinite
+
+.ghost
+    border-width: 1px
+    background-color: #000000
+
+    box-shadow: 0 0 10px theme("colors.slate.400" / 0.7) inset
+
+    @apply border-slate-200
+
+.available
+    border-width: 2px
+
+    @apply border-black
+
+@keyframes toFoundColor
+    0%
+    
+    100%
+        @apply border-white
+
+.found
+    animation: 0.5s steps(2, jump-none) toFoundColor
+    animation-fill-mode: both    
+    border-width: 10px
+
+.finding
+    border-width: 6px
+    @apply border-gray-500 
+
+@keyframes toPath
+    0%
+        @apply bg-white
+    100%
+        @apply border-purple-600
+
+.path
+    animation: 0.2s toPath both
+    border-width: 8px
+
+.barrier
+
+@property --scale
+    syntax: "<number>"
+    initial-value: 0
+    inherits: false
+
+@property --rotation
+    syntax: "<angle>"
+    initial-value: 180deg
+    inherits: false
+
+@keyframes flagAnim 
+    0%
+        --scale: 0
+    100%
+        --scale: 1
+
+@keyframes flagRotate 
+    0%
+        --rotation: 180deg
+        opacity: 0
+    100%
+        opacity: 1
+        --rotation: 360deg
+
+.flag
+    animation: 0.5s cubic-bezier(0, 0, 0.74, 1.6) flagAnim, 0.5s cubic-bezier(0.61, 1.43, 1, 1) flagRotate
+    transform: scale(var(--scale)) rotate(var(--rotation))
+    animation-fill-mode: both
+    pointer-events: none
+
+    grid-column: 1
+    grid-row: 1
+
+.flagText
+    // backdrop-filter: blur(24px) invert(20%)
+    animation-delay: 0.5s
+    animation-duration: 0.5s
+    animation-name: textFadeIn
+    animation-fill-mode: both
+
+    font-weight: bold
+    color: black
+
+    @container ((min-width: 40px) and (min-height: 40px))
+        &
+            font-size: 1.5em
+    @container ((max-width: 20px) and (max-height: 20px))
+        &
+            font-size: 0.4em
+    @container ((max-width: 20px) and (max-height: 20px))
+        &
+            display: none
+
+.baseOverlay
+    transition: border-width 0.3s

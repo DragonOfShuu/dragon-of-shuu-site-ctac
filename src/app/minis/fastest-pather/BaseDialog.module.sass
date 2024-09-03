@@ -1,0 +1,35 @@
+@keyframes backdropTrans
+    0%
+        background-color: #00000000
+        backdrop-filter: blur(0) grayscale(0)
+    100%
+        background-color: #0000002f
+        backdrop-filter: blur(1px) grayscale(40%)
+
+.dialogBox
+    padding: 5px
+    border-radius: 10px
+    background-color: #151515
+    color: white
+
+    box-shadow: 10px 10px 3px #000000a0
+
+    @apply text-2xl
+    
+    &::backdrop
+        animation: backdropTrans 0.5s both
+    
+    & button 
+        @apply px-4 py-2
+
+.innerGrid
+    display: grid
+    grid-template-rows: 30px auto
+    grid-template-columns: auto 
+
+.innerDialogDiv
+    display: flex
+    flex-direction: column
+    align-items: center
+
+    @apply p-4 gap-4 w-full

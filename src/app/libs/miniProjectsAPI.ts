@@ -8,10 +8,15 @@ import { join } from "path";
 const minisDir = "src/app/minis/";
 const projectMetaFileName = "project.md";
 
+type FrontMatterType = {
+    name: string,
+    image: string,
+    width: number,
+    height: number,
+}
+
 type MiniProjectType = {
-    frontMatter: {
-        [key: string]: any;
-    };
+    frontMatter: FrontMatterType;
     dirName: string;
     content: string;
 };
@@ -37,7 +42,7 @@ const getProjectData = async (
 
     const { data: frontmatter, content } = matter(fileContent);
 
-    return { frontMatter: frontmatter, content: content, dirName: projName };
+    return { frontMatter: frontmatter as FrontMatterType, content: content, dirName: projName };
 };
 
 const getAllProjects = async (): Promise<MiniProjectType[]> => {
@@ -45,8 +50,8 @@ const getAllProjects = async (): Promise<MiniProjectType[]> => {
 
     const projData = await Promise.all(projNames.map((p) => getProjectData(p)));
 
-    // return projData.filter((p) => p !== null);
-    return new Promise((resolve) => setTimeout(resolve, 5000)).then(() => projData.filter((p) => p !== null))
+    return projData.filter((p) => p !== null);
+    // return new Promise((resolve) => setTimeout(resolve, 1000000)).then(() => projData.filter((p) => p !== null))
 };
 
 export default getAllProjects;
