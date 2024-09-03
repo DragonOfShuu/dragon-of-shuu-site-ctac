@@ -1,5 +1,4 @@
-import BaseHelp from "./BaseHelp"
-
+import BaseHelp from "./BaseHelp";
 
 const HowRunner = () => {
     return (
@@ -109,7 +108,7 @@ G+H=F
 The algorithm will forward the node with the 
 lowest F value.
         `}</BaseHelp>
-    )
-}
+    );
+};
 
-export default HowRunner
+export default HowRunner;

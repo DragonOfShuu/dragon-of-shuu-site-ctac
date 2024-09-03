@@ -45,8 +45,8 @@ const NavBar = (props: Props) => {
         {
             text: "Minis",
             href: "/minis",
-            icon: ProjectIcon
-        }
+            icon: ProjectIcon,
+        },
     ];
 
     const { mobileNavVis, setMobileNavVis } = useMobileNavOnlySmall();

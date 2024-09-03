@@ -4,7 +4,7 @@ import SpecialButton from "@/components/SpecialButton";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import styles from './ProjectItem.module.sass'
+import styles from "./ProjectItem.module.sass";
 
 export type imageDataType = {
     src: string;
@@ -23,13 +23,10 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <div
-            className={`${styles.item}`}
-            onClick={() => setOpen((o)=>!o)}
-        >
+        <div className={`${styles.item}`} onClick={() => setOpen((o) => !o)}>
             <div className={`${styles.text}`}>
                 <h1>{props.name}</h1>
-                <p className={`${open?`block`:`hidden`}`}>
+                <p className={`${open ? `block` : `hidden`}`}>
                     {props.description}
                 </p>
             </div>

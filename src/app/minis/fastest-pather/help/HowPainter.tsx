@@ -1,5 +1,4 @@
-import BaseHelp from "./BaseHelp"
-
+import BaseHelp from "./BaseHelp";
 
 const HowPainter = () => {
     return (
@@ -59,7 +58,7 @@ type that you have selected. To remove the barriers,
 just draw over them with any trudge type.
             `}
         </BaseHelp>
-    )
-}
+    );
+};
 
 export default HowPainter;

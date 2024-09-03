@@ -1,5 +1,4 @@
-import BaseHelp from "./BaseHelp"
-
+import BaseHelp from "./BaseHelp";
 
 const HowSizer = () => {
     return (
@@ -43,7 +42,7 @@ the environment with the sizes you
 have given, and will take you 
 straight to the painter!
         `}</BaseHelp>
-    )
-}
+    );
+};
 
-export default HowSizer
+export default HowSizer;

@@ -9,11 +9,11 @@ const minisDir = "src/app/minis/";
 const projectMetaFileName = "project.md";
 
 type FrontMatterType = {
-    name: string,
-    image: string,
-    width: number,
-    height: number,
-}
+    name: string;
+    image: string;
+    width: number;
+    height: number;
+};
 
 type MiniProjectType = {
     frontMatter: FrontMatterType;
@@ -42,7 +42,11 @@ const getProjectData = async (
 
     const { data: frontmatter, content } = matter(fileContent);
 
-    return { frontMatter: frontmatter as FrontMatterType, content: content, dirName: projName };
+    return {
+        frontMatter: frontmatter as FrontMatterType,
+        content: content,
+        dirName: projName,
+    };
 };
 
 const getAllProjects = async (): Promise<MiniProjectType[]> => {

@@ -8,34 +8,35 @@ import Visualizer from "./visualizerParts/Visualizer";
 import PageContextComp from "./contexts/PageContextComp";
 import { usePages } from "./contexts/PageContext";
 
-type Props = {}
+type Props = {};
 
 const PagerInner = (props: Props) => {
-    const {page} = usePages();
+    const { page } = usePages();
 
-     return (
+    return (
         <div className={`flex h-full flex-grow`}>
             <Visualizer>
-                {
-                    (() => {
-                        switch (page) {
-                            case 'SIZER': return <ChooseSize />
-                            case 'PAINTER': return <Painter />
-                            case 'RUNNER': return <Runner />
-                        }
-                    })()
-                }
+                {(() => {
+                    switch (page) {
+                        case "SIZER":
+                            return <ChooseSize />;
+                        case "PAINTER":
+                            return <Painter />;
+                        case "RUNNER":
+                            return <Runner />;
+                    }
+                })()}
             </Visualizer>
         </div>
-     )
-}
+    );
+};
 
 const Pager = (_: {}) => {
     return (
         <PageContextComp defaultPage={"SIZER"}>
             <PagerInner />
         </PageContextComp>
-    )
-}
+    );
+};
 
 export default Pager;

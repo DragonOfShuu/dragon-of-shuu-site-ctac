@@ -37,9 +37,7 @@ export default function RootLayout({
                 className={`${strikingFont.variable} ${simpleFont.variable} ${simpleFont.className}`}
             >
                 <NavBar />
-                <div className={`min-h-screen flex flex-col`}>
-                    {children}
-                </div>
+                <div className={`min-h-screen flex flex-col`}>{children}</div>
                 <Footer />
             </body>
         </html>
