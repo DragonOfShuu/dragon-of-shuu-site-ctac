@@ -41,25 +41,27 @@ const MarkdownTextbox = (props: MarkdownTextboxPropType) => {
             >
                 {textAreaText}
             </Markdown>
-            <div className={`flex gap-2`}>
+            <div className={`flex flex-col-reverse md:flex-row gap-2`}>
                 <p
                     className={`ml-1 text-orange-800 italic font-sans`}
                 >{`Markdown Enabled. ${props.charmax} char limit.`}</p>
-                <div className="grow" />
-                <SpecialButton
-                    notProminent={!isMarkdown}
-                    type={`button`}
-                    onClick={() => setMarkdown(true)}
-                >
-                    Markdown
-                </SpecialButton>
-                <SpecialButton
-                    notProminent={isMarkdown}
-                    type={`button`}
-                    onClick={() => setMarkdown(false)}
-                >
-                    Preview
-                </SpecialButton>
+                <div className="md:grow" />
+                <div className="flex gap-2">
+                    <SpecialButton
+                        notProminent={!isMarkdown}
+                        type={`button`}
+                        onClick={() => setMarkdown(true)}
+                    >
+                        Markdown
+                    </SpecialButton>
+                    <SpecialButton
+                        notProminent={isMarkdown}
+                        type={`button`}
+                        onClick={() => setMarkdown(false)}
+                    >
+                        Preview
+                    </SpecialButton>
+                </div>
             </div>
         </div>
     );

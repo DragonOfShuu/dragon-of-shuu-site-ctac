@@ -10,7 +10,7 @@ export default function Home() {
                 className={`absolute inset-0 flex flex-col justify-center items-start p-4 md:p-16 space-y-5 pointer-events-none`}
             >
                 <h1>Software Developer of Ten Years.</h1>
-                <p className={`text-2xl lg:w-[500px] ml-2`}>
+                <p className={`text-xl sm:text-2xl lg:w-[500px] ml-2`}>
                     And it shows. An advocate of clean, consistent code, with
                     maxiumum readability and reusability. Not only that, but a
                     skilled 3D artist since 2020.

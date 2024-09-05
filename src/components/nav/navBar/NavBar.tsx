@@ -12,6 +12,7 @@ import useWindowDimensions, {
 import houseIcon from "@/assets/lineIcons/houseIcon.svg";
 import mailIcon from "@/assets/lineIcons/mailIcon.svg";
 import useWindowScroll from "@/components/hooks/useWindowScroll";
+import styles from './NavBar.module.sass'
 
 type Props = {};
 
@@ -57,12 +58,13 @@ const NavBar = (props: Props) => {
     }
 
     const navClicked = () => {
-        setTimeout(() => setMobileNavVis(false), 1000);
+        setTimeout(() => setMobileNavVis(false), 500);
     };
 
     return (
         <nav
-            className={`fixed inset-0 z-50 ${mobileNavVis ? `backdrop-blur-md pointer-events-auto` : `pointer-events-none`}`}
+            className={`${styles.navBar}`}
+            data-mobile-vis={mobileNavVis}
         >
             <div
                 className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 pointer-events-auto ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
@@ -90,7 +92,8 @@ const NavBar = (props: Props) => {
                 </div>
             </div>
             <div
-                className={`pointer-events-auto ${mobileNavVis ? `flex` : `hidden`} flex-col p-2 items-start`}
+                className={`${styles.mobileLinkList}`}
+                data-mobile-vis={mobileNavVis}
             >
                 {navLinks.map((l) => (
                     <NavLink

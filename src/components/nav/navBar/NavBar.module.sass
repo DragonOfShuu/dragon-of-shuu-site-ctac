@@ -1,1 +1,19 @@
-// .innerNav
+@keyframes mobileSlide // New dance move just dropped
+    0%
+        transform: translateX(100vw)
+    100%
+        transform: translateX(0)
+    
+.navBar
+    @apply fixed inset-0 z-50 pointer-events-none transition-all
+
+    &[data-mobile-vis=true]
+        backdrop-filter: blur(12px)
+        @apply pointer-events-auto
+
+.mobileLinkList
+    @apply pointer-events-auto p-2 items-start hidden relative
+
+    &[data-mobile-vis=true]
+        animation: 0.5s mobileSlide both
+        @apply flex flex-col
