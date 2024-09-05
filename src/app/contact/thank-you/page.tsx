@@ -1,4 +1,5 @@
 import SubmissionViewer from "@/app/contact/thank-you/SubmissionViewer";
+import Loading from "@/components/Loading";
 import PageHeader from "@/components/PageHeader";
 import SpecialButton from "@/components/SpecialButton";
 import Link from "next/link";
@@ -30,7 +31,7 @@ const ThankYou = () => {
                 <div
                     className={`w-full lg:w-[700px] border-2 rounded-md border-orange-900 p-4`}
                 >
-                    <Suspense fallback={<p>Loading...</p>}>
+                    <Suspense fallback={<Loading />}>
                         <SubmissionViewer />
                     </Suspense>
                 </div>
