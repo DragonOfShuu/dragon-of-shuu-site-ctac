@@ -18,7 +18,7 @@ const ThankYou = () => {
                     <div>
                         <h2>Response Received</h2>
                         <h4 className={`text-orange-800`}>
-                            You should receive an email soon
+                            We will get to you as soon as possible
                         </h4>
                     </div>
                     <div>

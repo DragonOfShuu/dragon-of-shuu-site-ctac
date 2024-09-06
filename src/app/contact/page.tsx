@@ -9,6 +9,8 @@ import {
     ContactSubmissionType,
 } from "@/app/contact/contactTypes";
 import EpicFormRegExInput from "@/components/epicForms/components/EpicFormRegExInput";
+import sendMail from "../../../emails";
+import InboundContact from "../../../emails/InboundContact";
 
 const ContactUs = () => {
     const submitContactInfo = async (formData: FormData) => {
@@ -25,6 +27,15 @@ const ContactUs = () => {
         }, {});
 
         console.log("Emailing data (and more!)", rawFormData);
+
+        if (process.env.NODE_ENV==='production')
+            sendMail({
+                to: 'contact@dragonofshuu.dev',
+                component: <InboundContact 
+                                contactee={rawFormData.name??''} 
+                                retAddress={rawFormData.ret_addr??''}
+                                textContent={rawFormData.message??''}  />
+            })
 
         const redirURL = `/contact/thank-you/?${new URLSearchParams(rawFormData)}`;
 
