@@ -64,6 +64,15 @@ export default function DisplayBlock({
         }
     };
 
+    const onTouchStart = (
+        event: React.TouchEvent<HTMLDivElement>,
+        newClick?: boolean
+    ) => {
+        const theNewClick = newClick ?? true;
+
+        blockClicked({ x, y }, theNewClick);
+    }
+
     const onMouseOver = (
         event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
     ) => {
@@ -77,6 +86,7 @@ export default function DisplayBlock({
             className={`w-full h-full grid grid-cols-1 grid-rows-1 place-items-center`}
             onMouseOver={onMouseOver}
             onMouseDown={onMouseDown}
+            onTouchStart={onTouchStart}
         >
             {" "}
             {/* grid grid-cols-1 grid-rows-1 */}
