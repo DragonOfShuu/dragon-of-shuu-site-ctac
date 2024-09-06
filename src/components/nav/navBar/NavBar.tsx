@@ -12,7 +12,7 @@ import useWindowDimensions, {
 import houseIcon from "@/assets/lineIcons/houseIcon.svg";
 import mailIcon from "@/assets/lineIcons/mailIcon.svg";
 import useWindowScroll from "@/components/hooks/useWindowScroll";
-import styles from './NavBar.module.sass'
+import styles from "./NavBar.module.sass";
 
 type Props = {};
 
@@ -62,10 +62,7 @@ const NavBar = (props: Props) => {
     };
 
     return (
-        <nav
-            className={`${styles.navBar}`}
-            data-mobile-vis={mobileNavVis}
-        >
+        <nav className={`${styles.navBar}`} data-mobile-vis={mobileNavVis}>
             <div
                 className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 pointer-events-auto ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
             >

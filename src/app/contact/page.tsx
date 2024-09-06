@@ -3,45 +3,10 @@ import EpicForm from "@/components/epicForms/bases/EpicForm";
 import EpicFormRow from "@/components/epicForms/bases/EpicFormRow";
 import EpicFormSubmit from "@/components/epicForms/components/EpicFormSubmit";
 import PageHeader from "@/components/PageHeader";
-import { redirect } from "next/navigation";
-import {
-    contactSubmissionKeys,
-    ContactSubmissionType,
-} from "@/app/contact/contactTypes";
 import EpicFormRegExInput from "@/components/epicForms/components/EpicFormRegExInput";
-import sendMail from "../../../emails";
-import InboundContact from "../../../emails/InboundContact";
+import { submitContactInfo } from "./SubmitData";
 
 const ContactUs = () => {
-    const submitContactInfo = async (formData: FormData) => {
-        "use server";
-
-        const rawFormData = contactSubmissionKeys.reduce<
-            Partial<ContactSubmissionType>
-        >((prev, curr) => {
-            // Some may call this lazy. I call it ✨fashionable✨
-            prev[curr] = (formData.get(curr) ?? undefined) as
-                | string
-                | undefined;
-            return prev;
-        }, {});
-
-        console.log("Emailing data (and more!)", rawFormData);
-
-        if (process.env.NODE_ENV==='production')
-            sendMail({
-                to: 'contact@dragonofshuu.dev',
-                component: <InboundContact 
-                                contactee={rawFormData.name??''} 
-                                retAddress={rawFormData.ret_addr??''}
-                                textContent={rawFormData.message??''}  />
-            })
-
-        const redirURL = `/contact/thank-you/?${new URLSearchParams(rawFormData)}`;
-
-        redirect(redirURL);
-    };
-
     // Do I know how RegEx works? Yes
     // Do I want to figure all THIS out by hand? Absolutely not
     const emailAddrRegex =

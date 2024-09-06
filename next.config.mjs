@@ -29,6 +29,9 @@ const nextConfig = {
 
         return config;
     },
+    experimental: {
+        serverComponentsExternalPackages: ["mjml"],
+    }
 };
 
 export default nextConfig;

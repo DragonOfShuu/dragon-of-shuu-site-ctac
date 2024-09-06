@@ -14,7 +14,7 @@ const transport = nodemailer.createTransport({
 const sendMail = buildSendMail({
     transport,
     defaultFrom: "Dragon Of Shuu <mail@dragonofshuu.dev>",
-    configPath: "./mailing.config.json",
+    configPath: "./../../mailing.config.json",
 });
 
 export default sendMail;

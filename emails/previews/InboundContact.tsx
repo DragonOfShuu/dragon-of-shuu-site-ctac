@@ -1,12 +1,11 @@
-import InboundContact from "../InboundContact"
+import InboundContact from "../InboundContact";
 
 export function preview() {
     return (
-        <InboundContact 
+        <InboundContact
             contactee="Ur Mother"
             retAddress="mail@dragonofshuu.dev"
-            textContent={
-                `It's time to grow up and see the 
+            textContent={`It's time to grow up and see the 
                 sky, and the beautiful trees. The world 
                 is unbelievable in scale, and amongst
                 it is new challenges and hardships.
@@ -14,6 +13,7 @@ export function preview() {
                 the rest of us; you'll learn what you need
                 to do and what others expect; however
                 it won't come easily, and a lot of work
-                will be required.`} />
-    )
+                will be required.`}
+        />
+    );
 }
