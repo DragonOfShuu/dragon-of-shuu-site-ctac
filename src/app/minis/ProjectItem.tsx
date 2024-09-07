@@ -38,7 +38,7 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-amber-950 via-orange-900 via-40%" />
             <div className="absolute inset-0 -z-20">
                 <Image
-                    src={props.image}
+                    {...props.image}
                     alt={`${props.name} background image`}
                     className={`object-cover object-center h-full w-3/4 float-right`}
                 />

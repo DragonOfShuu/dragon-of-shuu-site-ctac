@@ -28,14 +28,11 @@ const SnarkyComment = (props: SnarkyCommentPropType) => {
             const uniqueCommentList = loadingComments.filter(
                 (c) => c !== comment,
             );
-            console.log(uniqueCommentList);
             setComment(uniqueCommentList);
         }, [comment, setComment]),
         2000,
         () => setComment(loadingComments),
     );
-
-    console.log("Ran loading component");
 
     return <p {...paraProps}>{comment}</p>;
 };

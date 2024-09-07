@@ -21,6 +21,7 @@ const submitContactInfo = async (formData: FormData) => {
 
     console.log("Emailing data (and more!)", rawFormData);
 
+    // Unnecessary; mailing intercepts mail in dev
     // if (process.env.NODE_ENV==='production')
     sendMail({
         to: "contact@dragonofshuu.dev",
@@ -32,7 +33,7 @@ const submitContactInfo = async (formData: FormData) => {
             />
         ),
     });
-
+    
     const redirURL = `/contact/thank-you/?${new URLSearchParams(rawFormData)}`;
 
     redirect(redirURL);

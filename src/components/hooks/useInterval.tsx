@@ -7,11 +7,8 @@ const useInterval = (
     interval: number,
     init?: () => void,
 ) => {
-    console.log("Ran useinterval");
-
     useEffect(() => {
         const interId = setInterval(callback, interval);
-        console.log("Ran useinterval effect");
         init?.();
         return () => {
             clearInterval(interId);

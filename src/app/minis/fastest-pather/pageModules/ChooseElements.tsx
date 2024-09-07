@@ -81,8 +81,6 @@ export default function MultiChooser<TReturnType>({
         }
     };
 
-    // console.log(content)
-
     return (
         <div className="flex items-stretch justify-between">
             {content.map((element, index) => (

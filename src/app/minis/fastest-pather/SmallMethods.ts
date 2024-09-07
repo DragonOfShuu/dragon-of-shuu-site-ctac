@@ -14,7 +14,6 @@ function listOfSimilars<T>(value: T, count: number) {
  * @returns true if coords exist, false if not.
  */
 function checkIndex<T extends any[]>(array: T, ...index: number[]): boolean {
-    console.log(index);
     if (index.length == 0) return true;
 
     const newArray: any = array[index[0]];

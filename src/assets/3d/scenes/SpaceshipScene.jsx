@@ -21,7 +21,6 @@ export default function SpaceshipScene(props) {
         // Written like this so in case all the anims
         // are null at first, then we can still pull
         // the new data
-        console.log("Playing anim...");
         const anim = actions[animName];
         anim?.play();
     });
