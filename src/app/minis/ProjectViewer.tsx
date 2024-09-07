@@ -16,7 +16,7 @@ const ProjectViewer = async (props: ProjectViewerPropType) => {
                 const imageData: imageDataType = {
                     height: matter.height,
                     width: matter.width,
-                    src: join(imageLocation, matter.image).replace(/\\/g, '/'),
+                    src: join(imageLocation, matter.image).replace(/\\/g, "/"),
                 };
 
                 return (

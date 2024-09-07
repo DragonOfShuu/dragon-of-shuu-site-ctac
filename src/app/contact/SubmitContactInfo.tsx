@@ -13,9 +13,7 @@ const submitContactInfo = async (formData: FormData) => {
         Partial<ContactSubmissionType>
     >((prev, curr) => {
         // Some may call this lazy. I call it ✨fashionable✨
-        prev[curr] = (formData.get(curr) ?? undefined) as
-            | string
-            | undefined;
+        prev[curr] = (formData.get(curr) ?? undefined) as string | undefined;
         return prev;
     }, {});
 
@@ -33,7 +31,7 @@ const submitContactInfo = async (formData: FormData) => {
             />
         ),
     });
-    
+
     const redirURL = `/contact/thank-you/?${new URLSearchParams(rawFormData)}`;
 
     redirect(redirURL);

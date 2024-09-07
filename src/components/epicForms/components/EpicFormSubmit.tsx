@@ -9,26 +9,27 @@ import { useFormStatus } from "react-dom";
 type EpicFormSubmitPropsType = {
     submitText?: string;
     submittingText?: string;
-} & React.JSX.IntrinsicElements['button'];
+} & React.JSX.IntrinsicElements["button"];
 
 const EpicFormSubmit = (props: EpicFormSubmitPropsType) => {
     const { epicFormData } = useEpicFormData();
     const formStatus = useFormStatus();
 
-    const {submitText, disabled, submittingText, ...buttonProps} = props;
+    const { submitText, disabled, submittingText, ...buttonProps } = props;
 
     const errors = epicFormData.errors;
     const buttonDisabled = Object.keys(errors).length !== 0;
 
     return (
         <EpicFormLabelless>
-            <SpecialButton {...buttonProps} type="submit" disabled={buttonDisabled||disabled||formStatus.pending}>
-                {
-                    formStatus.pending?
-                        submittingText ?? "Submitting..."
-                        :
-                        submitText ?? "Submit"
-                }
+            <SpecialButton
+                {...buttonProps}
+                type="submit"
+                disabled={buttonDisabled || disabled || formStatus.pending}
+            >
+                {formStatus.pending
+                    ? (submittingText ?? "Submitting...")
+                    : (submitText ?? "Submit")}
             </SpecialButton>
         </EpicFormLabelless>
     );

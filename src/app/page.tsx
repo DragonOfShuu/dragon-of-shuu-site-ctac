@@ -12,9 +12,9 @@ export default function Home() {
                 >
                     <h1>Software Developer of Ten Years.</h1>
                     <p className={`text-xl sm:text-2xl lg:w-[500px] ml-2`}>
-                        And it shows. An advocate of clean, consistent code, with
-                        maxiumum readability and reusability. Not only that, but a
-                        skilled 3D artist since 2020.
+                        And it shows. An advocate of clean, consistent code,
+                        with maxiumum readability and reusability. Not only
+                        that, but a skilled 3D artist since 2020.
                     </p>
                     <SpecialButton className={`pointer-events-auto`}>
                         <Link href={`/contact`}>Contact Us</Link>

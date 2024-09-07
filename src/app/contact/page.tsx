@@ -2,7 +2,6 @@ import PageHeader from "@/components/PageHeader";
 import ContactForm from "@/app/contact/ContactForm";
 
 const ContactUs = () => {
-
     // Do I know how RegEx works? Yes
     // Do I want to figure all THIS out by hand? Absolutely not
 

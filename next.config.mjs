@@ -31,7 +31,7 @@ const nextConfig = {
     },
     experimental: {
         serverComponentsExternalPackages: ["mjml"],
-    }
+    },
 };
 
 export default nextConfig;

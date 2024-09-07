@@ -66,12 +66,12 @@ export default function DisplayBlock({
 
     const onTouchStart = (
         event: React.TouchEvent<HTMLDivElement>,
-        newClick?: boolean
+        newClick?: boolean,
     ) => {
         const theNewClick = newClick ?? true;
 
         blockClicked({ x, y }, theNewClick);
-    }
+    };
 
     const onMouseOver = (
         event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
