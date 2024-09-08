@@ -5,13 +5,20 @@ import BaseDialog from "./BaseDialog";
 import { usePages } from "./contexts/PageContext";
 import SpecialButton from "@/components/SpecialButton";
 
-type Props = {};
+type Props = {
+    beforePageChange?: ()=>unknown;
+};
 
 const ReturnToSizerDialog = (props: Props) => {
     const dialogRef = useRef<HTMLDialogElement>(null);
     const { setPage } = usePages();
 
     const buttonClassnames = ``;
+
+    const switchToSizer = () => {
+        props.beforePageChange?.();
+        setPage("SIZER")
+    }
 
     return (
         <>
@@ -27,7 +34,7 @@ const ReturnToSizerDialog = (props: Props) => {
                 </p>
                 <div className="flex flex-row gap-2 items-stretch">
                     <SpecialButton
-                        onClick={() => setPage("SIZER")}
+                        onClick={switchToSizer}
                         className={`${buttonClassnames}`}
                     >
                         Yes

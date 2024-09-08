@@ -5,7 +5,6 @@ import playIcon from "../../icons/play.svg";
 import resetIcon from "../../icons/rotateItems.svg";
 import Settings from "../../Settings";
 import { Block, Coord, Trudge } from "../../CommonTypes";
-// import { Page, StartEnd, VisualizerProp } from "../Pager"
 import { useVisualizer } from "../../contexts/VisualizerContext";
 import TileTypeChooser from "../TileTypeChooser";
 import ToolBarButton from "../../toolBarElements/ToolBarButton";
@@ -13,15 +12,7 @@ import ReturnToSizerDialog from "../../ReturnToSizerDialog";
 import HowPainter from "../../help/HowPainter";
 import { usePages } from "../../contexts/PageContext";
 
-type Props = {
-    // setPage: any,
-    // vData.pointPos: StartEnd|undefined,
-    // setvData.pointPos: any,
-    // setRequiresReset: any,
-    // requiresReset: boolean,
-    // visualizer: VisualizerProp,
-    // settingsData: SettingsProps
-};
+type Props = {};
 
 const Painter = ({}: Props) => {
     const { setPage } = usePages();
@@ -87,7 +78,6 @@ const Painter = ({}: Props) => {
                     }
                 }
 
-                // setBlocks(newBlocks)
                 vDispatch({ type: "update", data: { blocks: newBlocks } });
                 setFlagLoc(undefined);
             };
@@ -186,7 +176,6 @@ const Painter = ({}: Props) => {
         }
 
         setTimeout(() => {
-            // setToolbarEnabled(true)
             vDispatch({ type: "toolbar", enabled: true });
         }, 1100);
     }, [vDispatch, yValue, xValue, trudgePaint]);
@@ -195,7 +184,12 @@ const Painter = ({}: Props) => {
         if (vData.blocks[0][0].mode === "ghost") resetBoard();
     }, [resetBoard, vData.blocks]);
 
+    const disconnectBlockClicked = () => {
+        vDispatch({ type: 'update', data: { blockClicked: undefined } })
+    }
+
     const playSim = () => {
+        disconnectBlockClicked()
         setPage("RUNNER");
     };
 
@@ -226,7 +220,7 @@ const Painter = ({}: Props) => {
 
             <HowPainter />
 
-            <ReturnToSizerDialog />
+            <ReturnToSizerDialog beforePageChange={disconnectBlockClicked} />
 
             <Settings />
 

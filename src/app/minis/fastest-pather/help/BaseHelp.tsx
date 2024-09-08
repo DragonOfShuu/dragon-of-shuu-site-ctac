@@ -15,7 +15,7 @@ const BaseHelp = (props: Props) => {
         <>
             <CircleQuestion
                 scale={50}
-                className={`self-center hover:fill-white cursor-pointer`}
+                className={`self-center hover:fill-white cursor-pointer w-8 h-auto`}
                 onClick={() => dialogRef.current?.showModal()}
             />
             <BaseDialog dialogRef={dialogRef} className={`w-1/2`}>

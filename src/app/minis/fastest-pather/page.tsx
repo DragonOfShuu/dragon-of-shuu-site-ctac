@@ -7,7 +7,7 @@ const Page = () => {
     return (
         <>
             <NavMargin />
-            <div className="flex flex-grow p-12">
+            <div className="flex flex-col flex-grow p-2 md:p-12">
                 <HowOnStart />
                 <div className={`flex flex-col w-full flex-grow`}>
                     <SettingsContextComp>

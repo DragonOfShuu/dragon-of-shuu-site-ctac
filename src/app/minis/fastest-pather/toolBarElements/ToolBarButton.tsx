@@ -26,7 +26,7 @@ const ToolBarButton = (props: Props) => {
                     "N/A"
                 )
             ) : (
-                <props.image className={`h-full w-14`} alt={props.alt} />
+                <props.image className={`h-full w-6 md:w-14`} alt={props.alt} />
             )}
         </SpecialButton>
     );
