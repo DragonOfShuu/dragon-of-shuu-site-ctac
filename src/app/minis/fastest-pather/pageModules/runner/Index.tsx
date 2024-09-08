@@ -108,9 +108,7 @@ const Runner = ({}: Props) => {
     }, []);
 
     const switchBack = () => {
-        // setBlocks(previousState.current)
         vDispatch({ type: "blocks", newBlocks: previousState.current });
-        // props.setPage(Page.PAINTER)
         setPage("PAINTER");
     };
 

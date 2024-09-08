@@ -10,9 +10,7 @@ const MinisPage = async () => {
             <PageHeader>
                 {/* <h1>Mini Projects</h1> */}
                 <EmphasizedContent alignment="left">
-                    <h1>
-                        Mini Projects
-                    </h1>
+                    <h1>Mini Projects</h1>
                 </EmphasizedContent>
             </PageHeader>
             <Suspense

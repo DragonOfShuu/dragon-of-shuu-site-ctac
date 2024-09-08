@@ -1,5 +1,5 @@
 const NavMargin = () => {
-    return <div className={`h-20`} />;
+    return <div className={`h-14`} />;
 };
 
 export default NavMargin;

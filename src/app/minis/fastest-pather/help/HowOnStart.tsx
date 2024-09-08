@@ -26,7 +26,7 @@ const HowOnStart = () => {
         <>
             <Question
                 scale={20}
-                className={`w-12 h-12 fixed top-20 left-2 cursor-pointer hover:fill-white`}
+                className={`w-12 h-12 md:fixed top-20 left-2 cursor-pointer hover:fill-white`}
                 onClick={() => dialogRef.current?.showModal()}
             />
 
