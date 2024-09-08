@@ -2,12 +2,18 @@ import { Suspense } from "react";
 import ProjectViewer from "./ProjectViewer";
 import PageHeader from "@/components/PageHeader";
 import Loading from "@/components/Loading";
+import EmphasizedContent from "@/components/EmphasizedContent";
 
 const MinisPage = async () => {
     return (
         <>
             <PageHeader>
-                <h1>Mini Projects</h1>
+                {/* <h1>Mini Projects</h1> */}
+                <EmphasizedContent alignment="left">
+                    <h1>
+                        Mini Projects
+                    </h1>
+                </EmphasizedContent>
             </PageHeader>
             <Suspense
                 fallback={
