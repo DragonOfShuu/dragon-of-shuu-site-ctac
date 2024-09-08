@@ -15,19 +15,19 @@ const limit = 40;
 const useBlockSizes = () => {
     const [xValue, setXValue] = useState<number>(24);
     const [yValue, setYValue] = useState<number>(8);
-    
+
     const [tempX, setTempX] = useState<number | "">(xValue);
     const [tempY, setTempY] = useState<number | "">(yValue);
-    const {width, height} = useWindowDimensions();
+    const { width, height } = useWindowDimensions();
 
-    useEffect(()=> {
-        const newX = Math.floor(width / 50)
-        const newY = Math.floor(height / 75)
-        setXValue(newX)
-        setYValue(newY)
-        setTempX(newX)
-        setTempY(newY)
-    }, [width, height])
+    useEffect(() => {
+        const newX = Math.floor(width / 50);
+        const newY = Math.floor(height / 75);
+        setXValue(newX);
+        setYValue(newY);
+        setTempX(newX);
+        setTempY(newY);
+    }, [width, height]);
 
     const setSize = (event: ChangeEvent<HTMLInputElement>, isX: boolean) => {
         const sizeChange = (newValue: number | false) => {
@@ -62,11 +62,21 @@ const useBlockSizes = () => {
         sizeChange(newValue);
     };
 
-    return {xValue, setXValue, tempX, setTempX, yValue, setYValue, tempY, setTempY, setSize};
-}
+    return {
+        xValue,
+        setXValue,
+        tempX,
+        setTempX,
+        yValue,
+        setYValue,
+        tempY,
+        setTempY,
+        setSize,
+    };
+};
 
 const useGenerateVisuals = (xValue: number, yValue: number) => {
-    const {vDispatch} = useVisualizer();
+    const { vDispatch } = useVisualizer();
 
     useEffect(() => {
         let newBlocks = [];
@@ -82,13 +92,23 @@ const useGenerateVisuals = (xValue: number, yValue: number) => {
     }, [xValue, yValue, vDispatch]);
 
     return null;
-}
+};
 
 const ChooseSize = () => {
-    const {xValue, setXValue, tempX, setTempX, yValue, setYValue, tempY, setTempY, setSize} = useBlockSizes();
+    const {
+        xValue,
+        setXValue,
+        tempX,
+        setTempX,
+        yValue,
+        setYValue,
+        tempY,
+        setTempY,
+        setSize,
+    } = useBlockSizes();
 
     const { setPage } = usePages();
-    useGenerateVisuals(xValue, yValue)
+    useGenerateVisuals(xValue, yValue);
 
     const rotateNumbers = () => {
         setXValue(yValue);

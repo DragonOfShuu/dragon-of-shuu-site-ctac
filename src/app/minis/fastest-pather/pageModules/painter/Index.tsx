@@ -185,11 +185,11 @@ const Painter = ({}: Props) => {
     }, [resetBoard, vData.blocks]);
 
     const disconnectBlockClicked = () => {
-        vDispatch({ type: 'update', data: { blockClicked: undefined } })
-    }
+        vDispatch({ type: "update", data: { blockClicked: undefined } });
+    };
 
     const playSim = () => {
-        disconnectBlockClicked()
+        disconnectBlockClicked();
         setPage("RUNNER");
     };
 

@@ -6,7 +6,7 @@ import { usePages } from "./contexts/PageContext";
 import SpecialButton from "@/components/SpecialButton";
 
 type Props = {
-    beforePageChange?: ()=>unknown;
+    beforePageChange?: () => unknown;
 };
 
 const ReturnToSizerDialog = (props: Props) => {
@@ -17,8 +17,8 @@ const ReturnToSizerDialog = (props: Props) => {
 
     const switchToSizer = () => {
         props.beforePageChange?.();
-        setPage("SIZER")
-    }
+        setPage("SIZER");
+    };
 
     return (
         <>
