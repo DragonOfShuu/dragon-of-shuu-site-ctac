@@ -53,7 +53,7 @@ export default function DisplayBlock({
         setClassName(newClassname);
     }, [mode, trudge]);
 
-    const onMouseDown = (
+    const triggerWithMouse = (
         event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
         newClick?: boolean,
     ) => {
@@ -64,32 +64,14 @@ export default function DisplayBlock({
         }
     };
 
-    const onTouchStart = (
-        event: React.TouchEvent<HTMLDivElement>,
-        newClick?: boolean,
-    ) => {
-        const theNewClick = newClick ?? true;
-
-        blockClicked({ x, y }, theNewClick);
-    };
-
-    const onMouseOver = (
-        event: MouseEvent<HTMLDivElement, globalThis.MouseEvent>,
-    ) => {
-        if (event.buttons != 0) {
-            onMouseDown(event, false);
-        }
-    };
-
     return (
         <div
-            className={`w-full h-full grid grid-cols-1 grid-rows-1 place-items-center select-none`}
-            onMouseOver={onMouseOver}
-            onMouseDown={onMouseDown}
-            onTouchStart={onTouchStart}
+            className={`w-full h-full grid grid-cols-1 grid-rows-1 place-items-center select-none touch-none`}
+            onMouseOver={(e) => triggerWithMouse(e, false)}
+            onMouseDown={triggerWithMouse}
+            onTouchStart={() => blockClicked({x, y}, true)}
+            onTouchMove={() => blockClicked({x, y}, false)}
         >
-            {" "}
-            {/* grid grid-cols-1 grid-rows-1 */}
             <div
                 className={`w-full h-full z-20 ${styles.baseOverlay} ${findingStyle[mode] ?? ""}`}
                 style={{ gridColumn: 1, gridRow: 1 }}
