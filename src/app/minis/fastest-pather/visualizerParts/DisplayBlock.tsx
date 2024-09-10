@@ -83,7 +83,7 @@ export default function DisplayBlock({
 
     return (
         <div
-            className={`w-full h-full grid grid-cols-1 grid-rows-1 place-items-center`}
+            className={`w-full h-full grid grid-cols-1 grid-rows-1 place-items-center select-none`}
             onMouseOver={onMouseOver}
             onMouseDown={onMouseDown}
             onTouchStart={onTouchStart}

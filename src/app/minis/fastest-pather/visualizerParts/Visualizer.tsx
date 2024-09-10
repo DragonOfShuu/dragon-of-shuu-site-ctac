@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode, useEffect, useRef } from "react";
 import { listOfSimilars } from "../SmallMethods";
 import DisplayBlock from "./DisplayBlock";
 import VisualizerContextComp from "../contexts/VisualizerContextComp";
@@ -9,10 +9,15 @@ type Props = {
 };
 
 const InnerVisualizer = (props: Props) => {
+    const visualizerRef = useRef<HTMLDivElement>(null);
     const { vData, vDispatch } = useVisualizer();
 
     let toolbarEnabled: boolean =
         vData.toolbarEnabled === undefined ? true : vData.toolbarEnabled;
+
+    useEffect(() => {
+        vDispatch({ type: 'setVisualizerRef', newRef: visualizerRef })
+    }, [vDispatch])
 
     return (
         <div className={`flex flex-col flex-grow gap-2`}>
@@ -24,6 +29,7 @@ const InnerVisualizer = (props: Props) => {
 
             <div
                 className={`flex-grow`}
+                ref={visualizerRef}
                 style={{
                     display: "grid",
                     gridTemplateColumns: listOfSimilars(

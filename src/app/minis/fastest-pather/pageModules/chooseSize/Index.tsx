@@ -18,16 +18,28 @@ const useBlockSizes = () => {
 
     const [tempX, setTempX] = useState<number | "">(xValue);
     const [tempY, setTempY] = useState<number | "">(yValue);
-    const { width, height } = useWindowDimensions();
+    // const { width, height } = useWindowDimensions();
+    const { vData } = useVisualizer();
 
     useEffect(() => {
-        const newX = Math.floor(width / 50);
-        const newY = Math.floor(height / 75);
-        setXValue(newX);
-        setYValue(newY);
-        setTempX(newX);
-        setTempY(newY);
-    }, [width, height]);
+        const updateBoxSizes = () => {
+            if (vData.visualierBoxRef===undefined || vData.visualierBoxRef.current===null) return;
+            const {height, width} = vData.visualierBoxRef.current.getBoundingClientRect();
+            // vData.visualierBoxRef;
+            const newX = Math.round(width / 50);
+            const newY = Math.round(height / 50);
+            setXValue(newX);
+            setYValue(newY);
+            setTempX(newX);
+            setTempY(newY);
+        }
+
+        updateBoxSizes();
+        window.addEventListener("resize", updateBoxSizes);
+        return () => {
+            window.removeEventListener('resize', updateBoxSizes)
+        }
+    }, [vData.visualierBoxRef]);
 
     const setSize = (event: ChangeEvent<HTMLInputElement>, isX: boolean) => {
         const sizeChange = (newValue: number | false) => {
