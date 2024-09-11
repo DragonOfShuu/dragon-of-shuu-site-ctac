@@ -11,6 +11,7 @@ import ToolBarButton from "../../toolBarElements/ToolBarButton";
 import ReturnToSizerDialog from "../../ReturnToSizerDialog";
 import HowPainter from "../../help/HowPainter";
 import { usePages } from "../../contexts/PageContext";
+import MobileExpandMenu from "@/app/minis/fastest-pather/pageModules/painter/MobileExpandMenu";
 
 type Props = {};
 
@@ -195,26 +196,30 @@ const Painter = ({}: Props) => {
 
     return (
         <>
-            <ToolBarButton
-                alt="Reset Board"
-                onClick={resetBoard}
-                image={resetIcon}
-            />
+            <MobileExpandMenu>
+                <ToolBarButton
+                    alt="Reset Board"
+                    onClick={resetBoard}
+                    image={resetIcon}
+                />
 
-            <ToolBarButton
-                onClick={() => {
-                    setFlagLoc("start");
-                }}
-                text="Set Start"
-            />
-            <ToolBarButton
-                onClick={() => {
-                    setFlagLoc("end");
-                }}
-                text="Set End"
-            />
-
-            <TileTypeChooser setTrudge={setTrudgePaint} />
+                <ToolBarButton
+                    onClick={() => {
+                        setFlagLoc("start");
+                    }}
+                    text="Set Start"
+                />
+                <ToolBarButton
+                    onClick={() => {
+                        setFlagLoc("end");
+                    }}
+                    text="Set End"
+                />
+                
+                <div className={`h-14 lg:h-full`}>
+                    <TileTypeChooser setTrudge={setTrudgePaint} />
+                </div>
+            </MobileExpandMenu>
 
             <div className="flex-grow"></div>
 

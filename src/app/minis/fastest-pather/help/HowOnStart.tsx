@@ -2,10 +2,10 @@
 
 import { useEffect, useRef } from "react";
 import BaseDialog from "../BaseDialog";
-// import { ReactMarkdown } from "react-markdown/lib/react-markdown";
 import Markdown from "react-markdown";
 import styles from "./BaseHelp.module.sass";
 import Question from "./../assets/circle-question";
+import SpecialButton from "@/components/SpecialButton";
 
 type Props = {};
 
@@ -30,17 +30,17 @@ const HowOnStart = () => {
                 onClick={() => dialogRef.current?.showModal()}
             />
 
-            <BaseDialog dialogRef={dialogRef} className={`w-1/2`}>
+            <BaseDialog dialogRef={dialogRef} className={`lg:w-1/2`}>
                 <div className="overflow-y-scroll max-h-[600px] w-full flex flex-col">
                     <Markdown className={`${styles.markdownStyles}`}>
                         {readme}
                     </Markdown>
-                    <button
+                    <SpecialButton
                         onClick={() => dialogRef.current?.close()}
                         className={`self-center`}
                     >
                         Thanks!
-                    </button>
+                    </SpecialButton>
                 </div>
             </BaseDialog>
         </>

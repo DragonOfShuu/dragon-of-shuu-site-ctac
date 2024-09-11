@@ -2,9 +2,8 @@ import SpecialButton from "@/components/SpecialButton";
 import Image from "next/image";
 
 type Props = {
-    className?: string;
-    // imageClassName?: string
     onClick: () => void;
+    className?: string;
     text?: string;
     alt?: string;
     image?: SVGRPropsType;
