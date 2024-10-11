@@ -58,10 +58,12 @@ const Painter = ({}: Props) => {
                     return;
                 }
 
-                if (block.role == flagLoc) {
+                if (block.role === flagLoc) {
+                    // Block role and flag target selection match. Nullify this set
                     setFlagLoc(undefined);
                     return;
                 } else if (block.role != undefined) {
+                    // Swap start and end
                     const newStart: Coord = { x: endLoc.x, y: endLoc.y };
                     const newEnd: Coord = { x: startLoc.x, y: startLoc.y };
                     newBlocks[startLoc.y][startLoc.x].role = "end";
@@ -69,7 +71,7 @@ const Painter = ({}: Props) => {
                     newBlocks[endLoc.y][endLoc.x].role = "start";
                     setEndLoc(newEnd);
                 } else {
-                    block.role = flagLoc;
+                    newBlocks[block.y][block.x].role = flagLoc;
 
                     if (flagLoc == "start") {
                         newBlocks[startLoc.y][startLoc.x].role = undefined;

@@ -31,9 +31,11 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                 </p>
             </div>
             <div className={`${styles.interactables}`}>
-                <SpecialButton className={`shadow-md shadow-gray-900/50`}>
-                    <Link href={props.href}>Open</Link>
-                </SpecialButton>
+                <Link href={props.href}>
+                    <SpecialButton className={`shadow-md shadow-gray-900/50`}>
+                        Open
+                    </SpecialButton>
+                </Link>
             </div>
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-amber-950 via-orange-900 via-40%" />
             <div className="absolute inset-0 -z-20">
