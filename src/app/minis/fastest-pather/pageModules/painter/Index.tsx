@@ -11,7 +11,7 @@ import ToolBarButton from "../../toolBarElements/ToolBarButton";
 import ReturnToSizerDialog from "../../ReturnToSizerDialog";
 import HowPainter from "../../help/HowPainter";
 import { usePages } from "../../contexts/PageContext";
-import MobileExpandMenu from "@/app/minis/fastest-pather/pageModules/painter/MobileExpandMenu";
+import MobileExpandMenu from "@/app/minis/fastest-pather/toolBarElements/MobileExpandMenu";
 
 type Props = {};
 
@@ -162,8 +162,6 @@ const Painter = ({}: Props) => {
         newBlocks[yValue - 1][xValue - 1].role = "end";
         setEndLoc({ x: xValue - 1, y: yValue - 1 });
 
-        // setBlocks(newBlocks)
-
         for (let x = 0; x < newBlocks[0].length; x++) {
             setTimeout(
                 () => {
@@ -171,7 +169,6 @@ const Painter = ({}: Props) => {
                     theBlocks.forEach((row) => {
                         row[x].mode = "available";
                     });
-                    // setBlocks(theBlocks)
                     vDispatch({ type: "blocks", newBlocks: theBlocks });
                 },
                 (1000 / newBlocks[0].length) * x + 100,

@@ -9,6 +9,7 @@ import HowSizer from "../../help/HowSizer";
 import { useVisualizer } from "../../contexts/VisualizerContext";
 import { usePages } from "../../contexts/PageContext";
 import useWindowDimensions from "@/components/hooks/useWindowDimensions";
+import MobileExpandMenu from "@/app/minis/fastest-pather/toolBarElements/MobileExpandMenu";
 
 const limit = 40;
 
@@ -134,37 +135,38 @@ const ChooseSize = () => {
 
     return (
         <>
-            <input
-                type="number"
-                onChange={(event) =>
-                    setTempX(Number.parseInt(event.target.value) ?? "")
-                }
-                onBlur={(event) => setSize(event, true)}
-                value={tempX}
-                className={`${styles.sizeAdjust}`}
-                min={1}
-                max={limit}
-                title="X length of the board"
-            />
-            <h2 className={`text-lg md:text-2xl self-center`}>X</h2>
-            <input
-                type="number"
-                onChange={(event) =>
-                    setTempY(Number.parseInt(event.target.value) ?? "")
-                }
-                onBlur={(event) => setSize(event, false)}
-                value={tempY}
-                className={`${styles.sizeAdjust}`}
-                min={1}
-                max={limit}
-                title="Y length of the board"
-            />
-            {/* className={`w-14`} */}
-            <ToolBarButton
-                onClick={rotateNumbers}
-                alt={`Rotate Values`}
-                image={rotateIcon}
-            />
+            <MobileExpandMenu>
+                <input
+                    type="number"
+                    onChange={(event) =>
+                        setTempX(Number.parseInt(event.target.value) ?? "")
+                    }
+                    onBlur={(event) => setSize(event, true)}
+                    value={tempX}
+                    className={`${styles.sizeAdjust}`}
+                    min={1}
+                    max={limit}
+                    title="X length of the board"
+                />
+                <h2 className={`text-lg md:text-2xl self-center`}>X</h2>
+                <input
+                    type="number"
+                    onChange={(event) =>
+                        setTempY(Number.parseInt(event.target.value) ?? "")
+                    }
+                    onBlur={(event) => setSize(event, false)}
+                    value={tempY}
+                    className={`${styles.sizeAdjust}`}
+                    min={1}
+                    max={limit}
+                    title="Y length of the board"
+                />
+                <ToolBarButton
+                    onClick={rotateNumbers}
+                    alt={`Rotate Values`}
+                    image={rotateIcon}
+                />
+            </MobileExpandMenu>
 
             <div className={`grow`} />
 
