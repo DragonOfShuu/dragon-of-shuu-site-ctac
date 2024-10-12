@@ -68,8 +68,8 @@ export default function DisplayBlock({
         <div
             className={`w-full h-full grid grid-cols-1 grid-rows-1 place-items-center select-none touch-none`}
             onMouseOver={(e) => triggerWithMouse(e, false)}
-            // onMouseDown={triggerWithMouse}
-            onTouchStart={() => blockClicked({x, y}, true)}
+            onMouseDown={triggerWithMouse}
+            // onTouchStart={() => blockClicked({x, y}, true)}
             onTouchMove={() => blockClicked({x, y}, false)}
         >
             <div
