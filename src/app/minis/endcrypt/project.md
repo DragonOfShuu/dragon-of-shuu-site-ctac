@@ -5,4 +5,4 @@ width: 1000
 height: 1000
 ---
 
-Encrypt test into a specialized and unique encryption.
+*Encrypt* and *decrypt* text into seemingly random gibberish!
