@@ -6,7 +6,7 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./ProjectItem.module.sass";
 
-export type imageDataType = {
+export type ImageDataType = {
     src: string;
     width: number;
     height: number;
@@ -15,7 +15,7 @@ export type imageDataType = {
 export type ProjectDisplayPropType = {
     name: string;
     href: string;
-    image: imageDataType;
+    image: Partial<ImageDataType>;
     description: string;
 };
 
@@ -38,13 +38,17 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                 </Link>
             </div>
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-amber-950 via-orange-900 via-40%" />
-            <div className="absolute inset-0 -z-20">
-                <Image
-                    {...props.image}
-                    alt={`${props.name} background image`}
-                    className={`object-cover object-center h-full w-3/4 float-right`}
-                />
-            </div>
+            {
+                props.image.height && props.image.width ?
+                    <div className="absolute inset-0 -z-20">
+                        <Image
+                            {...props.image as ImageDataType}
+                            alt={`${props.name} background image`}
+                            className={`object-cover object-center h-full w-3/4 float-right`}
+                        />
+                    </div>
+                : <></>
+            }
         </div>
     );
 };
