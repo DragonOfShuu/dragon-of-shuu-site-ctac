@@ -5,6 +5,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 import styles from "./ProjectItem.module.sass";
+import Markdown from "react-markdown";
 
 export type ImageDataType = {
     src: string;
@@ -26,9 +27,9 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
         <div className={`${styles.item}`} onClick={() => setOpen((o) => !o)}>
             <div className={`${styles.text}`}>
                 <h1>{props.name}</h1>
-                <p className={`${open ? `block` : `hidden`}`}>
+                <Markdown className={`${open ? `block` : `hidden`}`}>
                     {props.description}
-                </p>
+                </Markdown>
             </div>
             <div className={`${styles.interactables}`}>
                 <Link href={props.href}>
