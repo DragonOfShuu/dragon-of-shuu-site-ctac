@@ -58,7 +58,7 @@ const Translations = () => {
 
     return (
         <div className={`${styles.translations} w-full lg:w-auto md:w-auto`}>
-            <div className="flex flex-row gap-5 items-center w-full">
+            <div className="flex flex-row flex-wrap gap-5 items-center w-full">
                 <SpecialButton onClick={() => setToRune(!toRune)}>
                     {toRune ? "Rune" : "Decrypt"} Mode
                 </SpecialButton>
@@ -67,7 +67,7 @@ const Translations = () => {
                 </SpecialButton>
                 <SpecialButton
                     onClick={() => setAssumption(!isAssumption)}
-                    className={`${toRune ? "invisible" : "visible"}`}
+                    className={`${toRune ? "hidden" : "block"}`}
                 >
                     {isAssumption ? "Assumption" : "Exact"}
                 </SpecialButton>
