@@ -16,7 +16,10 @@ const ProjectViewer = async (props: ProjectViewerPropType) => {
                 const imageData: Partial<ImageDataType> = {
                     height: matter.height || undefined,
                     width: matter.width || undefined,
-                    src: join(imageLocation ?? '', matter.image ?? '').replace(/\\/g, "/"),
+                    src: join(imageLocation ?? "", matter.image ?? "").replace(
+                        /\\/g,
+                        "/",
+                    ),
                 };
 
                 return (

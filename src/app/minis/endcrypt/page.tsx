@@ -2,7 +2,6 @@ import PageHeader from "@/components/PageHeader";
 import EmphasizedContent from "@/components/EmphasizedContent";
 import Translations from "@/app/minis/endcrypt/Translations";
 
-
 const Page = () => {
     return (
         <>
@@ -15,7 +14,7 @@ const Page = () => {
                 <Translations />
             </main>
         </>
-    )
-}
+    );
+};
 
 export default Page;

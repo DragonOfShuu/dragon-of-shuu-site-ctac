@@ -4,7 +4,11 @@ function randNum(min = 0, max = 10) {
     return Math.floor(num);
 }
 
-function cipher(iterated: string, chars: string = "abcdefghijklmnopqrstuvwxyz ", count: number = 4) {
+function cipher(
+    iterated: string,
+    chars: string = "abcdefghijklmnopqrstuvwxyz ",
+    count: number = 4,
+) {
     var ciphered = "";
     for (let i = 0; i < iterated.length; i++) {
         // sus
@@ -14,14 +18,14 @@ function cipher(iterated: string, chars: string = "abcdefghijklmnopqrstuvwxyz ",
             // Find the index of the character in the list of chracters
             data = chars.indexOf(iterated[i]);
             // Accelerate the index by the count
-            data = data+count;
+            data = data + count;
             // Puts the data within scope using modulus
-            data = data % chars.length
+            data = data % chars.length;
             // If it is negative, it adds it to the length of the characters, if it is even, it applies the index right away
             if (data < 0) {
-                ciphered += chars[chars.length + data]
+                ciphered += chars[chars.length + data];
             } else {
-                ciphered += chars[data]
+                ciphered += chars[data];
             }
         } else {
             ciphered += iterated[i];
@@ -47,7 +51,7 @@ function reverseString(text: string) {
 }
 
 function encrypt(inputValue: string, key: string) {
-    let newValue = inputValue.toLowerCase()
+    let newValue = inputValue.toLowerCase();
 
     // Break Down Key
     let [key1, key2] = breakKey(key);
@@ -65,16 +69,16 @@ function encrypt(inputValue: string, key: string) {
             try {
                 newABCs = newABCs.replace(el, "");
             } catch {
-                console.log("SomEthInG wENt WronG")
+                console.log("SomEthInG wENt WronG");
             }
         }
 
         // Prevent "NaN"'s
         if (i % 16 == 0 && i != 64) {
-            newABCs += ABCs
+            newABCs += ABCs;
         }
     }
-    
+
     const allChars = ABCs + newCharacters;
     newABCs += newCharacters;
 
@@ -84,12 +88,15 @@ function encrypt(inputValue: string, key: string) {
     let newinput = "";
     for (let i = 0; i < newValue.length; i++) {
         const element = newValue[i];
-        newinput += newABCs[randNum(0, newABCs.length)] + newABCs[randNum(0, newABCs.length)] + element;
+        newinput +=
+            newABCs[randNum(0, newABCs.length)] +
+            newABCs[randNum(0, newABCs.length)] +
+            element;
     }
 
     newValue = newinput;
     newValue = cipher(newValue, ABCs, key2);
-    
+
     newValue = newValue.replaceAll(" ", "~");
 
     return newValue;
@@ -101,7 +108,7 @@ function decrypt(inputValue: string, key: string) {
     inputValue = inputValue.replaceAll("~", " ");
 
     let [key1, key2] = breakKey(key);
-    inputValue = cipher(inputValue, ABCs, key2*-1);
+    inputValue = cipher(inputValue, ABCs, key2 * -1);
 
     inputValue = reverseString(inputValue);
 
@@ -113,9 +120,9 @@ function decrypt(inputValue: string, key: string) {
         }
     }
 
-    newInputValue = cipher(newInputValue, ABCs, key1*-1);
+    newInputValue = cipher(newInputValue, ABCs, key1 * -1);
 
     return newInputValue;
 }
 
-export { encrypt, decrypt }
+export { encrypt, decrypt };

@@ -22,27 +22,32 @@ const useBlockSizes = () => {
     const { vData } = useVisualizer();
 
     useEffect(() => {
-        if (vData.visualierBoxRef===undefined || vData.visualierBoxRef.current===null) return;
+        if (
+            vData.visualierBoxRef === undefined ||
+            vData.visualierBoxRef.current === null
+        )
+            return;
         const updateBoxSizes = () => {
             if (!vData.visualierBoxRef?.current) return;
 
-            const {height, width} = vData.visualierBoxRef.current.getBoundingClientRect();
-            const potentialX = Math.round(width / 50)
+            const { height, width } =
+                vData.visualierBoxRef.current.getBoundingClientRect();
+            const potentialX = Math.round(width / 50);
 
             const newX = Math.min(25, potentialX);
-            const newY = Math.round(height / (newX===25?(width/newX):50));
+            const newY = Math.round(height / (newX === 25 ? width / newX : 50));
             setXValue(newX);
             setYValue(newY);
             setTempX(newX);
             setTempY(newY);
-        }
-        
+        };
+
         updateBoxSizes();
-        const observer = new ResizeObserver(updateBoxSizes)
-        observer.observe(vData.visualierBoxRef.current)
+        const observer = new ResizeObserver(updateBoxSizes);
+        observer.observe(vData.visualierBoxRef.current);
         return () => {
-            observer.disconnect()
-        }
+            observer.disconnect();
+        };
     }, [vData.visualierBoxRef]);
 
     const setSize = (event: ChangeEvent<HTMLInputElement>, isX: boolean) => {

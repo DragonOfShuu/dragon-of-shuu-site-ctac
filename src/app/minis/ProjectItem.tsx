@@ -39,17 +39,17 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                 </Link>
             </div>
             <div className="absolute inset-0 -z-10 bg-gradient-to-r from-amber-950 via-orange-900 via-40%" />
-            {
-                props.image.height && props.image.width ?
-                    <div className="absolute inset-0 -z-20">
-                        <Image
-                            {...props.image as ImageDataType}
-                            alt={`${props.name} background image`}
-                            className={`object-cover object-center h-full w-3/4 float-right`}
-                        />
-                    </div>
-                : <></>
-            }
+            {props.image.height && props.image.width ? (
+                <div className="absolute inset-0 -z-20">
+                    <Image
+                        {...(props.image as ImageDataType)}
+                        alt={`${props.name} background image`}
+                        className={`object-cover object-center h-full w-3/4 float-right`}
+                    />
+                </div>
+            ) : (
+                <></>
+            )}
         </div>
     );
 };

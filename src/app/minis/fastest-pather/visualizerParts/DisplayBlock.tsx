@@ -70,7 +70,7 @@ export default function DisplayBlock({
             onMouseOver={(e) => triggerWithMouse(e, false)}
             onMouseDown={triggerWithMouse}
             // onTouchStart={() => blockClicked({x, y}, true)}
-            onTouchMove={() => blockClicked({x, y}, false)}
+            onTouchMove={() => blockClicked({ x, y }, false)}
         >
             <div
                 className={`w-full h-full z-20 ${styles.baseOverlay} ${findingStyle[mode] ?? ""}`}

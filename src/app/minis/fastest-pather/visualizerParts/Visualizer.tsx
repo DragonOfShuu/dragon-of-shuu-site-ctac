@@ -16,8 +16,8 @@ const InnerVisualizer = (props: Props) => {
         vData.toolbarEnabled === undefined ? true : vData.toolbarEnabled;
 
     useEffect(() => {
-        vDispatch({ type: 'setVisualizerRef', newRef: visualizerRef })
-    }, [vDispatch])
+        vDispatch({ type: "setVisualizerRef", newRef: visualizerRef });
+    }, [vDispatch]);
 
     return (
         <div className={`flex flex-col flex-grow gap-2`}>

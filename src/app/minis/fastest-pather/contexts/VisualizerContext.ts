@@ -42,7 +42,7 @@ export type VisualizerActionType =
     | { type: "toolbar"; enabled: boolean }
     | { type: "blocks"; newBlocks: Block[][] }
     | { type: "block"; newBlock: Block }
-    | { type: "setVisualizerRef"; newRef: React.RefObject<HTMLDivElement> }
+    | { type: "setVisualizerRef"; newRef: React.RefObject<HTMLDivElement> };
 
 export const VisualizerReducer = (
     prevState: VisualizerDataType,
@@ -59,17 +59,20 @@ export const VisualizerReducer = (
             return { ...prevState, blocks: action.newBlocks };
         }
         case "block": {
-            const newBlock = {...action.newBlock};
-            if (JSON.stringify(newBlock) === JSON.stringify(prevState.blocks[newBlock.y][newBlock.x])) {
-                return prevState
+            const newBlock = { ...action.newBlock };
+            if (
+                JSON.stringify(newBlock) ===
+                JSON.stringify(prevState.blocks[newBlock.y][newBlock.x])
+            ) {
+                return prevState;
             }
-            const newBlocks = [...prevState.blocks]
-            newBlocks[newBlock.y] = [...newBlocks[newBlock.y]]
+            const newBlocks = [...prevState.blocks];
+            newBlocks[newBlock.y] = [...newBlocks[newBlock.y]];
             newBlocks[newBlock.y][newBlock.x] = newBlock;
-            return { ...prevState, blocks: newBlocks }
+            return { ...prevState, blocks: newBlocks };
         }
         case "setVisualizerRef": {
-            return { ...prevState, visualierBoxRef: action.newRef }
+            return { ...prevState, visualierBoxRef: action.newRef };
         }
     }
 };

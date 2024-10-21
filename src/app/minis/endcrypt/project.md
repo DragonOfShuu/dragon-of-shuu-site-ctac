@@ -5,4 +5,4 @@ width: 1000
 height: 1000
 ---
 
-*Encrypt* and *decrypt* text into seemingly random gibberish!
+_Encrypt_ and _decrypt_ text into seemingly random gibberish!

@@ -46,7 +46,7 @@ const Painter = ({}: Props) => {
     const blockClicked = useCallback(
         ({ x, y }: { x: number; y: number }, newClick: boolean) => {
             const flagChange = (block: Block) => {
-                const newBlocks = [...vData.blocks]
+                const newBlocks = [...vData.blocks];
                 // If block mode equals barrier,
                 // Change to available
                 if (block.mode == "barrier") {
@@ -86,7 +86,7 @@ const Painter = ({}: Props) => {
                 setFlagLoc(undefined);
             };
 
-            const block = {...vData.blocks[y][x]};
+            const block = { ...vData.blocks[y][x] };
             const isAvailableNow = block.mode == "available";
 
             if (flagLoc != undefined) {
@@ -214,7 +214,7 @@ const Painter = ({}: Props) => {
                     }}
                     text="Set End"
                 />
-                
+
                 <div className={`h-14 lg:h-full`}>
                     <TileTypeChooser setTrudge={setTrudgePaint} />
                 </div>
