@@ -7,10 +7,8 @@ const replaceFrom2D = (
 ): string => {
     let remainingText = text;
     let newText = "";
-    console.log("STARTTTT");
     while (remainingText.length) {
         let replaceLength = 1;
-        console.log(remainingText);
         // Find the index that we'll convert to in the second array
         // by looking through the first array
         const replaceableIndex = convertFrom.findIndex((convertFromElement) => {
