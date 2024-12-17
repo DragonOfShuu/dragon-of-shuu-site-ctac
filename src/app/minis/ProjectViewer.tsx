@@ -1,6 +1,6 @@
 import { join } from "path";
 import getAllProjects from "../libs/miniProjectsAPI";
-import ProjectItem, { imageDataType } from "./ProjectItem";
+import ProjectItem, { ImageDataType } from "./ProjectItem";
 
 type ProjectViewerPropType = {};
 
@@ -13,10 +13,13 @@ const ProjectViewer = async (props: ProjectViewerPropType) => {
         <div className={`flex flex-col items-stretch gap-2`}>
             {projs.map((proj) => {
                 const matter = proj.frontMatter;
-                const imageData: imageDataType = {
-                    height: matter.height,
-                    width: matter.width,
-                    src: join(imageLocation, matter.image).replace(/\\/g, "/"),
+                const imageData: Partial<ImageDataType> = {
+                    height: matter.height || undefined,
+                    width: matter.width || undefined,
+                    src: join(imageLocation ?? "", matter.image ?? "").replace(
+                        /\\/g,
+                        "/",
+                    ),
                 };
 
                 return (

@@ -1,20 +1,20 @@
 import PageHeader from "@/components/PageHeader";
-import ContactForm from "@/app/contact/ContactForm";
 import EmphasizedContent from "@/components/EmphasizedContent";
+import Translations from "@/app/minis/runes/Translations";
 
-const ContactUs = () => {
+const Page = () => {
     return (
         <>
             <PageHeader>
                 <EmphasizedContent alignment="left">
-                    <h1>Contact Us</h1>
+                    <h1>Runes</h1>
                 </EmphasizedContent>
             </PageHeader>
-            <div className="w-full flex flex-col items-center">
-                <ContactForm />
-            </div>
+            <main className={`flex flex-col p-4 md:p-10 w-full items-center`}>
+                <Translations />
+            </main>
         </>
     );
 };
 
-export default ContactUs;
+export default Page;

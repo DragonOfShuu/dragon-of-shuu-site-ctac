@@ -1,0 +1,35 @@
+.translations 
+    display: flex
+    flex-direction: column
+    justify-content: space-around
+    align-items: flex-start
+    min-width: 60vw
+
+    @apply gap-2
+
+.output, .input 
+    width: 100%
+    min-height: 20vh
+
+    padding: 5px
+
+
+.executionButtons 
+    display: flex
+    flex-direction: row
+    @apply gap-5
+
+    button
+        min-width: 100px
+
+
+@media ( max-width: 768px )     
+    .executionButtons 
+        width: 100%
+        justify-content: space-evenly
+
+        button
+            min-width: auto
+            width: 30%
+
+            @apply text-sm

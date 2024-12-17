@@ -9,6 +9,7 @@ const defaultVisualizer: VisualizerDataType = {
     toolbarEnabled: true,
     blockClicked: undefined,
     pointPos: undefined,
+    visualierBoxRef: undefined,
 };
 
 const VisualizerContextComp = (props: { children: ReactNode }) => {

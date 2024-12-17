@@ -23,6 +23,7 @@ export type VisualizerDataType = {
     blocks: Block[][];
     // Location of the Start and End
     pointPos: StartEnd | undefined;
+    visualierBoxRef: React.RefObject<HTMLDivElement> | undefined;
 };
 
 export type VisualizerContextType = {
@@ -39,14 +40,14 @@ export const useVisualizer = () => {
 export type VisualizerActionType =
     | { type: "update"; data: Partial<VisualizerDataType> }
     | { type: "toolbar"; enabled: boolean }
-    | { type: "blocks"; newBlocks: Block[][] };
+    | { type: "blocks"; newBlocks: Block[][] }
+    | { type: "block"; newBlock: Block }
+    | { type: "setVisualizerRef"; newRef: React.RefObject<HTMLDivElement> };
 
 export const VisualizerReducer = (
     prevState: VisualizerDataType,
     action: VisualizerActionType,
 ): VisualizerDataType => {
-    // const newState = {...prevState};
-
     switch (action.type) {
         case "update": {
             return { ...prevState, ...action.data };
@@ -56,6 +57,22 @@ export const VisualizerReducer = (
         }
         case "blocks": {
             return { ...prevState, blocks: action.newBlocks };
+        }
+        case "block": {
+            const newBlock = { ...action.newBlock };
+            if (
+                JSON.stringify(newBlock) ===
+                JSON.stringify(prevState.blocks[newBlock.y][newBlock.x])
+            ) {
+                return prevState;
+            }
+            const newBlocks = [...prevState.blocks];
+            newBlocks[newBlock.y] = [...newBlocks[newBlock.y]];
+            newBlocks[newBlock.y][newBlock.x] = newBlock;
+            return { ...prevState, blocks: newBlocks };
+        }
+        case "setVisualizerRef": {
+            return { ...prevState, visualierBoxRef: action.newRef };
         }
     }
 };

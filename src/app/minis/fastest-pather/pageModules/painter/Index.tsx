@@ -11,6 +11,7 @@ import ToolBarButton from "../../toolBarElements/ToolBarButton";
 import ReturnToSizerDialog from "../../ReturnToSizerDialog";
 import HowPainter from "../../help/HowPainter";
 import { usePages } from "../../contexts/PageContext";
+import MobileExpandMenu from "@/app/minis/fastest-pather/toolBarElements/MobileExpandMenu";
 
 type Props = {};
 
@@ -44,7 +45,8 @@ const Painter = ({}: Props) => {
 
     const blockClicked = useCallback(
         ({ x, y }: { x: number; y: number }, newClick: boolean) => {
-            const flagChange = (block: Block, newBlocks: Block[][]) => {
+            const flagChange = (block: Block) => {
+                const newBlocks = [...vData.blocks];
                 // If block mode equals barrier,
                 // Change to available
                 if (block.mode == "barrier") {
@@ -56,10 +58,12 @@ const Painter = ({}: Props) => {
                     return;
                 }
 
-                if (block.role == flagLoc) {
+                if (block.role === flagLoc) {
+                    // Block role and flag target selection match. Nullify this set
                     setFlagLoc(undefined);
                     return;
                 } else if (block.role != undefined) {
+                    // Swap start and end
                     const newStart: Coord = { x: endLoc.x, y: endLoc.y };
                     const newEnd: Coord = { x: startLoc.x, y: startLoc.y };
                     newBlocks[startLoc.y][startLoc.x].role = "end";
@@ -67,7 +71,7 @@ const Painter = ({}: Props) => {
                     newBlocks[endLoc.y][endLoc.x].role = "start";
                     setEndLoc(newEnd);
                 } else {
-                    block.role = flagLoc;
+                    newBlocks[block.y][block.x].role = flagLoc;
 
                     if (flagLoc == "start") {
                         newBlocks[startLoc.y][startLoc.x].role = undefined;
@@ -82,12 +86,11 @@ const Painter = ({}: Props) => {
                 setFlagLoc(undefined);
             };
 
-            const newBlocks = [...vData.blocks];
-            const block = newBlocks[y][x];
+            const block = { ...vData.blocks[y][x] };
             const isAvailableNow = block.mode == "available";
 
             if (flagLoc != undefined) {
-                flagChange(block, newBlocks);
+                flagChange(block);
                 return;
             }
 
@@ -108,7 +111,7 @@ const Painter = ({}: Props) => {
                 block.trudge = trudgePaint;
             }
 
-            vDispatch({ type: "update", data: { blocks: newBlocks } });
+            vDispatch({ type: "block", newBlock: block });
         },
         [
             vData.blocks,
@@ -159,8 +162,6 @@ const Painter = ({}: Props) => {
         newBlocks[yValue - 1][xValue - 1].role = "end";
         setEndLoc({ x: xValue - 1, y: yValue - 1 });
 
-        // setBlocks(newBlocks)
-
         for (let x = 0; x < newBlocks[0].length; x++) {
             setTimeout(
                 () => {
@@ -168,7 +169,6 @@ const Painter = ({}: Props) => {
                     theBlocks.forEach((row) => {
                         row[x].mode = "available";
                     });
-                    // setBlocks(theBlocks)
                     vDispatch({ type: "blocks", newBlocks: theBlocks });
                 },
                 (1000 / newBlocks[0].length) * x + 100,
@@ -195,26 +195,30 @@ const Painter = ({}: Props) => {
 
     return (
         <>
-            <ToolBarButton
-                alt="Reset Board"
-                onClick={resetBoard}
-                image={resetIcon}
-            />
+            <MobileExpandMenu>
+                <ToolBarButton
+                    alt="Reset Board"
+                    onClick={resetBoard}
+                    image={resetIcon}
+                />
 
-            <ToolBarButton
-                onClick={() => {
-                    setFlagLoc("start");
-                }}
-                text="Set Start"
-            />
-            <ToolBarButton
-                onClick={() => {
-                    setFlagLoc("end");
-                }}
-                text="Set End"
-            />
+                <ToolBarButton
+                    onClick={() => {
+                        setFlagLoc("start");
+                    }}
+                    text="Set Start"
+                />
+                <ToolBarButton
+                    onClick={() => {
+                        setFlagLoc("end");
+                    }}
+                    text="Set End"
+                />
 
-            <TileTypeChooser setTrudge={setTrudgePaint} />
+                <div className={`h-14 lg:h-full`}>
+                    <TileTypeChooser setTrudge={setTrudgePaint} />
+                </div>
+            </MobileExpandMenu>
 
             <div className="flex-grow"></div>
 

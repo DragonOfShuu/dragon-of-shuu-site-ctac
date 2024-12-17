@@ -1,5 +1,4 @@
 import { MouseEvent, ReactNode, RefObject, useState } from "react";
-import Image from "next/image";
 import Plus from "./icons/plusIcon.svg";
 import styles from "./BaseDialog.module.sass";
 

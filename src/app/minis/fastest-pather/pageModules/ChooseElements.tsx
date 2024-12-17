@@ -42,7 +42,7 @@ const TileBlock = ({
                 </div>
             </dialog>
             <div
-                className={`border-2 border-solid ${selected ? `border-white` : `border-transparent hover:border-gray-300`} flex items-stretch rounded-xl overflow-hidden`}
+                className={`border-2 border-solid h-full ${selected ? `border-white` : `border-transparent hover:border-gray-300`} flex items-stretch rounded-xl overflow-hidden`}
                 onClick={clicked}
                 onMouseOver={mouseOver}
                 onMouseOut={noMouseOver}
@@ -82,7 +82,7 @@ export default function MultiChooser<TReturnType>({
     };
 
     return (
-        <div className="flex items-stretch justify-between">
+        <div className="flex items-stretch justify-between h-full">
             {content.map((element, index) => (
                 <TileBlock
                     color={element.color}
