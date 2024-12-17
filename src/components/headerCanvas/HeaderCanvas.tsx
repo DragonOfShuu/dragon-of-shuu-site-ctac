@@ -1,20 +1,14 @@
 "use client";
 
-import useWindowDimensions from "@/components/hooks/useWindowDimensions";
 import { Canvas } from "@react-three/fiber";
-import {
-    DepthOfField,
-    EffectComposer,
-    Vignette,
-} from "@react-three/postprocessing";
 import { ErrorBoundary } from "react-error-boundary";
-import HeaderScene from "./HeaderScene";
 import { ReactNode } from "react";
 
 type Props = {
     className?: string;
     fallback?: ReactNode;
     enabled?: boolean;
+    children: ReactNode
 };
 
 const HeaderCanvas = (props: Props) => {
@@ -23,7 +17,7 @@ const HeaderCanvas = (props: Props) => {
     return (
         <ErrorBoundary fallback={<div className={`bg-black size-full`}></div>}>
             <Canvas className={props.className} fallback={<p>Unsupported</p>}>
-                <HeaderScene />
+                {props.children}
             </Canvas>
         </ErrorBoundary>
     );

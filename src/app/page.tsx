@@ -1,13 +1,16 @@
 import SpecialButton from "@/components/SpecialButton";
 import Link from "next/link";
-import DisableableHeaderCanvas from "./DisablableHeaderCanvas";
+import DisableableHeaderCanvas from "../components/headerCanvas/DisableableHeaderCanvas";
 import EmphasizedContent from "@/components/EmphasizedContent";
+import SpaceshipWithControls from "@/app/SpaceshipWithControls";
 
 export default function Home() {
     return (
         <>
             <div className={`h-screen relative`}>
-                <DisableableHeaderCanvas className={`size-full -z-10`} />
+                <DisableableHeaderCanvas className={`size-full -z-10`}>
+                    <SpaceshipWithControls />
+                </DisableableHeaderCanvas>
                 <div
                     className={`absolute inset-0 flex flex-col justify-center items-start p-4 md:p-16 space-y-5 pointer-events-none`}
                 >

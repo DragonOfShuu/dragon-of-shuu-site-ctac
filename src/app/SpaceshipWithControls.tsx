@@ -1,14 +1,10 @@
+"use client";
+
 import SpaceshipScene from "@/assets/3d/scenes/SpaceshipScene";
 import NoClickTruckControls from "@/assets/3d/cameraControls/NoClickOrbitControls";
 import { CameraShake } from "@react-three/drei";
-import { useThree } from "@react-three/fiber";
 
-const HeaderScene = () => {
-    // const [texture] = useTexture(["textures/GridTexture.png"]);
-    // texture.wrapS = THREE.RepeatWrapping;
-    // texture.wrapT = THREE.RepeatWrapping;
-    // texture.repeat.set(10, 10);
-
+const SpaceshipWithControls = () => {
     const shakeMax = 0.005;
     const shakeFrequency = 1;
     const shakeIntensity = 0.5;
@@ -32,4 +28,4 @@ const HeaderScene = () => {
     );
 };
 
-export default HeaderScene;
+export default SpaceshipWithControls;

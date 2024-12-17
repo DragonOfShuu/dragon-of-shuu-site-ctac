@@ -19,6 +19,9 @@ const flexAlign = {
     center: "self-center",
 };
 
+/**
+ *  HTML with a line underneath.
+ */
 const EmphasizedContent = ({
     alignment,
     children,

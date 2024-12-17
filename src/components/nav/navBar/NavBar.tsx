@@ -11,6 +11,7 @@ import useWindowDimensions, {
 } from "@/components/hooks/useWindowDimensions";
 import houseIcon from "@/assets/lineIcons/houseIcon.svg";
 import mailIcon from "@/assets/lineIcons/mailIcon.svg";
+import iIcon from "@/assets/lineIcons/iIcon.svg"
 import useWindowScroll from "@/components/hooks/useWindowScroll";
 import styles from "./NavBar.module.sass";
 
@@ -37,6 +38,11 @@ const NavBar = (props: Props) => {
             text: "Home",
             href: "/",
             icon: houseIcon,
+        },
+        {
+            text: "About Us",
+            href: "/about",
+            icon: iIcon,
         },
         {
             text: "Contact Us",
