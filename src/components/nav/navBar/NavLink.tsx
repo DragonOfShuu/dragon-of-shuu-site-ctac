@@ -3,7 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./NavLink.module.sass";
-import { FC, SVGProps } from "react";
 import LineIconButton from "@/components/LineIconButton";
 
 type Props = {
