@@ -50,8 +50,8 @@ const NavBar = (props: Props) => {
             icon: mailIcon,
         },
         {
-            text: "Minis",
-            href: "/minis",
+            text: "Projects",
+            href: "/projects",
             icon: ProjectIcon,
         },
     ];

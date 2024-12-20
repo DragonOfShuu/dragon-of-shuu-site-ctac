@@ -18,6 +18,7 @@ export type ProjectDisplayPropType = {
     href: string;
     image: Partial<ImageDataType>;
     description: string;
+    tags?: string[];
 };
 
 const ProjectItem = (props: ProjectDisplayPropType) => {

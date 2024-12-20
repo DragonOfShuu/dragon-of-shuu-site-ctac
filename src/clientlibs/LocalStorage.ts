@@ -1,3 +1,5 @@
+"use client";
+
 class LocalStorage {
     static getKey<T>(key: string): T|null {
         const data = localStorage.getItem(key)
