@@ -6,20 +6,11 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./ProjectItem.module.sass";
 import Markdown from "react-markdown";
+import { ImageDataType as ProjectImageType, ProjectType } from "@/app/libs/miniProjectsAPI";
 
-export type ImageDataType = {
-    src: string;
-    width: number;
-    height: number;
-};
+type ProjectDisplayPropType = {
 
-export type ProjectDisplayPropType = {
-    name: string;
-    href: string;
-    image: Partial<ImageDataType>;
-    description: string;
-    tags?: string[];
-};
+} & ProjectType
 
 const ProjectItem = (props: ProjectDisplayPropType) => {
     const [open, setOpen] = useState(false);
@@ -43,7 +34,7 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
             {props.image.height && props.image.width ? (
                 <div className="absolute inset-0 -z-20">
                     <Image
-                        {...(props.image as ImageDataType)}
+                        {...(props.image as ProjectImageType)}
                         alt={`${props.name} background image`}
                         className={`object-cover object-center h-full w-3/4 float-right`}
                     />

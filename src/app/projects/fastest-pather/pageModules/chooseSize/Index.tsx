@@ -8,8 +8,7 @@ import ToolBarButton from "../../toolBarElements/ToolBarButton";
 import HowSizer from "../../help/HowSizer";
 import { useVisualizer } from "../../contexts/VisualizerContext";
 import { usePages } from "../../contexts/PageContext";
-import useWindowDimensions from "@/components/hooks/useWindowDimensions";
-import MobileExpandMenu from "@/app/minis/fastest-pather/toolBarElements/MobileExpandMenu";
+import MobileExpandMenu from "@/app/projects/fastest-pather/toolBarElements/MobileExpandMenu";
 
 const limit = 40;
 

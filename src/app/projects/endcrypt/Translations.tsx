@@ -1,10 +1,10 @@
 "use client";
 
 import { useState, useEffect, useCallback } from "react";
-import { encrypt, decrypt } from "@/app/minis/endcrypt/encryptionDecryption";
+import { encrypt, decrypt } from "@/app/projects/endcrypt/encryptionDecryption";
 import styles from "./endcrypt.module.sass";
 import SpecialButton from "@/components/SpecialButton";
-import copyText from "@/libs/copyToClipboard";
+import copyText from "@/clientlibs/copyToClipboard";
 
 const Translations = () => {
     const [toEncrypt, setToEncrypt] = useState<boolean>(true);

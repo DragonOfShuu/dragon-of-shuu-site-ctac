@@ -1,6 +1,6 @@
 import PageHeader from "@/components/PageHeader";
 import EmphasizedContent from "@/components/EmphasizedContent";
-import Translations from "@/app/minis/endcrypt/Translations";
+import Translations from "@/app/projects/endcrypt/Translations";
 
 const Page = () => {
     return (

@@ -1,4 +1,4 @@
-import ToolBarButton from "@/app/minis/fastest-pather/toolBarElements/ToolBarButton";
+import ToolBarButton from "@/app/projects/fastest-pather/toolBarElements/ToolBarButton";
 import { ReactNode, useState } from "react";
 
 type MobileExpandMenuPropType = {

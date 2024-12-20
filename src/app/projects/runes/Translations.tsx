@@ -3,13 +3,13 @@
 import {
     convertFromRune,
     convertToRune,
-} from "@/app/minis/runes/runeConversions";
+} from "@/app/projects/runes/runeConversions";
 import SpecialButton from "@/components/SpecialButton";
 import { useCallback, useEffect, useState } from "react";
 import styles from "./runes.module.sass";
-import copyText from "@/libs/copyToClipboard";
-import Question from "@/app/minis/runes/Question";
-import RuneTableType from "@/app/minis/runes/tables/runetable.type";
+import copyText from "@/clientlibs/copyToClipboard";
+import Question from "@/app/projects/runes/Question";
+import RuneTableType from "@/app/projects/runes/tables/runetable.type";
 import { oldRunes, newRunes } from "./tables";
 
 const Translations = () => {

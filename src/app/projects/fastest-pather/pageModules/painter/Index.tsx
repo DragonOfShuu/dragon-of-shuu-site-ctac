@@ -11,7 +11,7 @@ import ToolBarButton from "../../toolBarElements/ToolBarButton";
 import ReturnToSizerDialog from "../../ReturnToSizerDialog";
 import HowPainter from "../../help/HowPainter";
 import { usePages } from "../../contexts/PageContext";
-import MobileExpandMenu from "@/app/minis/fastest-pather/toolBarElements/MobileExpandMenu";
+import MobileExpandMenu from "@/app/projects/fastest-pather/toolBarElements/MobileExpandMenu";
 
 type Props = {};
 
