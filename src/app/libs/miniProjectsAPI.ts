@@ -83,5 +83,25 @@ const getAllProjects = async (): Promise<ProjectType[]> => {
     return projData.filter((p) => p !== null);
 };
 
+const searchProjects = async (searchString: string, tags?: string[]): Promise<ProjectType[]> => {
+    const projs = await getAllProjects();
+    const newProjs = projs.filter((project) => {
+        const thisProjectTags = project.tags;
+        // If the search string could not be found, filter this project out
+        if (searchString!=='' && !project.name.toLowerCase().includes(searchString.toLowerCase()))
+            return false;
+        // If tags are required, but this project doesn't have tags, filter this project out
+        if (tags && !thisProjectTags)
+            return false;
+        // If there are any missing tags, filter this project out
+        if (tags && thisProjectTags && tags.some((t) => !thisProjectTags.includes(t)))
+            return false;
+        // Return true otherwise
+        return true;
+    })
+    // FOR TESTING
+    return new Promise((resolve) => setTimeout(() => resolve(newProjs), 200))
+};
+
 export default getAllProjects;
-export { getProjectData, getProjectNames };
+export { getProjectData, getProjectNames, searchProjects };

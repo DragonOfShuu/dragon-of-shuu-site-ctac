@@ -1,22 +1,32 @@
-import getAllProjects from "../libs/miniProjectsAPI";
+import { ProjectType } from "../libs/miniProjectsAPI";
 import ProjectItem from "./ProjectItem";
 
-type ProjectViewerPropType = {};
+type ProjectViewerPropType = {
+    projects: ProjectType[]
+};
 
-const ProjectViewer = async (props: ProjectViewerPropType) => {
-    const projects = await getAllProjects();
+const ProjectViewer = (props: ProjectViewerPropType) => {
+
+    if (props.projects.length === 0)
+        return (
+            <div className={`size-full flex items-center justify-center md:grow`}>
+                <p className={`font-bold text-2xl md:text-4xl xl:text-6xl text-center text-orange-900`}>
+                    No Projects Found
+                </p>
+            </div>
+        )
 
     return (
         <div className={`flex flex-col items-stretch gap-2`}>
-        {projects.map((proj) => {
-            return (
-                <ProjectItem
-                    {...proj}
-                    key={proj.name}
-                />
-            );
-        })}
-    </div>
+            {props.projects.map((proj) => {
+                return (
+                    <ProjectItem
+                        {...proj}
+                        key={proj.name}
+                    />
+                );
+            })}
+        </div>
     );
 };
 
