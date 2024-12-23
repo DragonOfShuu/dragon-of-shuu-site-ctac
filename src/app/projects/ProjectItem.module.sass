@@ -6,10 +6,13 @@
     @apply md:grid md:grid-cols-2 lg:grid-cols-3 
 
     .text
-        @apply col-start-1 flex flex-col gap-4
+        @apply col-start-1 flex flex-col gap-4 text-center md:text-left
         h1
             @apply text-3xl
+        .tag
+            text-shadow: 0 0 4px theme("colors.slate.900")
+            @apply rounded-md px-3 py-1
 
     .interactables
-        @apply col-start-3 flex flex-row justify-end items-start h-full
+        @apply col-start-3 flex flex-col justify-center items-end h-full
         

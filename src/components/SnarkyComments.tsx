@@ -2,7 +2,7 @@
 
 import { useCallback, useState, JSX, useEffect } from "react";
 import useInterval from "./hooks/useInterval";
-import { randomItem } from "./libs/random";
+import { randomItem } from "../clientlibs/random";
 
 type SnarkyCommentPropType = {} & JSX.IntrinsicElements["p"];
 

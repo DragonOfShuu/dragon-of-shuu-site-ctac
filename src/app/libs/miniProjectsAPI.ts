@@ -87,11 +87,13 @@ const searchProjects = async (searchString: string, tags?: string[]): Promise<Pr
     const projs = await getAllProjects();
     const newProjs = projs.filter((project) => {
         const thisProjectTags = project.tags;
+        const searchStringParts = searchString.split(/\W+/);
+        console.table({searchStringParts})
         // If the search string could not be found, filter this project out
-        if (searchString!=='' && !project.name.toLowerCase().includes(searchString.toLowerCase()))
+        if (searchString!=='' && searchStringParts.some((part) => !project.name.toLowerCase().includes(part.toLowerCase())))
             return false;
         // If tags are required, but this project doesn't have tags, filter this project out
-        if (tags && !thisProjectTags)
+        if (tags && tags.length > 0 && !thisProjectTags)
             return false;
         // If there are any missing tags, filter this project out
         if (tags && thisProjectTags && tags.some((t) => !thisProjectTags.includes(t)))

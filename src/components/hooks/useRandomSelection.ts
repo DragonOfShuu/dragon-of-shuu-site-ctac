@@ -1,4 +1,4 @@
-import { randomItem } from "@/components/libs/random";
+import { randomItem } from "@/clientlibs/random";
 import { useEffect } from "react";
 
 const useRandomSelection = <T>(

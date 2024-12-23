@@ -6,11 +6,14 @@ import Link from "next/link";
 import { useState } from "react";
 import styles from "./ProjectItem.module.sass";
 import Markdown from "react-markdown";
-import { ImageDataType as ProjectImageType, ProjectType } from "@/app/libs/miniProjectsAPI";
+import {
+    ImageDataType as ProjectImageType,
+    ProjectType,
+} from "@/app/libs/miniProjectsAPI";
 
 type ProjectDisplayPropType = {
-
-} & ProjectType
+    tagColorsTable: { [tagName: string]: [number, number, number] };
+} & ProjectType;
 
 const ProjectItem = (props: ProjectDisplayPropType) => {
     const [open, setOpen] = useState(false);
@@ -19,6 +22,25 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
         <div className={`${styles.item}`} onClick={() => setOpen((o) => !o)}>
             <div className={`${styles.text}`}>
                 <h1>{props.name}</h1>
+                <div className={`flex gap-1 justify-center md:justify-start`}>
+                    {props.tags?.map((tagName) => {
+                        const colors = props.tagColorsTable[tagName] ?? [
+                            180, 180, 180,
+                        ];
+                        const colorString = colors.join(", ");
+                        return (
+                            <div
+                                className={`${styles.tag}`}
+                                style={{
+                                    backgroundColor: `rgb(${colorString})`,
+                                }}
+                                key={tagName}
+                            >
+                                {tagName}
+                            </div>
+                        );
+                    })}
+                </div>
                 <Markdown className={`${open ? `block` : `hidden`}`}>
                     {props.description}
                 </Markdown>
