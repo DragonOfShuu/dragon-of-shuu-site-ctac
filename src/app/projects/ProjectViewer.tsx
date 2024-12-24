@@ -1,26 +1,12 @@
-import { useMemo } from "react";
-import { ProjectType } from "../libs/miniProjectsAPI";
 import ProjectItem from "./ProjectItem";
-import { randomInt } from '@/clientlibs/random'
+import { useProjectSearchData } from "@/app/projects/ProjectSearchContext";
 
 type ProjectViewerPropType = {
-    projects: ProjectType[]
+
 };
 
-const randomColorValue = () => {
-    return randomInt(50, 240)
-}
-
-const ProjectViewer = ({projects}: ProjectViewerPropType) => {
-    const tagColorsTable = useMemo(() => (
-        projects.reduce<{[tagName: string]: [number, number, number]}>((built, {tags}) => {
-            let newBuilt = built;
-            tags?.forEach((tagName) => {
-                newBuilt = {...newBuilt, [tagName]: [randomColorValue(), randomColorValue(), randomColorValue()]}
-            })
-            return newBuilt
-        }, {})
-    ), [projects])
+const ProjectViewer = ({}: ProjectViewerPropType) => {
+    const {projectBuffer: projects, tagColorsTable} = useProjectSearchData()
 
     if (projects.length === 0)
         return (

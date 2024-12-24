@@ -88,7 +88,7 @@ const searchProjects = async (searchString: string, tags?: string[]): Promise<Pr
     const newProjs = projs.filter((project) => {
         const thisProjectTags = project.tags;
         const searchStringParts = searchString.split(/\W+/);
-        console.table({searchStringParts})
+        console.table({searchStringParts, tags})
         // If the search string could not be found, filter this project out
         if (searchString!=='' && searchStringParts.some((part) => !project.name.toLowerCase().includes(part.toLowerCase())))
             return false;
@@ -102,7 +102,7 @@ const searchProjects = async (searchString: string, tags?: string[]): Promise<Pr
         return true;
     })
     // FOR TESTING
-    return new Promise((resolve) => setTimeout(() => resolve(newProjs), 200))
+    return new Promise((resolve) => setTimeout(() => resolve(newProjs), 500))
 };
 
 export default getAllProjects;
