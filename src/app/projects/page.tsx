@@ -1,6 +1,8 @@
 import PageHeader from "@/components/PageHeader";
 import EmphasizedContent from "@/components/EmphasizedContent";
-import ProjectViewerFilter from "@/app/projects/ProjectViewerFilter";
+import ProjectViewerFilterServer from "@/app/projects/ProjectViewerFilterServer";
+import { Suspense } from "react";
+import Loading from "@/components/Loading";
 
 const MinisPage = async () => {
     return (
@@ -11,7 +13,17 @@ const MinisPage = async () => {
                 </EmphasizedContent>
             </PageHeader>
             <div className={`flex flex-col grow p-10`}>
-                <ProjectViewerFilter />
+                <Suspense
+                    fallback={
+                        <div
+                            className={`flex-grow flex flex-col items-center justify-center bg-orange-950/30 m-10 rounded-xl`}
+                        >
+                            <Loading />
+                        </div>
+                    }
+                >
+                    <ProjectViewerFilterServer />
+                </Suspense>
             </div>
         </>
     );

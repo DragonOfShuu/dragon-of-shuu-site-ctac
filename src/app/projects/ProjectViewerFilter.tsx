@@ -10,18 +10,21 @@ import useProjectSearch from "@/app/projects/useProjectSearch";
 import useGenerateTagColors from "@/app/projects/useGenerateTagColors";
 import ProjectTagSelector from "@/app/projects/ProjectTagSelector";
 import { useState } from "react";
+import { ProjectType } from "@/app/libs/miniProjectsAPI";
 
-type ProjectViewerFilterPropType = {};
+type ProjectViewerFilterPropType = {
+    initialProjectValue: ProjectType[]
+};
 
 const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
-    const { isPending, projectBuffer, setSearchText, searchTags, setSearchTags } = useProjectSearch();
-    const tagColorsTable = useGenerateTagColors(projectBuffer);
+    const { isPending, projectBuffer, allTags, setSearchText, searchTags, setSearchTags } = useProjectSearch(props.initialProjectValue);
+    const tagColorsTable = useGenerateTagColors(allTags);
 
     const [tagFiltersVisible, setTagFiltersVisible] = useState<boolean>(false)
 
     return (
         <ProjectSearchDataContext.Provider
-            value={{ projectBuffer, tagColorsTable, searchTags, setSearchTags }}
+            value={{ projectBuffer: projectBuffer ?? [], tagColorsTable, searchTags, setSearchTags }}
         >
             <div className={`flex flex-col flex-grow gap-3`}>
                 <form className="flex flex-row gap-2 h-12">
@@ -43,7 +46,7 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                     </SpecialButton>
                 </form>
                 <ProjectTagSelector className={`transition-[height] ${tagFiltersVisible?`h-10`:`h-0`} overflow-hidden`} />
-                {isPending ? (
+                {isPending||projectBuffer===null ? (
                     <div
                         className={`flex-grow flex flex-col items-center justify-center bg-orange-950/30 m-10 rounded-xl`}
                     >
