@@ -1,4 +1,4 @@
-import { ProjectType, searchProjects, getAllTags } from "@/app/libs/miniProjectsAPI"
+import { ProjectType, searchProjects, getAllTags } from "@/app/libs/projectsAPI"
 import { useEffect, useRef, useState, useTransition } from "react"
 
 

@@ -5,6 +5,8 @@ import fs from "fs/promises";
 import matter from "gray-matter";
 import { join } from "path";
 
+import extraProjects from "@/app/libs/projectsAPI/extras";
+
 const minisDir = "src/app/projects/";
 const projectMetaFileName = "project.md";
 const imageLocation = "/projects/image-bucket/";
@@ -27,6 +29,7 @@ export type ImageDataType = {
 export type ProjectType = {
     name: string;
     href: string;
+    extraLinks?: {[name: string]: string};
     image: Partial<ImageDataType>;
     description: string;
     tags?: string[];
@@ -36,7 +39,7 @@ const getProjectNames = async () => {
     const folders = (await readdir(minisDir, { withFileTypes: true }))
         .filter((file) => file.isDirectory())
         .map((file) => file.name);
-    return folders;
+    return [...folders, ...Object.values(extraProjects).map((project) => project.name)];
 };
 
 const rawToProcessed = (
@@ -71,7 +74,7 @@ const getProjectData = async (
     try {
         fileContent = await fs.readFile(fullPath, "utf8");
     } catch {
-        return null;
+        return extraProjects[projName] ?? null;
     }
 
     const { data: frontmatter, content } = matter(fileContent);

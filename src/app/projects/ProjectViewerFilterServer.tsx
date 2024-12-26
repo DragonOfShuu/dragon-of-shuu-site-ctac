@@ -1,4 +1,4 @@
-import getAllProjects from "@/app/libs/miniProjectsAPI";
+import getAllProjects from "@/app/libs/projectsAPI";
 import ProjectViewerFilter from "@/app/projects/ProjectViewerFilter";
 
 

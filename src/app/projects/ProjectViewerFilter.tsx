@@ -10,7 +10,7 @@ import useProjectSearch from "@/app/projects/useProjectSearch";
 import useGenerateTagColors from "@/app/projects/useGenerateTagColors";
 import ProjectTagSelector from "@/app/projects/ProjectTagSelector";
 import { useState } from "react";
-import { ProjectType } from "@/app/libs/miniProjectsAPI";
+import { ProjectType } from "@/app/libs/projectsAPI";
 
 type ProjectViewerFilterPropType = {
     initialProjectValue: ProjectType[]

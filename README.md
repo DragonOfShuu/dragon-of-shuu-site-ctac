@@ -14,31 +14,48 @@
 
 Have at least these pages:
 
-Home
-About
-Contact
-Thanks for contacting us!
-Projects
-Implement a menu that is responsive like one of our company websites:
+- Home [SUCESS]
+- About [NEEDS-WORK]
+- Contact [SUCESS]
+  - Thanks for contacting us! [SUCCESS]
+- Projects [NEEDS-WORK]
 
-- https://www.1800contacts.com
-- https://helloeyes.ca  
-- https://luna.io 
+- Ensure responsiveness [NEEDS-WORK]
 
-Using the same breakpoints, make sure the rest of your website is also responsive. 
+- Implement a menu that is responsive like one of our company websites: [SUCCESS]
+  - https://www.1800contacts.com
+  - https://helloeyes.ca  
+  - https://luna.io 
 
-- Use Javascript to validate form. Add in helpful error messaging to determine what is wrong. 
 
-- Use Javascript to display the data from your contact form on your thank you page. 
-
-- Use Javascript on your Projects page to only show projects with a specific type. Use a JSON object to populate all the content on the page.
+- Use Javascript to validate form. Add in helpful error messaging to determine what is wrong. [NEEDS-WORK]
+- Use Javascript to display the data from your contact form on your thank you page.  [NEEDS-WORK]
+- Use Javascript on your Projects page to only show projects with a specific type. Use a JSON object to populate all the content on the page. [SUCCESS]
 
 If these were my project filters: All, Websites, Mobile, Other. Then I would have 4 buttons on this page that would show only projects of the selected type. Feel free to create your own categories, and make sure there are at least 3 “projects” that match. Feel free to use things like lorem ipsum for your filler content, or create your own!
 
-https://loremipsum.io/ - for generating random text
-https://picsum.photos/ - for generating random photos with specific sizes.
+- Make sure code validates [NEEDS-WORK]
+  - HTML https://validator.w3.org/(opens in a new tab)
+  - CSS  https://jigsaw.w3.org/css-validator/
 
-Make sure code validates 
+# Assistance
 
-HTML    - https://validator.w3.org/(opens in a new tab)
-CSS - https://jigsaw.w3.org/css-validator/
+- https://loremipsum.io/ - for generating random text
+- https://picsum.photos/ - for generating random photos with specific sizes.
+
+# TO DO
+
+- PROJECTS PAGE [2-DAYS] [26-27]
+  - ADD OFF-WEBSITE PROJECTS
+- VALIDATE FORM WITH GOOD FEEDBACK ON CONTACT PAGE [1-DAY] [28]
+- DISPLAY DATA FROM CONTACT FORM ON THANK YOU PAGE USING JAVASCRIPT [SAME-DAY]
+- ABOUT PAGE [4-DAYS] [29-1]
+- ENSURE RESPONSIVENESS [1-DAY] [2]
+- MAKE SURE CODE VALIDATES [1-DAY] [3]
+
+# EXTRAS
+
+- ADD BLOG PAGE
+- FINISH MAIN PAGE
+
+- ***DUE JANUARY 15TH, WEDNESDAY***

@@ -9,7 +9,7 @@ import Markdown from "react-markdown";
 import {
     ImageDataType as ProjectImageType,
     ProjectType,
-} from "@/app/libs/miniProjectsAPI";
+} from "@/app/libs/projectsAPI";
 
 type ProjectDisplayPropType = {
     tagColorsTable: { [tagName: string]: [number, number, number] };
@@ -46,7 +46,7 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                 </Markdown>
             </div>
             <div className={`${styles.interactables}`}>
-                <Link href={props.href}>
+                <Link href={props.href} target={props.href.startsWith('/') ? `_self` : `_blank`}>
                     <SpecialButton className={`shadow-md shadow-gray-900/50`}>
                         Open
                     </SpecialButton>
