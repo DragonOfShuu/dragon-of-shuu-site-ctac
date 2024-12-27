@@ -45,7 +45,7 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                         <FilterIcon className={`h-full w-auto stroke-white`} />
                     </SpecialButton>
                 </form>
-                <ProjectTagSelector className={`transition-[height] ${tagFiltersVisible?`h-10`:`h-0`} overflow-hidden`} />
+                <ProjectTagSelector className={`transition-[height] ${tagFiltersVisible?`h-14`:`h-0`} overflow-hidden`} />
                 {isPending||projectBuffer===null ? (
                     <div
                         className={`flex-grow flex flex-col items-center justify-center bg-orange-950/30 m-10 rounded-xl`}

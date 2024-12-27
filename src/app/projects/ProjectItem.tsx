@@ -23,7 +23,7 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
             <div className={`${styles.text}`}>
                 <h1>{props.name}</h1>
                 <div className={`flex gap-1 justify-center md:justify-start`}>
-                    {props.tags?.map((tagName) => {
+                    {props.tags?.sort().map((tagName) => {
                         const colors = props.tagColorsTable[tagName] ?? [
                             180, 180, 180,
                         ];

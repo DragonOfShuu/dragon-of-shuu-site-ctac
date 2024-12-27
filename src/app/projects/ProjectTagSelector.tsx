@@ -10,7 +10,7 @@ const ProjectTagSelector = (props: ProjectTagSelectorPropType) => {
 
     return (
         <div className={props.className}>
-            <div className="flex gap-2 width-full overflow-x-auto">
+            <div className="flex gap-2 size-full overflow-x-auto">
                 {Object.entries(tagColorsTable).map(([tagName, colors]) => {
                     const selected = searchTags.includes(tagName);
                     
@@ -26,7 +26,7 @@ const ProjectTagSelector = (props: ProjectTagSelectorPropType) => {
 
                     return (
                         <button
-                            className={`rounded-full px-4 py-1 border-2 ${selected ? `border-white` : `border-transparent`}`}
+                            className={`rounded-full px-4 py-1 border-2 text-nowrap ${selected ? `border-white` : `border-transparent`}`}
                             style={{
                                 backgroundColor: `rgb(${colors.join(", ")})`,
                             }}

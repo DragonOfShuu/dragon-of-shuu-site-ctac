@@ -35,11 +35,32 @@ export type ProjectType = {
     tags?: string[];
 };
 
+const extrasToProcessed = () => {
+    const imageIsEmpty = (data: ProjectType['image']) => (
+        !data.src
+        || !data.width
+        || !data.height
+    )
+
+    return Object.entries(extraProjects).reduce<{[name: string]: ProjectType}>((prev, [name, projectData]) => {
+        const newProjectData: ProjectType = {
+            ...projectData,
+            image: {
+                ...projectData.image,
+                src: imageIsEmpty(projectData.image) ? undefined : imageLocation+projectData.image.src
+            }
+        }
+        return {...prev, [name]: newProjectData}
+    }, {})
+}
+
+const processedExtras = extrasToProcessed()
+
 const getProjectNames = async () => {
     const folders = (await readdir(minisDir, { withFileTypes: true }))
         .filter((file) => file.isDirectory())
         .map((file) => file.name);
-    return [...folders, ...Object.values(extraProjects).map((project) => project.name)];
+    return [...folders, ...Object.values(processedExtras).map((project) => project.name)];
 };
 
 const rawToProcessed = (
@@ -74,7 +95,7 @@ const getProjectData = async (
     try {
         fileContent = await fs.readFile(fullPath, "utf8");
     } catch {
-        return extraProjects[projName] ?? null;
+        return processedExtras[projName] ?? null;
     }
 
     const { data: frontmatter, content } = matter(fileContent);
@@ -138,7 +159,7 @@ const getAllTags = async (): Promise<string[]> => {
         });
 
         return newTagList;
-    }, []);
+    }, []).sort();
 };
 
 export default getAllProjects;

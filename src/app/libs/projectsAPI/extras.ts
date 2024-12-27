@@ -6,7 +6,11 @@ const extraProjects: {[name: string]: ProjectType} = {
         name: "DucklingScript",
         description: "A compiler for a programming language for injecting keystrokes. Originally based on Rubber Ducky 1.0",
         href: "https://github.com/DragonOfShuu/DucklingScript/",
-        image: {},
+        image: {
+            src: "ducklingScriptThumb.png",
+            height: 800,
+            width: 4800,
+        },
         tags: ["compiler", "python"]
     },
     "Quackinter": {
@@ -27,7 +31,11 @@ const extraProjects: {[name: string]: ProjectType} = {
         name: "Action Logger",
         description: "A simple action logger that tells you what keys are being held down and released and when.",
         href: "https://github.com/DragonOfShuu/action-logger",
-        image: {},
+        image: {
+            src: "actionLoggerThumb.png",
+            height: 136,
+            width: 969
+        },
         tags: ["electron", "nextjs", "typescript", "frontend", "website", "desktop"]
     },
     "Operation Lightning Bolt": {
@@ -37,14 +45,22 @@ const extraProjects: {[name: string]: ProjectType} = {
         extraLinks: {
             "Code": "https://github.com/DragonOfShuu/OperationLightningBolt"
         },
-        image: {},
+        image: {
+            src: "lightningBoltThumb.png",
+            height: 507,
+            width: 1147
+        },
         tags: ["angular", "website", "frontend", "typescript"]
     },
     "Paradigm": {
         name: "Paradigm",
         description: "Create text hotkeys that inject full text and sentences with placeholders",
         href: "https://github.com/DragonOfShuu/Paradigm",
-        image: {},
+        image: {
+            src: "paradigmThumb.png",
+            width: 1567,
+            height: 391,
+        },
         tags: ["typescript", "react", "chrome-extension", "frontend"],
     },
     "Ultimate Tik-Tak-Toe": {
@@ -58,14 +74,22 @@ const extraProjects: {[name: string]: ProjectType} = {
         name: "Wordle Hax",
         description: "Cheat at wordle with this helpful desktop application!",
         href: "https://github.com/DragonOfShuu/WordleHax",
-        image: {},
+        image: {
+            src: "wordleHaxThumb.png",
+            width: 439,
+            height: 190,
+        },
         tags: ["c#", "desktop", "wpf"]
     },
     "The Red Chessboard": {
         name: "The Red Chessboard",
         description: "Chess, but you have to completely annihilate the other team.",
         href: "https://github.com/DragonOfShuu/TheRedChessBoard",
-        image: {},
+        image: {
+            src: "theRedChessboardThumb.png",
+            width: 454,
+            height: 733,
+        },
         tags: ["java", "desktop"]
     }
 }
