@@ -17,9 +17,9 @@ const ThankYou = () => {
                 >
                     <div>
                         <h2>Response Received</h2>
-                        <h4 className={`text-orange-800`}>
+                        <h3 className={`text-orange-800 text-xl`}>
                             We will get to you as soon as possible
-                        </h4>
+                        </h3>
                     </div>
                     <div>
                         <SpecialButton>

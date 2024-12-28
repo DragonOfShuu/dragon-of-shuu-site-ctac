@@ -6,7 +6,6 @@ import EpicFormRow from "@/components/epicForms/bases/EpicFormRow";
 import EpicFormSubmit from "@/components/epicForms/components/EpicFormSubmit";
 import EpicFormRegExInput from "@/components/epicForms/components/EpicFormRegExInput";
 import { submitContactInfo } from "./SubmitContactInfo";
-import { useFormStatus } from "react-dom";
 
 const ContactForm = () => {
     const emailAddrRegex =
@@ -16,8 +15,8 @@ const ContactForm = () => {
         <EpicForm action={submitContactInfo} className={`w-full lg:w-[900px]`}>
             <EpicFormRow displayname={`Name`} paramName={`name`}>
                 <EpicFormRegExInput
-                    error={`Must be a valid name`}
-                    regex={/\w{1,50}( [\w-]{1,50}){1,2}/.source}
+                    errors={[`Must include at least a first and last name`, `First, middle, and last name acceptable only. Use hyphens otherwise`]}
+                    regexes={[/\w+\s\w+/.source, /\w{1,50}( [\w-]{1,50}){1,2}/.source]}
                     id={`name`}
                     name={`name`}
                     type={`text`}
@@ -36,8 +35,8 @@ const ContactForm = () => {
             </EpicFormRow>
             <EpicFormRow displayname={`Return Email`} paramName={`ret_addr`}>
                 <EpicFormRegExInput
-                    error={`Must be a valid email address`}
-                    regex={emailAddrRegex.source}
+                    errors={[`Missing '@' symbol`, `Must have a domain name after the '@'`, `Must be a valid email address`]}
+                    regexes={[/\@/.source, /\@.\../.source, emailAddrRegex.source]}
                     id={`ret_addr`}
                     name={`ret_addr`}
                     placeholder={`johndoe@example.com`}
