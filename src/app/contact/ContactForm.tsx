@@ -15,8 +15,8 @@ const ContactForm = () => {
         <EpicForm action={submitContactInfo} className={`w-full lg:w-[900px]`}>
             <EpicFormRow displayname={`Name`} paramName={`name`}>
                 <EpicFormRegExInput
-                    errors={[`Must include at least a first and last name`, `First, middle, and last name acceptable only. Use hyphens otherwise`]}
-                    regexes={[/\w+\s\w+/.source, /\w{1,50}( [\w-]{1,50}){1,2}/.source]}
+                    errors={[`Must include at least a first and last name`, `Cannot include numbers`, `First, middle, and last name acceptable only. Use hyphens otherwise`]}
+                    regexes={[/\w+\s\w+/.source, /\w+\s*/.source, /\w{1,50}( [\w-]{1,50}){1,2}/.source]}
                     id={`name`}
                     name={`name`}
                     type={`text`}

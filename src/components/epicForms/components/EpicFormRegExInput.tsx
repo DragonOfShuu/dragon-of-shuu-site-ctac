@@ -16,6 +16,11 @@ export type EpicFormRegExInputPropType = {
  */
 const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
     const { regexes: regexStrings, errors: regexFailErrors, ...inputProps } = props;
+
+    if (regexStrings.length!==regexFailErrors.length) {
+        throw new Error("The quantity of regexes and errors given to EpicFormRegExInput must be the same")
+    }
+
     const { setFormError } = useEpicRow();
     const regexes = regexStrings.map((reggie) => new RegExp(reggie));
 
