@@ -5,7 +5,7 @@ const headers = ["h1", "h2", "h3"];
 
 type EmphasizedHeaderPropType = {
     alignment: "left" | "center" | "right";
-} & Omit<React.JSX.IntrinsicElements["div"], "className">;
+} & React.JSX.IntrinsicElements["div"];
 
 const textAlign = {
     left: "text-left",
@@ -28,14 +28,16 @@ const EmphasizedContent = ({
     ...divProps
 }: EmphasizedHeaderPropType) => {
     return (
-        <div
-            {...divProps}
-            className={`flex flex-col gap-2 ${textAlign[alignment]}`}
-        >
-            {children}
+        <div className={divProps.className}>
             <div
-                className={`w-24 border-2 border-amber-400 ${flexAlign[alignment]}`}
-            />
+                {...divProps}
+                className={`flex flex-col gap-2 ${textAlign[alignment]}`}
+            >
+                {children}
+                <div
+                    className={`w-24 border-2 border-amber-400 ${flexAlign[alignment]}`}
+                />
+            </div>
         </div>
     );
 };

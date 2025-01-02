@@ -1,0 +1,9 @@
+@use '@/app/_global_variables.sass' as globalvars
+
+$height-with-margin: calc( 100vh - globalvars.$nav-margin )
+
+.fullscreenFeature
+    min-height: 100vh
+
+.fullscreenFeatureMargin
+    min-height: $height-with-margin

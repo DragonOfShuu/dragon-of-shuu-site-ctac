@@ -1,7 +1,8 @@
+@use '@/app/_global_variables.sass' as globalvars
+
 @tailwind base
 @tailwind components
 @tailwind utilities
-
 
 *
     box-sizing: border-box
@@ -47,3 +48,5 @@
     .background-dark-double-shade
         background: rgb(0,0,0)
         background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)
+    .nav-margin
+        height: globalvars.$nav-margin
