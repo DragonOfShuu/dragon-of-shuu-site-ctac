@@ -28,6 +28,9 @@ const config: Config = {
                     "975": "#170703",
                 },
             },
+            spacing: {
+                'nav-margin': '3.5rem'
+            }
         },
     },
     plugins: [],
