@@ -12,7 +12,7 @@ const MinisPage = async () => {
                     <h1>Projects</h1>
                 </EmphasizedContent>
             </PageHeader>
-            <div className={`flex flex-col grow p-10`}>
+            <div className={`flex flex-col grow py-5 px-2 md:p-10`}>
                 <Suspense
                     fallback={
                         <div
