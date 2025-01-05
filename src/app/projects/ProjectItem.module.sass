@@ -1,18 +1,16 @@
 .item
     @apply relative rounded-md border-[1px] border-orange-500 items-center p-8 overflow-hidden transition-all
     // Flex
-    @apply flex flex-col gap-2
+    // @apply flex flex-col gap-2
     // Grid
-    @apply md:grid md:grid-cols-2 lg:grid-cols-3 
+    @apply grid grid-flow-row md:grid-cols-2 gap-y-2
 
     .text
-        @apply col-start-1 flex flex-col gap-4 text-center md:text-left
-        h1
-            @apply text-3xl
-        .tag
-            text-shadow: 0 0 4px theme("colors.slate.900")
-            @apply rounded-md px-3 py-1
+        @apply text-center md:text-left
 
     .interactables
-        @apply col-start-3 flex flex-col justify-center items-end h-full
+        @apply md:col-start-2 md:row-start-1 md:row-end-4 flex md:flex-col justify-center items-end h-full
         
+.tag
+    text-shadow: 0 0 4px theme("colors.slate.900")
+    @apply rounded-md px-3 py-1
