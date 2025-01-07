@@ -49,6 +49,10 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                         Open
                     </SpecialButton>
                 </Link>
+                {
+                    !props.extraLinks ? <></> : 
+                        props.extraLinks
+                }
             </div>
 
             {/* Background elements */}
