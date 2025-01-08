@@ -10,6 +10,8 @@ import {
     ImageDataType as ProjectImageType,
     ProjectType,
 } from "@/app/libs/projectsAPI";
+import GitHubIcon from '@/assets/lineIcons/socials/GitHub.svg'
+import ExternalLinkIcon from '@/assets/lineIcons/externalLink.svg'
 
 type ProjectDisplayPropType = {
     tagColorsTable: { [tagName: string]: [number, number, number] };
@@ -44,14 +46,12 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                 {props.description}
             </Markdown>
             <div className={`${styles.interactables}`}>
-                <Link href={props.href} target={props.href.startsWith('/') ? `_self` : `_blank`}>
-                    <SpecialButton className={`shadow-md shadow-gray-900/50`}>
-                        Open
-                    </SpecialButton>
-                </Link>
+                <AdaptiveLink href={props.href} text={"Open"} />
                 {
                     !props.extraLinks ? <></> : 
-                        props.extraLinks
+                        Object.entries(props.extraLinks).map(([name, link]) => (
+                            <AdaptiveLink href={link} text={name} key={name} />
+                        ))
                 }
             </div>
 
@@ -71,5 +71,31 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
         </div>
     );
 };
+
+const AdaptiveLink = (props: {text: string, href: string}) => {
+    const isLocal = props.href.startsWith('/');
+    const isGithub = props.href.startsWith('https://github.com')
+
+    let icon = null;
+
+    if (!isLocal) {
+        icon = <ExternalLinkIcon className={`h-6 w-auto fill-white`} />
+    }
+
+    if (isGithub) {
+        icon = (
+            <GitHubIcon className={`h-6 w-auto fill-white`} />
+        )
+    }
+
+    return (
+        <Link href={props.href} target={isLocal ? `_self` : `_blank`}>
+            <SpecialButton className={`shadow-md shadow-gray-900/50 flex gap-2`}>
+                {props.text}
+                {icon}
+            </SpecialButton>
+        </Link>
+    )
+}
 
 export default ProjectItem;

@@ -43,7 +43,7 @@ const extraProjects: {[name: string]: ProjectType} = {
         description: "Store names and quotes, and randomly select the names for a drawing!",
         href: "https://bolt.dragonofshuu.dev/",
         extraLinks: {
-            "Code": "https://github.com/DragonOfShuu/OperationLightningBolt"
+            "Code": "https://github.com/DragonOfShuu/OperationLightningBolt",
         },
         image: {
             src: "lightningBoltThumb.png",
