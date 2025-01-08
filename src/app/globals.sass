@@ -12,6 +12,16 @@
     @apply bg-orange-975 text-white
     scrollbar-color: theme("colors.orange.500") transparent
 
+@mixin selection-list
+    background-color: theme('colors.orange.500')
+    color: white
+
+::selection
+    @include selection-list
+    
+::-moz-selection
+    @include selection-list
+    
 @media (screen(lg))
     :root
         scrollbar-width: thin
@@ -50,3 +60,4 @@
         background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)
     .nav-margin
         height: globalvars.$nav-margin
+        

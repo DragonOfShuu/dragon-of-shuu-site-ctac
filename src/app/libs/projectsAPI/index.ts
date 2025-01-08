@@ -57,7 +57,7 @@ const extrasToProcessed = () => {
 const processedExtras = extrasToProcessed()
 
 const getProjectNames = async () => {
-    const folders = (await readdir(minisDir, { withFileTypes: true }))
+    const folders = (await readdir(`${process.cwd()}/${minisDir}`, { withFileTypes: true }))
         .filter((file) => file.isDirectory())
         .map((file) => file.name);
     return [...folders, ...Object.values(processedExtras).map((project) => project.name)];
@@ -89,7 +89,7 @@ const rawToProcessed = (
 const getProjectData = async (
     projName: string,
 ): Promise<ProjectType | null> => {
-    const fullPath = join(minisDir, projName, projectMetaFileName);
+    const fullPath = join(`${process.cwd()}/${minisDir}`, projName, projectMetaFileName);
 
     let fileContent;
     try {

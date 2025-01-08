@@ -1,6 +1,6 @@
 ---
 name: Runes
-image: runesThumb.png
+image: runesThumb1.png
 width: 2000
 height: 600
 tags: website, frontend, typescript, react
