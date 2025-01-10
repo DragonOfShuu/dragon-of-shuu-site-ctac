@@ -89,11 +89,9 @@ const AdaptiveLink = (props: {text: string, href: string}) => {
     }
 
     return (
-        <Link href={props.href} target={isLocal ? `_self` : `_blank`}>
-            <SpecialButton className={`shadow-md shadow-gray-900/50 flex gap-2`}>
-                {props.text}
-                {icon}
-            </SpecialButton>
+        <Link href={props.href} target={isLocal ? `_self` : `_blank`} className={`special-button shadow-md shadow-gray-900/50 flex gap-2`}>
+            {props.text}
+            {icon}
         </Link>
     )
 }

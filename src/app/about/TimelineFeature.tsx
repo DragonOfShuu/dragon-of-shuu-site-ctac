@@ -83,7 +83,7 @@ const TimelineMomento = (props: TimelineMomentoPropType) => {
                     <p className={`text-center w-full`}><time dateTime={`${props.year}`}>{props.year}</time></p>
                 </div>
             </div>
-            <div className={`ml-8`}>
+            <div className={`ml-8 overflow-clip`}>
                 <h2 className={`${styles.glideRight} text-orange-500 font-bold mb-4`}>
                     {props.title}
                 </h2>
