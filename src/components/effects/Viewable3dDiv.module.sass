@@ -1,0 +1,14 @@
+// @keyframes rotate-maniac
+//     0%
+//         transform: rotate3d(0, 1, -1, 0deg)
+//     100%
+//         transform: rotate3d(0, 1, -1, 360deg)
+    
+.viewDiv
+    perspective: 2000px
+    @apply relative bottom-0 hover:bottom-5 z-10 hover:z-20 transition-all
+
+    &:hover > div
+        box-shadow: 0 0 25px black
+        // transform: rotate3d(0, 1, 0, 45deg)
+        // animation: 2s rotate-maniac linear infinite
