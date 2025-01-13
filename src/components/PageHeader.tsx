@@ -22,7 +22,7 @@ const PageHeader = (props: PageHeaderProps) => {
             </div>
 
             <div className="relative z-10 h-full">
-                <div className="size-full flex flex-col justify-end md:justify-center align-start p-4 md:p-16 space-y-5 background-dark-double-shade">
+                <div className={`${props.fullscreen ? "": "size-full flex flex-col justify-end md:justify-center align-start p-4 md:p-16 space-y-5"} background-dark-double-shade`}>
                     {props.children}
                 </div>
             </div>
