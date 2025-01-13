@@ -26,7 +26,6 @@ const useGraphicsToggle = (): [
 
     useEffect(() => {
         const newValue = LocalStorage.getKey<boolean>(LOCALSTORAGE_GRAPHICS_KEY) ?? true
-        console.log(`Setting graphics to: ${newValue.valueOf()}`)
         _setGraphicsEnabled(
             newValue,
         );

@@ -4,15 +4,21 @@ import { useRef, useState } from 'react';
 import styles from './Viewable3dDiv.module.sass'
 
 type Viewable3dDivPropType = {
-
+    maxTurn?: number,
+    turnMultiplier?: number,
+    xMultiplier?: number,
+    yMultiplier?: number,
 } & React.JSX.IntrinsicElements['div']
 
 const Viewable3dDiv = (props: Viewable3dDivPropType) => {
-    const {children, className, ...divProps} = props;
+    const {children, className, maxTurn, turnMultiplier, xMultiplier, yMultiplier, ...divProps} = props;
 
     const [xRot, setXRot] = useState(0)
     const [yRot, setYRot] = useState(0)
     const viewBoxDiv = useRef<HTMLDivElement|null>(null)
+
+    const rotateX = -yRot*(turnMultiplier??1)*(xMultiplier??1)*(props.maxTurn??5)
+    const rotateY = xRot*(turnMultiplier??1)*(yMultiplier??1)*(props.maxTurn??5)
 
     /**
      * Normalizes the mouse position relative to the 
@@ -41,11 +47,10 @@ const Viewable3dDiv = (props: Viewable3dDivPropType) => {
         }
     }
 
-    const mouseMoveOnDiv = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
+    const mouseMoveHandler = (e: React.MouseEvent<HTMLDivElement, MouseEvent>): void => {
         if (viewBoxDiv.current === null) return;
 
         const range = getMouseNormalized(e, viewBoxDiv.current)
-        console.table(range)
         setXRot(range.x)
         setYRot(range.y)
     }
@@ -56,9 +61,9 @@ const Viewable3dDiv = (props: Viewable3dDivPropType) => {
     }
 
     return (
-        <div {...divProps} className={`${className??""} ${styles.viewDiv}`} ref={viewBoxDiv} onMouseMove={mouseMoveOnDiv} onMouseLeave={mouseLeaveHandler}>
+        <div {...divProps} className={`${className??""} ${styles.viewDiv} group relative z-10 hover:z-20 transition-all`} ref={viewBoxDiv} onMouseMove={mouseMoveHandler} onMouseLeave={mouseLeaveHandler}>
             {/*ADD HOVER EVENTS TO ENTIRE GROUP*/}
-            <div className={``} style={{transform: `rotate3d(${-yRot}, ${xRot}, 0, 5deg)`}}>
+            <div style={{transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`}} className={`relative bottom-0 group-hover:bottom-5`}>
                 {children}
             </div>
         </div>

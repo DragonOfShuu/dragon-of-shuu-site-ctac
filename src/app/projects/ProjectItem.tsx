@@ -21,7 +21,7 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <Viewable3dDiv>
+        <Viewable3dDiv maxTurn={5}>
             <div className={`${styles.item}`} onClick={() => setOpen((o) => !o)}>
                 <h1 className={`text-3xl ${styles.text}`}>{props.name}</h1>
                 <div className={`flex gap-1 justify-center md:justify-start flex-wrap`}>

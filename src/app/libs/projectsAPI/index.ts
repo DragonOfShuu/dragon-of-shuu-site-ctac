@@ -119,7 +119,7 @@ const searchProjects = async (
     const newProjs = projs.filter((project) => {
         const thisProjectTags = project.tags;
         const searchStringParts = searchString.split(/\W+/);
-        console.table({ searchStringParts, tags });
+        // console.table({ searchStringParts, tags });
         // If the search string could not be found, filter this project out
         if (
             searchString !== "" &&
