@@ -3,9 +3,13 @@
 import useEpicRow from "@/components/epicForms/contexts/EpicFormRowContext";
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 
+type Verifier = {
+    regex: RegExp,
+    error: string,
+}
+
 export type EpicFormRegExInputPropType = {
-    regexes: string[];
-    errors: string[];
+    regexes: Verifier[]
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
 
 
@@ -15,14 +19,10 @@ export type EpicFormRegExInputPropType = {
  * regex must match the entire string.
  */
 const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
-    const { regexes: regexStrings, errors: regexFailErrors, ...inputProps } = props;
-
-    if (regexStrings.length!==regexFailErrors.length) {
-        throw new Error("The quantity of regexes and errors given to EpicFormRegExInput must be the same")
-    }
+    const { regexes: verifiers, ...inputProps } = props;
 
     const { setFormError } = useEpicRow();
-    const regexes = regexStrings.map((reggie) => new RegExp(reggie));
+    // const regexes = verifiers.map((verifier) => new RegExp(verifier.regex));
 
     const removeError = () => {
         setFormError(null);
@@ -32,24 +32,21 @@ const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
         setFormError(message);
     };
 
-    const findError = (text: string): {index: number, error: string}|null => {
-        for (let i = 0; i < regexes.length; i++) {
-            const regex = regexes[i];
-            const found = text.match(regex)
+    const findError = (text: string): string|null => (
+        verifiers.find((verifier, index) => {
+            const found = text.match(verifier.regex)
             // If regex not found...
             if (found===null) {
                 // Return an error
-                return {index: i, error: regexFailErrors[i]}
+                return true
             }
             // If this regex is the last one, and does not fully match...
-            if (i===regexes.length-1 && found[0] !== text) {
+            if (index===verifiers.length-1 && found[0] !== text) {
                 // Return an error
-                return {index: i, error: regexFailErrors[i]}
+                return true
             }
-        }
-
-        return null
-    }
+        })?.error || null
+    )
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
         // What to do if the user attempts to submit the form, but haven't even
@@ -69,7 +66,7 @@ const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
             return;
         }
 
-        showError(foundError.error);
+        showError(foundError);
     };
 
     return <input {...inputProps} onBlur={onBlur} />;

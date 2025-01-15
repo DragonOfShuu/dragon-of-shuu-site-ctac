@@ -15,8 +15,20 @@ const ContactForm = () => {
         <EpicForm action={submitContactInfo} className={`w-full lg:w-[900px]`}>
             <EpicFormRow displayname={`Name`} paramName={`name`}>
                 <EpicFormRegExInput
-                    errors={[`Must include at least a first and last name`, `Cannot include numbers`, `First, middle, and last name acceptable only. Use hyphens otherwise`]}
-                    regexes={[/\w+\s\w+/.source, /\w+\s*/.source, /\w{1,50}( [\w-]{1,50}){1,2}/.source]}
+                    regexes={[
+                        {
+                            error: `Must include at least a first and last name`,
+                            regex: /\w+\s\w+/,
+                        },
+                        {
+                            error: `Cannot include numbers`,
+                            regex: /\w+\s*/
+                        },
+                        {
+                            error: `First, middle, surname, and last name acceptable only. Use hyphens otherwise`,
+                            regex: /\w{1,50}( [\w-]{1,50}){1,3}/
+                        }
+                    ]}
                     id={`name`}
                     name={`name`}
                     type={`text`}
@@ -35,8 +47,16 @@ const ContactForm = () => {
             </EpicFormRow>
             <EpicFormRow displayname={`Return Email`} paramName={`ret_addr`}>
                 <EpicFormRegExInput
-                    errors={[`Missing '@' symbol`, `Must have a domain name after the '@'`, `Must be a valid email address`]}
-                    regexes={[/\@/.source, /\@.\../.source, emailAddrRegex.source]}
+                    regexes={[
+                        {
+                            error: `Missing '@' symbol`,
+                            regex: /\@/
+                        },
+                        {
+                            error: `Must be a valid email address`,
+                            regex: emailAddrRegex
+                        }
+                    ]}
                     id={`ret_addr`}
                     name={`ret_addr`}
                     placeholder={`johndoe@example.com`}
