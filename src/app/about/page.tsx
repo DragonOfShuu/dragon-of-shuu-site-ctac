@@ -7,7 +7,7 @@ import CodingPatternFeature from "@/app/about/CodingPatternFeature";
 import EmphasizedContent from "@/components/EmphasizedContent";
 import TimelineFeature from "@/app/about/TimelineFeature";
 
-const AboutUs = () => {
+const AboutMe = () => {
     return (
         <>
             <PageHeader fullscreen>
@@ -15,7 +15,7 @@ const AboutUs = () => {
                     <NavMargin className={`md:hidden`} />
                     <EmphasizedContent alignment={'center'}>
                         <h1>
-                            About Us
+                            About Me
                         </h1>
                     </EmphasizedContent>
                     <div className={`flex flex-col md:flex-row-reverse items-center gap-2 grow basis-0 min-h-0 xl:gap-6 self-center md:max-w-[1200px]`}>
@@ -32,4 +32,4 @@ const AboutUs = () => {
     )
 }
 
-export default AboutUs;
+export default AboutMe;

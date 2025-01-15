@@ -40,7 +40,7 @@ const NavBar = (props: Props) => {
             icon: houseIcon,
         },
         {
-            text: "About Us",
+            text: "About Me",
             href: "/about",
             icon: iIcon,
         },

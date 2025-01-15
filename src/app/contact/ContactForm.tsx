@@ -53,6 +53,10 @@ const ContactForm = () => {
                             regex: /\@/
                         },
                         {
+                            error: `Missing proper domain name (e.g.: gmail.com)`,
+                            regex: /.+@.+\..+/
+                        },
+                        {
                             error: `Must be a valid email address`,
                             regex: emailAddrRegex
                         }

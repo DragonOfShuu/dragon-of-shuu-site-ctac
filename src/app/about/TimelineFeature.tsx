@@ -2,20 +2,14 @@ import EmphasizedContent from '@/components/EmphasizedContent';
 import fullscreenStyles from './fullscreenFeature.module.sass'
 import styles from './TimelineFeature.module.sass'
 import { ReactNode } from 'react';
+import TimelineMomentos from '@/app/about/TimelineMomentos';
+import Markdown from 'react-markdown';
 
 type TimelineFeaturePropType = {
 
 }
 
 const TimelineFeature = (props: TimelineFeaturePropType) => {
-    const loremIpsium = `Lorem ipsum odor amet, consectetuer adipiscing elit. Nisl bibendum porttitor consequat consectetur vitae ut nunc massa. Vestibulum aliquet justo semper dictumst nisl malesuada. Praesent imperdiet erat felis est potenti, pulvinar egestas. Facilisis ac felis accumsan feugiat rutrum, volutpat dictumst massa. Magna facilisi condimentum ac nisl penatibus faucibus? Taciti litora montes sapien tellus orci magna. Sapien ullamcorper sapien class condimentum mi vivamus. Purus per turpis semper primis pulvinar pulvinar inceptos cras. Mi purus fames; odio mollis quam nullam dui tempor.\nAmet senectus per aliquam, risus eleifend ultricies rhoncus mus. Posuere aliquam iaculis quis ornare in suspendisse. Lectus elit penatibus massa mattis, aptent volutpat. Egestas viverra pretium, praesent mollis netus curae penatibus. Vivamus elit suscipit ullamcorper habitasse semper himenaeos pretium montes. Commodo aptent odio quisque dapibus fusce; molestie primis? Inceptos non etiam tempor lectus maximus aptent.`
-
-    const loremIpsiumHtml = loremIpsium.split('\n').map((paragraph, ind) => (
-        <p key={ind} className={`sm:text-xl lg:text-3xl`}>
-            {paragraph}
-        </p>
-    ))
-
     return (
         <div className={`${fullscreenStyles.fullscreenFeature} flex flex-col`}>
             <div className={`nav-margin`} />
@@ -23,27 +17,24 @@ const TimelineFeature = (props: TimelineFeaturePropType) => {
                 <div className={`absolute left-4 border-dashed border-orange-300 border-opacity-50 border-l-8 w-0 h-full -z-10`} />
                 <TimelineGradientFrame>
                     <div className={`space-y-4`}>
-                        <TimelineMomento title={`My First Code`} year={2014}>
-                            {loremIpsiumHtml}
-                        </TimelineMomento>
-                        <TimelineMomento title={`My First Computer`} year={2015}>
-                            {loremIpsiumHtml}
-                        </TimelineMomento>
-                        <TimelineMomento title={`My First "Good" Scratch Project`} year={2016}>
-                            {loremIpsiumHtml}
-                        </TimelineMomento>
-                        <TimelineMomento title={`My First Website`} year={2018}>
-                            {loremIpsiumHtml}
-                        </TimelineMomento>
-                        <TimelineMomento title={`My First Time Cheating on Math Homework`} year={2021}>
-                            {loremIpsiumHtml}
-                        </TimelineMomento>
-                        <TimelineMomento title={`My First Database`} year={2022}>
-                            {loremIpsiumHtml}
-                        </TimelineMomento>
-                        <TimelineMomento title={`My First Programming Language`} year={2023}>
-                            {loremIpsiumHtml}
-                        </TimelineMomento>
+                    {
+                            TimelineMomentos.map((momento, index) => (
+                                <TimelineMomento title={momento.title} year={momento.year} key={index}>
+                                    {
+                                        momento.content.map((content, index1) => {
+                                            if (typeof content === 'string') 
+                                                return (
+                                                    <Markdown key={-index1}>
+                                                        {content}
+                                                    </Markdown>
+                                                )
+                                            
+                                            return content
+                                        })
+                                    }
+                                </TimelineMomento>
+                            ))
+                        }
                     </div>
                 </TimelineGradientFrame>
             </div>
@@ -87,7 +78,7 @@ const TimelineMomento = (props: TimelineMomentoPropType) => {
                 <h2 className={`${styles.glideRight} text-orange-500 font-bold mb-4`}>
                     {props.title}
                 </h2>
-                <div className={`space-y-4 ${styles.glideBottom}`}>
+                <div className={`space-y-4 sm:text-xl lg:text-3xl ${styles.glideBottom} ${styles.momentoElementStyles}`}>
                     {props.children}
                 </div>
             </div>
