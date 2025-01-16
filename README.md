@@ -39,7 +39,7 @@ Have at least these pages:
 If these were my project filters: All, Websites, Mobile, Other. Then I would have 4 buttons on this page that would show only projects of the selected type. Feel free to create your own categories, and make sure there are at least 3 “projects” that match. Feel free to use things like lorem ipsum for your filler content, or create your own!
 
 -   Make sure code validates [SUCCESS]
-    -   HTML https://validator.w3.org/(opens in a new tab) [COMPLETE]
+    -   HTML https://validator.w3.org/ (opens in a new tab) [COMPLETE]
     -   CSS https://jigsaw.w3.org/css-validator/ [SUCCESS]
 
 # Assistance

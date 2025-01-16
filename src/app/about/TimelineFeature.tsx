@@ -45,7 +45,7 @@ const TimelineFeature = (props: TimelineFeaturePropType) => {
 const TimelineGradientFrame = ({ children }: { children: ReactNode }) => {
     return (
         <>
-            <div className={`sticky z-50 top-nav-margin`}>
+            <div className={`sticky z-40 top-nav-margin`}>
                 <EmphasizedContent
                     alignment={"center"}
                     className={`bg-orange-975 bg-opacity-80 backdrop-blur-md`}

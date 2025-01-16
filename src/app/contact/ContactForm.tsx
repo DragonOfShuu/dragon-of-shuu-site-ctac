@@ -41,7 +41,7 @@ const ContactForm = () => {
                     id={`message`}
                     name={`message`}
                     placeholder={`Message...`}
-                    charmax={1000}
+                    maxLength={1000}
                     required
                 />
             </EpicFormRow>

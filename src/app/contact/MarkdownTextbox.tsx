@@ -6,7 +6,7 @@ import { DetailedHTMLProps, TextareaHTMLAttributes, useState } from "react";
 import Markdown from "react-markdown";
 
 export type MarkdownTextboxPropType = {
-    charmax: number;
+    maxLength: number;
 } & DetailedHTMLProps<
     TextareaHTMLAttributes<HTMLTextAreaElement>,
     HTMLTextAreaElement
@@ -22,8 +22,8 @@ const MarkdownTextbox = (props: MarkdownTextboxPropType) => {
         _setTextAreaText(newValue);
         const currTextLength = newValue.length;
         return setFormError(
-            currTextLength > props.charmax
-                ? `Text length exceeds character limit (${props.charmax} limit)`
+            currTextLength > props.maxLength
+                ? `Text length exceeds character limit (${props.maxLength} limit)`
                 : null,
         );
     };
@@ -44,7 +44,7 @@ const MarkdownTextbox = (props: MarkdownTextboxPropType) => {
             <div className={`flex flex-col-reverse md:flex-row gap-2`}>
                 <p
                     className={`ml-1 text-orange-800 italic font-sans`}
-                >{`Markdown Enabled. ${props.charmax} char limit.`}</p>
+                >{`Markdown Enabled. ${props.maxLength} char limit.`}</p>
                 <div className="md:grow" />
                 <div className="flex gap-2">
                     <SpecialButton
