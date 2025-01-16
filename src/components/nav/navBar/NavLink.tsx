@@ -3,8 +3,6 @@
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import styles from "./NavLink.module.sass";
-import { FC, SVGProps } from "react";
-import LineIconButton from "@/components/LineIconButton";
 
 type Props = {
     text: string;
@@ -37,11 +35,7 @@ const NavLink = (props: Props) => {
             data-curr-path={pathname === props.href}
         >
             {!props.icon ? null : (
-                <LineIconButton
-                    svg={props.icon}
-                    className={`h-full w-auto`}
-                    iconClassName={``}
-                />
+                <props.icon className={`h-full w-auto object-contain`} />
             )}
             {text}
         </Link>

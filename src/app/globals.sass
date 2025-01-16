@@ -1,7 +1,8 @@
+@use '@/app/_global_variables.sass' as globalvars
+
 @tailwind base
 @tailwind components
 @tailwind utilities
-
 
 *
     box-sizing: border-box
@@ -9,6 +10,22 @@
 
 :root
     @apply bg-orange-975 text-white
+    scrollbar-color: theme("colors.orange.500") transparent
+
+/* Interestingly commas didn't work; decided to use mixins */
+@mixin selection-list
+    background-color: theme('colors.orange.500')
+    color: white
+
+::selection
+    @include selection-list
+    
+::-moz-selection
+    @include selection-list
+    
+@media (screen(lg))
+    :root
+        scrollbar-width: thin
 
 @layer base
     h1
@@ -35,8 +52,52 @@
 @layer components
     .line-icon
         @apply stroke-slate-300 hover:stroke-white active:stroke-slate-400 fill-none stroke-2 cursor-pointer select-none
+    .line-icon-orange
+        @apply stroke-orange-500 hover:stroke-orange-400 active:stroke-orange-600 fill-none stroke-2 cursor-pointer select-none
     .text-glow
         text-shadow: 0px 0px 5px var(--tw-shadow-color)
     .background-dark-double-shade
         background: rgb(0,0,0)
         background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)
+    .nav-margin
+        height: globalvars.$nav-margin
+    
+    @keyframes hover-submit-button-anim
+        0%
+            transform: rotate(8deg)
+            @apply bg-amber-400
+        50%
+            transform: rotate(-8deg)
+            @apply bg-amber-300
+        100%
+            transform: rotate(8deg)
+            @apply bg-amber-400
+        
+    .special-button
+        @apply rounded-md px-4 py-2
+        
+        &[data-prominent = true], &:not([data-prominent])
+            @apply bg-amber-500
+
+            &:hover
+                @apply bg-amber-400
+                &[type='submit']
+                    animation: 0.5s infinite hover-submit-button-anim
+            
+            &:active
+                @apply bg-amber-600
+
+        &[data-prominent = false]
+            @apply border-amber-500 border-2 transition-colors
+
+            &:hover
+                @apply bg-amber-600
+            
+            &:active
+                @apply border-amber-600
+
+        &:disabled[data-prominent=true]
+            @apply bg-gray-700 hover:bg-gray-700 hover:animate-none
+        &:disabled[data-prominent=false]
+            @apply border-gray-700
+            

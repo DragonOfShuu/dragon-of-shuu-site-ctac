@@ -11,6 +11,7 @@ import useWindowDimensions, {
 } from "@/components/hooks/useWindowDimensions";
 import houseIcon from "@/assets/lineIcons/houseIcon.svg";
 import mailIcon from "@/assets/lineIcons/mailIcon.svg";
+import iIcon from "@/assets/lineIcons/iIcon.svg";
 import useWindowScroll from "@/components/hooks/useWindowScroll";
 import styles from "./NavBar.module.sass";
 
@@ -39,13 +40,18 @@ const NavBar = (props: Props) => {
             icon: houseIcon,
         },
         {
+            text: "About Me",
+            href: "/about",
+            icon: iIcon,
+        },
+        {
             text: "Contact Us",
             href: "/contact",
             icon: mailIcon,
         },
         {
-            text: "Minis",
-            href: "/minis",
+            text: "Projects",
+            href: "/projects",
             icon: ProjectIcon,
         },
     ];
@@ -64,13 +70,14 @@ const NavBar = (props: Props) => {
     return (
         <nav className={`${styles.navBar}`} data-mobile-vis={mobileNavVis}>
             <div
-                className={`flex items-center lg:grid grid-flow-col lg:grid-cols-3 px-3 py-2 pointer-events-auto ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
+                className={`flex items-center lg:grid grid-flow-col lg:grid-cols-[25%_50%_25%] px-3 md:py-2 pointer-events-auto h-nav-margin ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
             >
-                <h1
-                    className={`text-lg sm:text-3xl text-amber-500 text-glow shadow-amber-500`}
+                <Link
+                    href={`/`}
+                    className={`text-lg sm:text-3xl text-amber-500 text-glow shadow-amber-500 text-nowrap`}
                 >
-                    <Link href={`/`}>Dragon of Shuu</Link>
-                </h1>
+                    Dragon of Shuu
+                </Link>
 
                 <div
                     className={`ml-4 gap-2 hidden md:flex justify-end lg:justify-center flex-grow`}

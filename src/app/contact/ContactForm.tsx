@@ -6,7 +6,6 @@ import EpicFormRow from "@/components/epicForms/bases/EpicFormRow";
 import EpicFormSubmit from "@/components/epicForms/components/EpicFormSubmit";
 import EpicFormRegExInput from "@/components/epicForms/components/EpicFormRegExInput";
 import { submitContactInfo } from "./SubmitContactInfo";
-import { useFormStatus } from "react-dom";
 
 const ContactForm = () => {
     const emailAddrRegex =
@@ -16,8 +15,20 @@ const ContactForm = () => {
         <EpicForm action={submitContactInfo} className={`w-full lg:w-[900px]`}>
             <EpicFormRow displayname={`Name`} paramName={`name`}>
                 <EpicFormRegExInput
-                    error={`Must be a valid name`}
-                    regex={/\w{1,50}( [\w-]{1,50}){1,2}/.source}
+                    regexes={[
+                        {
+                            error: `Must include at least a first and last name`,
+                            regex: /\w+\s\w+/,
+                        },
+                        {
+                            error: `Cannot include numbers`,
+                            regex: /\w+\s*/,
+                        },
+                        {
+                            error: `First, middle, surname, and last name acceptable only. Use hyphens otherwise`,
+                            regex: /\w{1,50}( [\w-]{1,50}){1,3}/,
+                        },
+                    ]}
                     id={`name`}
                     name={`name`}
                     type={`text`}
@@ -30,14 +41,26 @@ const ContactForm = () => {
                     id={`message`}
                     name={`message`}
                     placeholder={`Message...`}
-                    charmax={1000}
+                    maxLength={1000}
                     required
                 />
             </EpicFormRow>
             <EpicFormRow displayname={`Return Email`} paramName={`ret_addr`}>
                 <EpicFormRegExInput
-                    error={`Must be a valid email address`}
-                    regex={emailAddrRegex.source}
+                    regexes={[
+                        {
+                            error: `Missing '@' symbol`,
+                            regex: /\@/,
+                        },
+                        {
+                            error: `Missing proper domain name (e.g.: gmail.com)`,
+                            regex: /.+@.+\..+/,
+                        },
+                        {
+                            error: `Must be a valid email address`,
+                            regex: emailAddrRegex,
+                        },
+                    ]}
                     id={`ret_addr`}
                     name={`ret_addr`}
                     placeholder={`johndoe@example.com`}
