@@ -47,7 +47,6 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                             className={`h-3/4 w-auto stroke-orange-700 group-hover:stroke-orange-600`}
                         />
                         <input
-                            alt={"Search input"}
                             placeholder={"Search..."}
                             type={`text`}
                             className={`border-none bg-transparent grow outline-none self-stretch text-lg placeholder-orange-700 group-hover:stroke-orange-600`}
