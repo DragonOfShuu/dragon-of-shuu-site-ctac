@@ -25,10 +25,9 @@ const useGraphicsToggle = (): [
     );
 
     useEffect(() => {
-        const newValue = LocalStorage.getKey<boolean>(LOCALSTORAGE_GRAPHICS_KEY) ?? true
-        _setGraphicsEnabled(
-            newValue,
-        );
+        const newValue =
+            LocalStorage.getKey<boolean>(LOCALSTORAGE_GRAPHICS_KEY) ?? true;
+        _setGraphicsEnabled(newValue);
     }, []);
 
     const setGraphicsEnabled = (value: boolean | ((x: boolean) => boolean)) => {

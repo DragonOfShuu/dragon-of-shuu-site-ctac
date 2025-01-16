@@ -22,12 +22,12 @@ const ContactForm = () => {
                         },
                         {
                             error: `Cannot include numbers`,
-                            regex: /\w+\s*/
+                            regex: /\w+\s*/,
                         },
                         {
                             error: `First, middle, surname, and last name acceptable only. Use hyphens otherwise`,
-                            regex: /\w{1,50}( [\w-]{1,50}){1,3}/
-                        }
+                            regex: /\w{1,50}( [\w-]{1,50}){1,3}/,
+                        },
                     ]}
                     id={`name`}
                     name={`name`}
@@ -50,16 +50,16 @@ const ContactForm = () => {
                     regexes={[
                         {
                             error: `Missing '@' symbol`,
-                            regex: /\@/
+                            regex: /\@/,
                         },
                         {
                             error: `Missing proper domain name (e.g.: gmail.com)`,
-                            regex: /.+@.+\..+/
+                            regex: /.+@.+\..+/,
                         },
                         {
                             error: `Must be a valid email address`,
-                            regex: emailAddrRegex
-                        }
+                            regex: emailAddrRegex,
+                        },
                     ]}
                     id={`ret_addr`}
                     name={`ret_addr`}

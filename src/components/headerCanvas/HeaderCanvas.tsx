@@ -8,7 +8,7 @@ type Props = {
     className?: string;
     fallback?: ReactNode;
     enabled?: boolean;
-    children: ReactNode
+    children: ReactNode;
 };
 
 const HeaderCanvas = (props: Props) => {

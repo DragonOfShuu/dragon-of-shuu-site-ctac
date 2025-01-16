@@ -13,18 +13,30 @@ import { useState } from "react";
 import { ProjectType } from "@/app/libs/projectsAPI";
 
 type ProjectViewerFilterPropType = {
-    initialProjectValue: ProjectType[]
+    initialProjectValue: ProjectType[];
 };
 
 const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
-    const { isPending, projectBuffer, allTags, setSearchText, searchTags, setSearchTags } = useProjectSearch(props.initialProjectValue);
+    const {
+        isPending,
+        projectBuffer,
+        allTags,
+        setSearchText,
+        searchTags,
+        setSearchTags,
+    } = useProjectSearch(props.initialProjectValue);
     const tagColorsTable = useGenerateTagColors(allTags);
 
-    const [tagFiltersVisible, setTagFiltersVisible] = useState<boolean>(false)
+    const [tagFiltersVisible, setTagFiltersVisible] = useState<boolean>(false);
 
     return (
         <ProjectSearchDataContext.Provider
-            value={{ projectBuffer: projectBuffer ?? [], tagColorsTable, searchTags, setSearchTags }}
+            value={{
+                projectBuffer: projectBuffer ?? [],
+                tagColorsTable,
+                searchTags,
+                setSearchTags,
+            }}
         >
             <div className={`flex flex-col flex-grow gap-3`}>
                 <form className="flex flex-row flex-wrap gap-2">
@@ -41,12 +53,20 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                             onChange={(e) => setSearchText(e.target.value)}
                         />
                     </div>
-                    <SpecialButton type={"button"} onClick={() => setTagFiltersVisible((value) => !value)} className={`h-12`}>
-                        <FilterIcon className={`h-full w-auto m-auto stroke-white`} />
+                    <SpecialButton
+                        type={"button"}
+                        onClick={() => setTagFiltersVisible((value) => !value)}
+                        className={`h-12`}
+                    >
+                        <FilterIcon
+                            className={`h-full w-auto m-auto stroke-white`}
+                        />
                     </SpecialButton>
                 </form>
-                <ProjectTagSelector className={`transition-[height] ${tagFiltersVisible?`h-14`:`h-0`} overflow-hidden`} />
-                {isPending||projectBuffer===null ? (
+                <ProjectTagSelector
+                    className={`transition-[height] ${tagFiltersVisible ? `h-14` : `h-0`} overflow-hidden`}
+                />
+                {isPending || projectBuffer === null ? (
                     <div
                         className={`flex-grow flex flex-col items-center justify-center bg-orange-950/30 m-10 rounded-xl`}
                     >

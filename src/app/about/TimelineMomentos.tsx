@@ -1,17 +1,18 @@
-import { ReactNode } from "react"
-import Image from "next/image"
-import StoplightImg from './images/Stoplight.png'
-import RaspberryPiImg from './images/RaspberryPi.png'
-import ScratchMathImg from './images/ScratchMath.png'
-import MathIsEZImg from './images/MathIsEZ.png'
-import ElasticMiddlewareImg from './images/ElasticDatabaseMiddleware.png'
-import DucklingScriptImg from './images/DucklingScriptLanguage.png'
+import { ReactNode } from "react";
+import Image from "next/image";
+import StoplightImg from "./images/Stoplight.png";
+import RaspberryPiImg from "./images/RaspberryPi.png";
+import ScratchMathImg from "./images/ScratchMath.png";
+import MathIsEZImg from "./images/MathIsEZ.png";
+import ElasticMiddlewareImg from "./images/ElasticDatabaseMiddleware.png";
+import DucklingScriptImg from "./images/DucklingScriptLanguage.png";
+import ImageViewer from "@/components/ImageViewer";
 
 type TimelineMomento = {
-    title: string,
-    year: number,
-    content: (ReactNode|string)[],
-}
+    title: string;
+    year: number;
+    content: (ReactNode | string)[];
+};
 
 const TimelineMomentos: TimelineMomento[] = [
     {
@@ -23,8 +24,13 @@ const TimelineMomentos: TimelineMomento[] = [
             light to a Windows 98 computer. We wrote code
             in basic, and we were able to turn the stop
             light lights on and off using simple code.`,
-            <Image src={StoplightImg} alt={`An image example of the basic code I wrote`} key={1} className={`size-full object-cover`} />
-        ]
+            <ImageViewer
+                src={StoplightImg}
+                alt={`An image example of the basic code I wrote`}
+                key={1}
+                className={`size-full object-cover`}
+            />,
+        ],
     },
     {
         title: `My First Computer`,
@@ -37,8 +43,13 @@ const TimelineMomentos: TimelineMomento[] = [
             just how much I liked the language, and I would
             go on to create simple text-based decision making
             games.`,
-            <Image src={RaspberryPiImg} alt={`A picture of a raspberry pi letting you clearly see the heatsinks and parts of the circuit board.`} className={`max-h-[75vh] w-auto mx-auto`} key={1} />
-        ]
+            <ImageViewer
+                src={RaspberryPiImg}
+                alt={`A picture of a raspberry pi letting you clearly see the heatsinks and parts of the circuit board.`}
+                className={`max-h-[75vh] w-auto mx-auto`}
+                key={1}
+            />,
+        ],
     },
     {
         title: `My First "Good" Scratch Project`,
@@ -55,8 +66,12 @@ const TimelineMomentos: TimelineMomento[] = [
             2D side scroller game engine inside of Scratch too.`,
             `The math project is still public, and can be found [here](https://scratch.mit.edu/projects/140621474/)
             if you still want to try playing it.`,
-            <Image src={ScratchMathImg} alt={`A picture of the Scratch project in reference: code to the left, game to the right.`} key={1} />
-        ]
+            <ImageViewer
+                src={ScratchMathImg}
+                alt={`A picture of the Scratch project in reference: code to the left, game to the right.`}
+                key={1}
+            />,
+        ],
     },
     {
         title: `My First Website`,
@@ -70,8 +85,8 @@ const TimelineMomentos: TimelineMomento[] = [
             That's when I created my first really really simple website.
             The teacher was so amazed, and I was so excited, I got the
             principle to come see my website, which then sparked the
-            creation of a new class at that school called "Creative Coding".`
-        ]
+            creation of a new class at that school called "Creative Coding".`,
+        ],
     },
     {
         title: `My First Time Cheating on Math Homework`,
@@ -88,8 +103,12 @@ const TimelineMomentos: TimelineMomento[] = [
             teacher if I could use it for homework and tests, and
             they allowed me to, and thus I cheated on my homework and tests.`,
             `You can find the program [here](https://github.com/DragonOfShuu/MathIsEZ).`,
-            <Image src={MathIsEZImg} alt={`A code snippet of MathIsEZ.`} key={3} />
-        ]
+            <ImageViewer
+                src={MathIsEZImg}
+                alt={`A code snippet of MathIsEZ.`}
+                key={3}
+            />,
+        ],
     },
     {
         title: `My First Database`,
@@ -109,8 +128,12 @@ const TimelineMomentos: TimelineMomento[] = [
             to periodically run my Python to retrieve, manipulate,
             and store the metric data. The project is public, and is
             retrievable [here](https://github.com/Murrayschools/Cradlepoint-Elastic-Database).`,
-            <Image src={ElasticMiddlewareImg} alt="A code snippet of receiving and manipulating data." key={4} />
-        ]
+            <ImageViewer
+                src={ElasticMiddlewareImg}
+                alt="A code snippet of receiving and manipulating data."
+                key={4}
+            />,
+        ],
     },
     {
         title: `My First Programming Language`,
@@ -123,9 +146,14 @@ const TimelineMomentos: TimelineMomento[] = [
             was missing major and basic programming features, which
             is why I created my new [programming language](https://github.com/DragonOfShuu/DucklingScript)
             using Python.`,
-            <Image src={DucklingScriptImg} alt={`Image of DucklingScript: A language for key injection.`} className={`max-h-[75vh] w-auto mx-auto`} key={2} />
-        ]
-    }
-]
+            <ImageViewer
+                src={DucklingScriptImg}
+                alt={`Image of DucklingScript: A language for key injection.`}
+                className={`max-h-[75vh] w-auto mx-auto`}
+                key={2}
+            />,
+        ],
+    },
+];
 
-export default TimelineMomentos
+export default TimelineMomentos;

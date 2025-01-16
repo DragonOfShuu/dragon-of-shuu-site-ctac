@@ -22,7 +22,12 @@ export default function Home() {
                         with maxiumum readability and reusability. Not only
                         that, but a skilled 3D artist since 2020.
                     </p>
-                    <Link href={`/contact`} className={`special-button pointer-events-auto`}>Contact Us</Link>
+                    <Link
+                        href={`/contact`}
+                        className={`special-button pointer-events-auto`}
+                    >
+                        Contact Us
+                    </Link>
                 </div>
             </div>
         </>

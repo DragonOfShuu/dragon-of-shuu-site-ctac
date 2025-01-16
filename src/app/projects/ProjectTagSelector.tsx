@@ -13,16 +13,15 @@ const ProjectTagSelector = (props: ProjectTagSelectorPropType) => {
             <div className="flex gap-2 size-full overflow-x-auto">
                 {Object.entries(tagColorsTable).map(([tagName, colors]) => {
                     const selected = searchTags.includes(tagName);
-                    
+
                     const tagOnClick = () => {
-                        const newTags = [...searchTags]
+                        const newTags = [...searchTags];
                         setSearchTags(() => {
                             if (newTags.includes(tagName))
-                                return newTags.filter((tag) => tag!==tagName)
-                            else
-                                return [...newTags, tagName]
-                        })
-                    }
+                                return newTags.filter((tag) => tag !== tagName);
+                            else return [...newTags, tagName];
+                        });
+                    };
 
                     return (
                         <button

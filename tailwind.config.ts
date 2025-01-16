@@ -29,8 +29,8 @@ const config: Config = {
                 },
             },
             spacing: {
-                'nav-margin': '3.5rem'
-            }
+                "nav-margin": "3.5rem",
+            },
         },
     },
     plugins: [],

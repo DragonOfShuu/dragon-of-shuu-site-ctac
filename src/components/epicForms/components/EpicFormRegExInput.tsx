@@ -4,18 +4,17 @@ import useEpicRow from "@/components/epicForms/contexts/EpicFormRowContext";
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
 
 type Verifier = {
-    regex: RegExp,
-    error: string,
-}
+    regex: RegExp;
+    error: string;
+};
 
 export type EpicFormRegExInputPropType = {
-    regexes: Verifier[]
+    regexes: Verifier[];
 } & DetailedHTMLProps<InputHTMLAttributes<HTMLInputElement>, HTMLInputElement>;
-
 
 /**
  * Verify an input matches regexes. Note that the
- * last regex is the most important, as the last 
+ * last regex is the most important, as the last
  * regex must match the entire string.
  */
 const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
@@ -32,21 +31,20 @@ const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
         setFormError(message);
     };
 
-    const findError = (text: string): string|null => (
+    const findError = (text: string): string | null =>
         verifiers.find((verifier, index) => {
-            const found = text.match(verifier.regex)
+            const found = text.match(verifier.regex);
             // If regex not found...
-            if (found===null) {
+            if (found === null) {
                 // Return an error
-                return true
+                return true;
             }
             // If this regex is the last one, and does not fully match...
-            if (index===verifiers.length-1 && found[0] !== text) {
+            if (index === verifiers.length - 1 && found[0] !== text) {
                 // Return an error
-                return true
+                return true;
             }
-        })?.error || null
-    )
+        })?.error || null;
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
         // What to do if the user attempts to submit the form, but haven't even
@@ -59,7 +57,7 @@ const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
         }
 
         // const found = currValue.match(regex);
-        const foundError = findError(currValue)
+        const foundError = findError(currValue);
 
         if (!foundError) {
             removeError();

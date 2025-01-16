@@ -35,9 +35,7 @@ const NavLink = (props: Props) => {
             data-curr-path={pathname === props.href}
         >
             {!props.icon ? null : (
-                <props.icon
-                    className={`h-full w-auto object-contain`}
-                />
+                <props.icon className={`h-full w-auto object-contain`} />
             )}
             {text}
         </Link>

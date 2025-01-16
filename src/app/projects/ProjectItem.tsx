@@ -9,8 +9,8 @@ import {
     ImageDataType as ProjectImageType,
     ProjectType,
 } from "@/app/libs/projectsAPI";
-import GitHubIcon from '@/assets/lineIcons/socials/GitHub.svg'
-import ExternalLinkIcon from '@/assets/lineIcons/externalLink.svg'
+import GitHubIcon from "@/assets/lineIcons/socials/GitHub.svg";
+import ExternalLinkIcon from "@/assets/lineIcons/externalLink.svg";
 import Viewable3dDiv from "@/components/effects/Viewable3dDiv";
 
 type ProjectDisplayPropType = {
@@ -22,9 +22,14 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
 
     return (
         <Viewable3dDiv maxTurn={5}>
-            <div className={`${styles.item}`} onClick={() => setOpen((o) => !o)}>
+            <div
+                className={`${styles.item}`}
+                onClick={() => setOpen((o) => !o)}
+            >
                 <h1 className={`text-3xl ${styles.text}`}>{props.name}</h1>
-                <div className={`flex gap-1 justify-center md:justify-start flex-wrap`}>
+                <div
+                    className={`flex gap-1 justify-center md:justify-start flex-wrap`}
+                >
                     {props.tags?.sort().map((tagName) => {
                         const colors = props.tagColorsTable[tagName] ?? [
                             180, 180, 180,
@@ -43,17 +48,20 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                         );
                     })}
                 </div>
-                <Markdown className={`${open ? `block` : `hidden`} ${styles.text}`}>
+                <Markdown
+                    className={`${open ? `block` : `hidden`} ${styles.text}`}
+                >
                     {props.description}
                 </Markdown>
                 <div className={`${styles.interactables}`}>
                     <AdaptiveLink href={props.href} text={"Open"} />
-                    {
-                        !props.extraLinks ? <></> : 
-                            Object.entries(props.extraLinks).map(([name, link]) => (
-                                <AdaptiveLink href={link} text={name} key={name} />
-                            ))
-                    }
+                    {!props.extraLinks ? (
+                        <></>
+                    ) : (
+                        Object.entries(props.extraLinks).map(([name, link]) => (
+                            <AdaptiveLink href={link} text={name} key={name} />
+                        ))
+                    )}
                 </div>
 
                 {/* Background elements */}
@@ -74,28 +82,30 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
     );
 };
 
-const AdaptiveLink = (props: {text: string, href: string}) => {
-    const isLocal = props.href.startsWith('/');
-    const isGithub = props.href.startsWith('https://github.com')
+const AdaptiveLink = (props: { text: string; href: string }) => {
+    const isLocal = props.href.startsWith("/");
+    const isGithub = props.href.startsWith("https://github.com");
 
     let icon = null;
 
     if (!isLocal) {
-        icon = <ExternalLinkIcon className={`h-6 w-auto fill-white`} />
+        icon = <ExternalLinkIcon className={`h-6 w-auto fill-white`} />;
     }
 
     if (isGithub) {
-        icon = (
-            <GitHubIcon className={`h-6 w-auto fill-white`} />
-        )
+        icon = <GitHubIcon className={`h-6 w-auto fill-white`} />;
     }
 
     return (
-        <Link href={props.href} target={isLocal ? `_self` : `_blank`} className={`special-button shadow-md shadow-gray-900/50 flex gap-2`}>
+        <Link
+            href={props.href}
+            target={isLocal ? `_self` : `_blank`}
+            className={`special-button shadow-md shadow-gray-900/50 flex gap-2`}
+        >
             {props.text}
             {icon}
         </Link>
-    )
-}
+    );
+};
 
 export default ProjectItem;
