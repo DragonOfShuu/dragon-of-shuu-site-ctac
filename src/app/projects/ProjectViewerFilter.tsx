@@ -48,8 +48,8 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                         />
                         <input
                             placeholder={"Search..."}
+                            className={`border-none !bg-transparent grow outline-none self-stretch text-lg !placeholder-orange-700 group-hover:stroke-orange-600`}
                             type={`text`}
-                            className={`border-none bg-transparent grow outline-none self-stretch text-lg placeholder-orange-700 group-hover:stroke-orange-600`}
                             onChange={(e) => setSearchText(e.target.value)}
                         />
                     </div>
