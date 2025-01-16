@@ -52,7 +52,7 @@ const ImageViewer = ({ ...imageProps }: ImageViewerPropType) => {
             <div className={`absolute`}>
                 <dialog
                     ref={dialogRef}
-                    className={`bg-transparent backdrop:blur-3xl backdrop:bg-black/50 transition-all outline-none`}
+                    className={`bg-transparent backdrop:bg-black/50 transition-all outline-none`}
                     onClick={largeImageClickHandler}
                 >
                     <Image
@@ -60,8 +60,6 @@ const ImageViewer = ({ ...imageProps }: ImageViewerPropType) => {
                         style={{ transform: `scale(${scale})` }}
                         src={imageProps.src}
                         alt={imageProps.alt}
-                        width={imageProps.width}
-                        height={imageProps.height}
                     />
                 </dialog>
             </div>

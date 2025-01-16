@@ -1,5 +1,4 @@
 import { ReactNode } from "react";
-import Image from "next/image";
 import StoplightImg from "./images/Stoplight.png";
 import RaspberryPiImg from "./images/RaspberryPi.png";
 import ScratchMathImg from "./images/ScratchMath.png";
