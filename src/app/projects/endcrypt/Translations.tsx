@@ -71,10 +71,10 @@ const Translations = () => {
                         onChange={(event) => setTempKey(event.target.value)}
                         onBlur={() => setTempKey(formatKey(tempKey))}
                         value={tempKey}
-                        className={`${styles.sizeAdjust}`}
                         min={1}
                         max={9999}
                         title="Key for Encryption"
+                        className={`input-box`}
                     />
                 </div>
             </div>

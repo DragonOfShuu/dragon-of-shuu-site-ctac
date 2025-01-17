@@ -32,7 +32,7 @@ const MarkdownTextbox = (props: MarkdownTextboxPropType) => {
         <div className={`flex flex-col gap-2`}>
             <textarea
                 {...textareaProps}
-                className={`w-full h-48 ${isMarkdown ? `` : `hidden`}`}
+                className={`w-full h-48 input-box ${isMarkdown ? `` : `hidden`}`}
                 onChange={(e) => setTextAreaText(e.target.value)}
             />
             {/* Create a reusable class named "docs" that allows you to have margins beneath headings, etc */}

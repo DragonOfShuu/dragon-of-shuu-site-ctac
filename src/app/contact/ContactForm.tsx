@@ -33,6 +33,7 @@ const ContactForm = () => {
                     name={`name`}
                     type={`text`}
                     placeholder={`John Doe`}
+                    className={`input-box`}
                     required
                 />
             </EpicFormRow>
@@ -57,7 +58,7 @@ const ContactForm = () => {
                             regex: /.+@.+\..+/,
                         },
                         {
-                            error: `Must be a valid email address`,
+                            error: `Must be a valid email address (must also be all lowercase)`,
                             regex: emailAddrRegex,
                         },
                     ]}
@@ -65,6 +66,7 @@ const ContactForm = () => {
                     name={`ret_addr`}
                     placeholder={`johndoe@example.com`}
                     type={`email`}
+                    className={`input-box`}
                     required
                 />
             </EpicFormRow>
