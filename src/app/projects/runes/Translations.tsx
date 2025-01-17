@@ -57,7 +57,7 @@ const Translations = () => {
     }, [input, isAssumption, toRune, getRuneTable]);
 
     return (
-        <div className={`${styles.translations} w-full lg:w-auto md:w-auto`}>
+        <div className={`${styles.translations} w-full lg:w-auto md:w-auto [&>textarea]:input-box`}>
             <div className="flex flex-row flex-wrap gap-5 items-center w-full">
                 <SpecialButton onClick={() => setToRune(!toRune)}>
                     {toRune ? "Rune" : "Decrypt"} Mode

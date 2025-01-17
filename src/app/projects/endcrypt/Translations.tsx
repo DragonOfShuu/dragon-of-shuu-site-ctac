@@ -58,7 +58,7 @@ const Translations = () => {
     useEffect(() => setKey(formatKey(tempKey)), [tempKey]);
 
     return (
-        <div className={`${styles.translations} w-full lg:w-auto md:w-auto`}>
+        <div className={`${styles.translations} w-full lg:w-auto md:w-auto [&>textarea]:input-box`}>
             <div className="flex flex-row gap-5 items-center w-full">
                 <SpecialButton onClick={() => setToEncrypt(!toEncrypt)}>
                     {toEncrypt ? "Encrypt" : "Decrypt"} Mode
