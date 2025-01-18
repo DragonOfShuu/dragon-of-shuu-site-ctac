@@ -79,7 +79,7 @@ const Settings = (props: SettingsProps) => {
                             })
                         }
                         value={sData.heuristicMultiplier}
-                        className={`mr-[10px]`}
+                        className={`mr-[10px] input-box`}
                     />
                     {`Directional Magnet Strength`}
                 </label>
