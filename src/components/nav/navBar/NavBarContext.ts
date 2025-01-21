@@ -2,14 +2,15 @@
 
 import { createContext, useContext, useReducer } from "react";
 
-type NavBarContextDataType = {
+export type NavBarContextDataType = {
     isVisible: boolean
+    hiddenReasons: string[]
 }
 
-type NavBarContextActionType = 
-    | { type: 'visibility', visible: boolean }
+export type NavBarContextActionType = 
+    | { type: 'visibility', visible: boolean, reasonKey: string }
 
-type NavBarContextType = {
+export type NavBarContextType = {
     navBarData: NavBarContextDataType,
     setNavBarData: React.Dispatch<NavBarContextActionType>
 }
@@ -21,7 +22,7 @@ const useNavBar = () => {
 }
 
 const useNavBarInit = () => {
-    const [navBarData, setNavBarData] = useReducer(NavBarDataReducer, { isVisible: true })
+    const [navBarData, setNavBarData] = useReducer(NavBarDataReducer, { isVisible: true, hiddenReasons: [] })
 
     return {navBarData, setNavBarData}
 }
@@ -29,7 +30,19 @@ const useNavBarInit = () => {
 const NavBarDataReducer = (prevState: NavBarContextDataType, action: NavBarContextActionType): NavBarContextDataType => {
     switch (action.type) {
         case 'visibility': {
-            return {...prevState, isVisible: action.visible }
+            const newState = {...prevState}
+
+            if (action.visible) {
+                newState.hiddenReasons = newState.hiddenReasons.filter((str) => str!==action.reasonKey)
+            } else {
+                // Anti-pattern. Will prob remove later
+                // [nested if statement]
+                if (!newState.hiddenReasons.includes(action.reasonKey)) {
+                    newState.hiddenReasons = [...newState.hiddenReasons, action.reasonKey]
+                }
+            }
+
+            return {...newState, isVisible: newState.hiddenReasons.length===0 }
         }
     }
 }

@@ -1,9 +1,9 @@
-import EmphasizedContent from "@/components/EmphasizedContent";
 import fullscreenStyles from "./fullscreenFeature.module.sass";
 import styles from "./TimelineFeature.module.sass";
 import { ReactNode } from "react";
 import TimelineMomentos from "@/app/about/TimelineMomentos";
 import Markdown from "react-markdown";
+import TimelineGradientFrame from "@/app/about/TimelineGradientFrame";
 
 type TimelineFeaturePropType = {};
 
@@ -26,12 +26,16 @@ const TimelineFeature = (props: TimelineFeaturePropType) => {
                                 {momento.content.map((content, index1) => {
                                     if (typeof content === "string")
                                         return (
-                                            <Markdown key={-index1}>
+                                            <Markdown key={`-${index1}`}>
                                                 {content}
                                             </Markdown>
                                         );
 
-                                    return content;
+                                    return (
+                                        <div key={`${index1}`}>
+                                            {content}
+                                        </div>
+                                    );
                                 })}
                             </TimelineMomento>
                         ))}
@@ -39,28 +43,6 @@ const TimelineFeature = (props: TimelineFeaturePropType) => {
                 </TimelineGradientFrame>
             </div>
         </div>
-    );
-};
-
-const TimelineGradientFrame = ({ children }: { children: ReactNode }) => {
-    return (
-        <>
-            <div className={`sticky z-40 top-nav-margin`}>
-                <EmphasizedContent
-                    alignment={"center"}
-                    className={`bg-orange-975 bg-opacity-80 backdrop-blur-md`}
-                >
-                    <h1>Timeline</h1>
-                </EmphasizedContent>
-                <div
-                    className={`h-8 bg-gradient-to-b from-orange-975 to-transparent`}
-                />
-            </div>
-            {children}
-            <div
-                className={`sticky z-40 bottom-0 h-8 bg-gradient-to-t from-orange-975 to-transparent`}
-            />
-        </>
     );
 };
 
