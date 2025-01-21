@@ -14,6 +14,7 @@ import mailIcon from "@/assets/lineIcons/mailIcon.svg";
 import iIcon from "@/assets/lineIcons/iIcon.svg";
 import useWindowScroll from "@/components/hooks/useWindowScroll";
 import styles from "./NavBar.module.sass";
+import useNavBar from "@/components/nav/navBar/NavBarContext";
 
 type Props = {};
 
@@ -58,6 +59,7 @@ const NavBar = (props: Props) => {
 
     const { mobileNavVis, setMobileNavVis } = useMobileNavOnlySmall();
     const { scrollY } = useWindowScroll();
+    const {navBarData} = useNavBar()
 
     function menuIconClick() {
         setMobileNavVis(!mobileNavVis);
@@ -68,7 +70,7 @@ const NavBar = (props: Props) => {
     };
 
     return (
-        <nav className={`${styles.navBar}`} data-mobile-vis={mobileNavVis}>
+        <nav className={`${styles.navBar}`} data-mobile-vis={mobileNavVis} data-visible={navBarData.isVisible}>
             <div
                 className={`flex items-center lg:grid grid-flow-col lg:grid-cols-[25%_50%_25%] px-3 md:py-2 pointer-events-auto h-nav-margin ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
             >

@@ -11,6 +11,9 @@
         backdrop-filter: blur(12px) brightness(50%)
         @apply pointer-events-auto
 
+    &[data-visible=false]
+        @apply -top-nav-margin
+
 .mobileLinkList
     @apply pointer-events-auto p-2 items-start hidden relative
 

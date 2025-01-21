@@ -2,7 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useState } from "react";
-import { randInt } from "three/src/math/MathUtils.js";
+import { randomInt } from "@/clientlibs/random";
 import styles from './not-found.module.sass'
 
 const NotFound = () => {
@@ -41,8 +41,8 @@ const useRandomShift = (low: number, high: number, ms: number) => {
     
     useEffect(() => {
         const randomInterval = setInterval(() => {
-            setShiftX(randInt(low, high))
-            setShiftY(randInt(low, high))
+            setShiftX(randomInt(low, high))
+            setShiftY(randomInt(low, high))
         }, ms);
     
         return () => {
