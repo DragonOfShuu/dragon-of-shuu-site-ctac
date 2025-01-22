@@ -39,7 +39,9 @@ export default function RootLayout({
             >
                 <NavBarProvider>
                     <NavBar />
-                    <div className={`min-h-screen flex flex-col`}>{children}</div>
+                    <div className={`min-h-screen flex flex-col`}>
+                        {children}
+                    </div>
                     <Footer />
                 </NavBarProvider>
             </body>

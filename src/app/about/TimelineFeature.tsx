@@ -29,9 +29,7 @@ const TimelineFeature = (props: TimelineFeaturePropType) => {
                                         );
 
                                     return (
-                                        <div key={`${index1}`}>
-                                            {content}
-                                        </div>
+                                        <div key={`${index1}`}>{content}</div>
                                     );
                                 })}
                             </TimelineMomento>
@@ -51,9 +49,7 @@ type TimelineMomentoPropType = {
 
 const TimelineMomento = (props: TimelineMomentoPropType) => {
     return (
-        <div
-            className={`flex items-stretch`}
-        >
+        <div className={`flex items-stretch`}>
             <div>
                 <div className={`sticky top-32`}>
                     <div

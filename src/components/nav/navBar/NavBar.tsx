@@ -59,7 +59,7 @@ const NavBar = (props: Props) => {
 
     const { mobileNavVis, setMobileNavVis } = useMobileNavOnlySmall();
     const { scrollY } = useWindowScroll();
-    const {navBarData, setNavBarData} = useNavBar()
+    const { navBarData, setNavBarData } = useNavBar();
 
     function menuIconClick() {
         setMobileNavVis(!mobileNavVis);
@@ -70,7 +70,11 @@ const NavBar = (props: Props) => {
     };
 
     return (
-        <nav className={`${styles.navBar}`} data-mobile-vis={mobileNavVis} data-visible={navBarData.forceVisible? true : navBarData.isVisible}>
+        <nav
+            className={`${styles.navBar}`}
+            data-mobile-vis={mobileNavVis}
+            data-visible={navBarData.forceVisible ? true : navBarData.isVisible}
+        >
             <div className={`pointer-events-auto`}>
                 <div
                     className={`flex items-center lg:grid grid-flow-col lg:grid-cols-[25%_50%_25%] px-3 md:py-2 h-nav-margin ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
@@ -90,7 +94,9 @@ const NavBar = (props: Props) => {
                         ))}
                     </div>
 
-                    <div className={`md:hidden flex justify-end h-full flex-grow`}>
+                    <div
+                        className={`md:hidden flex justify-end h-full flex-grow`}
+                    >
                         <LineIconButton
                             svg={HamburgerMenuIcon}
                             className={`w-14`}
@@ -98,9 +104,22 @@ const NavBar = (props: Props) => {
                         />
                     </div>
                 </div>
-                <div className={`${navBarData.isVisible||mobileNavVis ? `hidden` : `block`} rounded-b-lg w-12 py-2 ml-auto mr-4 bg-orange-950 flex items-center justify-center`}>
-                    <button onClick={()=> setNavBarData({type: 'setForceVisible', visible: !navBarData.forceVisible})}>
-                        <span className={`${navBarData.forceVisible?'rotate-0':'rotate-180'} transition-all block`}>&#9650;</span>
+                <div
+                    className={`${navBarData.isVisible || mobileNavVis ? `hidden` : `block`} rounded-b-lg w-12 py-2 ml-auto mr-4 bg-orange-950 flex items-center justify-center`}
+                >
+                    <button
+                        onClick={() =>
+                            setNavBarData({
+                                type: "setForceVisible",
+                                visible: !navBarData.forceVisible,
+                            })
+                        }
+                    >
+                        <span
+                            className={`${navBarData.forceVisible ? "rotate-0" : "rotate-180"} transition-all block`}
+                        >
+                            &#9650;
+                        </span>
                     </button>
                 </div>
             </div>

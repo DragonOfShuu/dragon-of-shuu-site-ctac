@@ -4,37 +4,45 @@ import EmphasizedContent from "@/components/EmphasizedContent";
 import useNavBar from "@/components/nav/navBar/NavBarContext";
 import { ReactNode, useEffect, useRef } from "react";
 
-const navBarHideReasonKey = 'timelineView'
+const navBarHideReasonKey = "timelineView";
 
-const useOnScroll = (scrollHandler: ()=>void) => {
+const useOnScroll = (scrollHandler: () => void) => {
     useEffect(() => {
-        window.addEventListener('scroll', scrollHandler)
+        window.addEventListener("scroll", scrollHandler);
 
         return () => {
-            window.removeEventListener('scroll', scrollHandler);
-        }
-    })
-}
+            window.removeEventListener("scroll", scrollHandler);
+        };
+    });
+};
 
 const TimelineGradientFrame = ({ children }: { children: ReactNode }) => {
-    const stickiedTimeline = useRef<null|HTMLDivElement>(null)
-    const {navBarData, setNavBarData} = useNavBar()
-    
+    const stickiedTimeline = useRef<null | HTMLDivElement>(null);
+    const { navBarData, setNavBarData } = useNavBar();
+
     const scrollHandler = () => {
         const element = stickiedTimeline.current;
         if (!element) return;
-        const rect = element.getBoundingClientRect()
+        const rect = element.getBoundingClientRect();
 
         if (rect.y < 100 && rect.y >= 0) {
-            setNavBarData({type: "visibility", visible: false, reasonKey: navBarHideReasonKey})
-            return
+            setNavBarData({
+                type: "visibility",
+                visible: false,
+                reasonKey: navBarHideReasonKey,
+            });
+            return;
         }
 
         if (navBarData.hiddenReasons.includes(navBarHideReasonKey)) {
-            setNavBarData({type: 'visibility', visible: true, reasonKey: navBarHideReasonKey})
+            setNavBarData({
+                type: "visibility",
+                visible: true,
+                reasonKey: navBarHideReasonKey,
+            });
         }
-    }
-    useOnScroll(scrollHandler)
+    };
+    useOnScroll(scrollHandler);
 
     return (
         <>
