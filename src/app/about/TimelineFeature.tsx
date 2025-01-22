@@ -11,12 +11,9 @@ const TimelineFeature = (props: TimelineFeaturePropType) => {
     return (
         <div className={`${fullscreenStyles.fullscreenFeature} flex flex-col`}>
             <div className={`nav-margin`} />
-            <div className={`relative grow w-full max-w-[1400px] self-center`}>
-                <div
-                    className={`absolute left-4 border-dashed border-orange-300 border-opacity-50 border-l-8 w-0 h-full -z-10`}
-                />
+            <div className={`relative grow w-full self-center`}>
                 <TimelineGradientFrame>
-                    <div className={`space-y-4`}>
+                    <div className={`space-y-8`}>
                         {TimelineMomentos.map((momento, index) => (
                             <TimelineMomento
                                 title={momento.title}
@@ -55,10 +52,10 @@ type TimelineMomentoPropType = {
 const TimelineMomento = (props: TimelineMomentoPropType) => {
     return (
         <div
-            className={`flex items-stretch ${fullscreenStyles.fullscreenFeatureMargin}`}
+            className={`flex items-stretch`}
         >
             <div>
-                <div className={`sticky top-40`}>
+                <div className={`sticky top-32`}>
                     <div
                         className={`${styles.blipCircle} rounded-full border-4 border-orange-500 bg-orange-975 size-10`}
                     />

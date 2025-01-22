@@ -49,7 +49,12 @@ const TimelineGradientFrame = ({ children }: { children: ReactNode }) => {
                     className={`h-8 bg-gradient-to-b from-orange-975 to-transparent`}
                 />
             </div>
-            {children}
+            <div className={`relative max-w-[1000px] mx-auto`}>
+                <div
+                    className={`absolute left-4 border-dashed border-orange-300 border-opacity-50 border-l-8 w-0 h-full -z-10`}
+                />
+                {children}
+            </div>
             <div
                 className={`sticky z-40 bottom-0 h-8 bg-gradient-to-t from-orange-975 to-transparent`}
             />

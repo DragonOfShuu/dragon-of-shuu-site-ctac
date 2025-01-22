@@ -1,14 +1,18 @@
 "use client";
 
-import { createContext, useContext, useReducer } from "react";
+import { usePathname } from "next/navigation";
+import { createContext, useContext, useEffect, useReducer } from "react";
 
 export type NavBarContextDataType = {
     isVisible: boolean
     hiddenReasons: string[]
+    forceVisible: boolean
 }
 
 export type NavBarContextActionType = 
     | { type: 'visibility', visible: boolean, reasonKey: string }
+    | { type: 'resetVisibility' }
+    | { type: 'setForceVisible', visible: boolean }
 
 export type NavBarContextType = {
     navBarData: NavBarContextDataType,
@@ -22,7 +26,12 @@ const useNavBar = () => {
 }
 
 const useNavBarInit = () => {
-    const [navBarData, setNavBarData] = useReducer(NavBarDataReducer, { isVisible: true, hiddenReasons: [] })
+    const [navBarData, setNavBarData] = useReducer(NavBarDataReducer, { isVisible: true, hiddenReasons: [], forceVisible: false })
+    const pathname = usePathname();
+
+    useEffect(() => {
+        setNavBarData({ type: 'resetVisibility' })
+    }, [pathname])
 
     return {navBarData, setNavBarData}
 }
@@ -43,6 +52,12 @@ const NavBarDataReducer = (prevState: NavBarContextDataType, action: NavBarConte
             }
 
             return {...newState, isVisible: newState.hiddenReasons.length===0 }
+        }
+        case 'resetVisibility': {
+            return {...prevState, isVisible: true, hiddenReasons: [], forceVisible: false}
+        }
+        case 'setForceVisible': {
+            return {...prevState, forceVisible: action.visible}
         }
     }
 }
