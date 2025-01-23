@@ -91,13 +91,15 @@ const Viewable3dDiv = (props: Viewable3dDivPropType) => {
             onMouseMove={mouseMoveHandler}
             onMouseLeave={mouseLeaveHandler}
         >
-            <div
-                style={{
-                    transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
-                }}
-                className={`relative size-full bottom-0 group-hover:bottom-5`}
-            >
-                {children}
+            <div className="size-full relative bottom-0 group-hover:bottom-5">
+                <div
+                    style={{
+                        transform: `rotateX(${rotateX}deg) rotateY(${rotateY}deg)`,
+                    }}
+                    className={`size-full`}
+                >
+                    {children}
+                </div>
             </div>
         </div>
     );

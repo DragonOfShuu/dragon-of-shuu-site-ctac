@@ -23,7 +23,6 @@ const CodingPatternFeature = () => {
             <div
                 className={`flex p-4 flex-wrap items-stretch justify-center gap-4`}
             >
-                {/* <div className={`grid grid-flow-col p-4 gap-4`}> */}
                 <PatternDivider
                     title={`DRY Code`}
                     subtitle={`"Don't Repeat Yourself"`}
@@ -46,19 +45,25 @@ const CodingPatternFeature = () => {
                         you use early returns.
                     </p>
                 </PatternDivider>
-                <PatternDivider title={`Extract Methods`}>
-                    <p>
-                        When code inside of a function gets to large, it can be
-                        hard to read and make sense of. When this happens, you
-                        should extract code into its own function.
-                    </p>
-                </PatternDivider>
-                <PatternDivider title={`Componentization`}>
-                    <p>
-                        Code should be componentized and separated as to avoid
-                        close coupling between code.
-                    </p>
-                </PatternDivider>
+                {/* Keep these two elements together; this makes the UI prettier */}
+                <div
+                    className={`flex items-stretch justify-center flex-wrap md:flex-nowrap gap-4`}
+                >
+                    <PatternDivider title={`Extract Methods`}>
+                        <p>
+                            When code inside of a function gets to large, it can
+                            be hard to read and make sense of. When this
+                            happens, you should extract code into its own
+                            function.
+                        </p>
+                    </PatternDivider>
+                    <PatternDivider title={`Componentization`}>
+                        <p>
+                            Code should be componentized and separated as to
+                            avoid close coupling between code.
+                        </p>
+                    </PatternDivider>
+                </div>
             </div>
         </div>
     );

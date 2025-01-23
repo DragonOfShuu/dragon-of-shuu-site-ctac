@@ -27,7 +27,6 @@ const TimelineMomentos: TimelineMomento[] = [
                 src={StoplightImg}
                 alt={`An image example of the basic code I wrote`}
                 key={1}
-                className={`size-full object-cover`}
             />,
         ],
     },
@@ -148,7 +147,6 @@ const TimelineMomentos: TimelineMomento[] = [
             <ImageViewer
                 src={DucklingScriptImg}
                 alt={`Image of DucklingScript: A language for key injection.`}
-                className={`max-h-[75vh] w-auto mx-auto`}
                 key={2}
             />,
         ],

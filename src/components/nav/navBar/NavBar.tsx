@@ -104,24 +104,21 @@ const NavBar = (props: Props) => {
                         />
                     </div>
                 </div>
-                <div
+                <button
                     className={`${navBarData.isVisible || mobileNavVis ? `hidden` : `block`} rounded-b-lg w-12 py-2 ml-auto mr-4 bg-orange-950 flex items-center justify-center`}
+                    onClick={() =>
+                        setNavBarData({
+                            type: "setForceVisible",
+                            visible: !navBarData.forceVisible,
+                        })
+                    }
                 >
-                    <button
-                        onClick={() =>
-                            setNavBarData({
-                                type: "setForceVisible",
-                                visible: !navBarData.forceVisible,
-                            })
-                        }
+                    <span
+                        className={`${navBarData.forceVisible ? "rotate-0" : "rotate-180"} transition-all block`}
                     >
-                        <span
-                            className={`${navBarData.forceVisible ? "rotate-0" : "rotate-180"} transition-all block`}
-                        >
-                            &#9650;
-                        </span>
-                    </button>
-                </div>
+                        &#9650;
+                    </span>
+                </button>
             </div>
             <div
                 className={`${styles.mobileLinkList}`}
