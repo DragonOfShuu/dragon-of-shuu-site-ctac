@@ -29,6 +29,15 @@ const nextConfig = {
 
         return config;
     },
+    async redirects() {
+        return [
+            {
+                source: '/minis/:slug*',
+                destination: '/projects/:slug*',
+                permanent: true,
+            }
+        ]
+    },
     experimental: {
         serverComponentsExternalPackages: ["mjml"],
     },
