@@ -21,7 +21,7 @@ const AboutMe = () => {
                     >
                         <Image
                             src={dragonOfShuu}
-                            alt={`Dragon of Shuu profile picture art`}
+                            alt={`Dragon of Shuu profile picture`}
                             className={`${styles.profilePic} grow basis-0 min-h-0 max-w-96 object-contain md:w-1/2`}
                         />
                         <h1
