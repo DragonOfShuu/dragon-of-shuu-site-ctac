@@ -23,7 +23,7 @@ export type VisualizerDataType = {
     blocks: Block[][];
     // Location of the Start and End
     pointPos: StartEnd | undefined;
-    visualierBoxRef: React.RefObject<HTMLDivElement> | undefined;
+    visualierBoxRef: React.RefObject<HTMLDivElement | null> | undefined;
 };
 
 export type VisualizerContextType = {
@@ -42,7 +42,7 @@ export type VisualizerActionType =
     | { type: "toolbar"; enabled: boolean }
     | { type: "blocks"; newBlocks: Block[][] }
     | { type: "block"; newBlock: Block }
-    | { type: "setVisualizerRef"; newRef: React.RefObject<HTMLDivElement> };
+    | { type: "setVisualizerRef"; newRef: React.RefObject<HTMLDivElement | null> };
 
 export const VisualizerReducer = (
     prevState: VisualizerDataType,
