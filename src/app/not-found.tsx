@@ -5,7 +5,7 @@ import { useEffect, useState } from "react";
 import { randomInt } from "@/clientlibs/random";
 import styles from "./not-found.module.sass";
 
-const NotFound = () => {
+export default function NotFound() {
     const { shiftX, shiftY } = useRandomShift(-10, 10, 250);
 
     return (
@@ -61,5 +61,3 @@ const useRandomShift = (low: number, high: number, ms: number) => {
 
     return { shiftX, shiftY };
 };
-
-export default NotFound;

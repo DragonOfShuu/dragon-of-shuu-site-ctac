@@ -1,13 +1,18 @@
 .range
-    --c: theme("colors.orange.500") /* active color */
-    --g: 8px /* the gap */
-    --l: 5px /* line thickness*/
-    --s: 30px /* thumb size*/
+    /* active color */
+    --c: theme("colors.orange.500") 
+    /* the gap */
+    --g: 8px 
+    /* line thickness*/
+    --l: 5px 
+    /* thumb size*/
+    --s: 30px 
 
     width: 400px
-    height: var(--s) /* needed for Firefox*/
+    /* needed for Firefox*/
+    height: var(--s) 
     --_c: color-mix(in srgb, var(--c), #000 var(--p,20%))
-    -webkit-appearance :none
+    -webkit-appearance: none
     -moz-appearance: none
     appearance: none
     background: none
@@ -37,7 +42,6 @@
             cursor: grabbing
 
     /* Firefox */
-    // input[type="range"]
     &::-moz-range-thumb 
         height: var(--s)
         width: var(--s)
