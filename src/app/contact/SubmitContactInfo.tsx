@@ -6,7 +6,7 @@ import {
     ContactSubmissionType,
 } from "@/app/contact/contactTypes";
 // import sendMail from "../../../emails";
-import InboundContact from "../../../emails/InboundContact";
+// import InboundContact from "../../../emails/InboundContact";
 
 const submitContactInfo = async (formData: FormData) => {
     console.log("Form data received server-side:", formData);

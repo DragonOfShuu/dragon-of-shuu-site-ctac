@@ -29,7 +29,9 @@ function NoClickTruckControls(props: NoClickOrbitControlsPropType) {
     return (
         <CameraControls
             ref={ref}
-            args={[camera, gl.domElement]}
+            // args={[camera, gl.domElement]}
+            camera={camera}
+            domElement={gl.domElement}
             enabled={false}
             makeDefault={props.makeDefault}
         />

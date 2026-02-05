@@ -17,6 +17,7 @@ const Settings = (props: SettingsProps) => {
     const diaglogBox = useRef<HTMLDialogElement>(null);
 
     const { sData, sDispatch } = useSettings();
+    const [tempMagnetStrength, setTempMagnetStrength] = useState<string>('0')
 
     return (
         <>
@@ -70,15 +71,16 @@ const Settings = (props: SettingsProps) => {
                         type="number"
                         min={1}
                         max={30}
-                        onChange={(e) =>
+                        onBlur={(e) => {
+                            const newValue = Number.parseFloat(e.target.value) || 1;
                             sDispatch({
                                 type: "u",
-                                heuristicMultiplier: Number.parseFloat(
-                                    e.target.value,
-                                ),
+                                heuristicMultiplier: newValue,
                             })
-                        }
-                        value={sData.heuristicMultiplier}
+                            setTempMagnetStrength(newValue.toString());
+                        }}
+                        onChange={(e) => setTempMagnetStrength(e.target.value)}
+                        value={tempMagnetStrength}
                         className={`mr-[10px] input-box`}
                     />
                     {`Directional Magnet Strength`}
