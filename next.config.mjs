@@ -18,7 +18,7 @@ const nextConfig = {
             }
         ]
     },
-    serverExternalPackages: ["mjml"],
+    // serverExternalPackages: ["mjml"],
 };
 
 export default nextConfig;

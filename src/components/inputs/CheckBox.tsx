@@ -18,7 +18,7 @@ const CheckBox = (props: Props) => {
                 onChange={props.onChange}
                 checked={props.checked}
             />
-            <span className={`${styles.checkbox}`} />
+            {/* <span className={`${styles.checkbox}`} /> */}
             {props.text}
         </label>
     );
