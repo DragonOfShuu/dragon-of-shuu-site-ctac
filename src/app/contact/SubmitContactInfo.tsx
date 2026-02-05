@@ -1,14 +1,16 @@
 "use server";
 
 import { redirect } from "next/navigation";
+import { headers } from "next/headers";
 import {
     contactSubmissionKeys,
     ContactSubmissionType,
 } from "@/app/contact/contactTypes";
-import sendMail from "../../../emails";
-import InboundContact from "../../../emails/InboundContact";
 
 const submitContactInfo = async (formData: FormData) => {
+    console.log("Form data received server-side:", formData);
+    const headersList = headers();
+    console.log("Request headers:", (await headersList).entries());
     const rawFormData = contactSubmissionKeys.reduce<
         Partial<ContactSubmissionType>
     >((prev, curr) => {
@@ -16,21 +18,6 @@ const submitContactInfo = async (formData: FormData) => {
         prev[curr] = (formData.get(curr) ?? undefined) as string | undefined;
         return prev;
     }, {});
-
-    console.log("Emailing data (and more!)", rawFormData);
-
-    // Unnecessary; mailing intercepts mail in dev
-    // if (process.env.NODE_ENV==='production')
-    sendMail({
-        to: "contact@dragonofshuu.dev",
-        component: (
-            <InboundContact
-                contactee={rawFormData.name ?? ""}
-                retAddress={rawFormData.ret_addr ?? ""}
-                textContent={rawFormData.message ?? ""}
-            />
-        ),
-    });
 
     const redirURL = `/contact/thank-you/?${new URLSearchParams(rawFormData)}`;
 

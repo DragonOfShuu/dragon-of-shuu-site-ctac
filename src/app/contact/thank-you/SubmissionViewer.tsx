@@ -14,7 +14,7 @@ type SubmissionViewerPropType = {};
 
 const SubmissionViewer = (props: SubmissionViewerPropType) => {
     const params = useSearchParams();
-
+    
     const submitted: { [x: string]: string | undefined } = useMemo(
         () =>
             contactSubmissionKeys.reduce<{ [x: string]: string | undefined }>(
@@ -33,7 +33,7 @@ const SubmissionViewer = (props: SubmissionViewerPropType) => {
             {Object.entries(submitted).map(([key, value], ind) => (
                 <div className={`${styles.dataBox}`} key={ind}>
                     <h3 className={styles.key}>{key}</h3>
-                    <Markdown className={styles.value}>{value}</Markdown>
+                    <Markdown className={styles.value}>{value ?? ""}</Markdown>
                 </div>
             ))}
         </div>

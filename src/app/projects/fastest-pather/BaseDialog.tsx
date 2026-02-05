@@ -11,7 +11,7 @@ type DialogToolbarProps = {
 type BaseDialogProps = {
     children?: ReactNode;
     topBar?: DialogToolbarProps[];
-    dialogRef: RefObject<HTMLDialogElement>;
+    dialogRef: RefObject<HTMLDialogElement | null>;
     className?: string;
 };
 

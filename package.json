@@ -1,43 +1,46 @@
 {
-    "name": "dragon-of-shuu-website",
-    "version": "0.1.0",
-    "private": true,
-    "scripts": {
-        "dev": "next dev",
-        "build": "next build",
-        "start": "next start",
-        "lint": "next lint",
-        "format": "prettier . --write",
-        "mailing": "mailing"
-    },
-    "dependencies": {
-        "@react-three/drei": "^9.111.0",
-        "@react-three/fiber": "^8.17.5",
-        "@react-three/postprocessing": "^2.16.2",
-        "@react-three/uikit": "^0.4.4",
-        "@types/three": "^0.167.1",
-        "gray-matter": "^4.0.3",
-        "lodash": "^4.17.21",
-        "mailing-core": "^1.1.0",
-        "next": "14.2.5",
-        "react": "^18",
-        "react-dom": "^18",
-        "react-error-boundary": "^4.0.13",
-        "react-markdown": "^9.0.1",
-        "sass": "^1.77.8",
-        "three": "^0.167.1"
-    },
-    "devDependencies": {
-        "@svgr/webpack": "^8.1.0",
-        "@types/node": "^20",
-        "@types/react": "^18",
-        "@types/react-dom": "^18",
-        "eslint": "^8",
-        "eslint-config-next": "14.2.5",
-        "mailing": "^1.1.0",
-        "postcss": "^8",
-        "prettier": "3.3.3",
-        "tailwindcss": "^3.4.1",
-        "typescript": "^5"
-    }
+  "name": "dragon-of-shuu-website",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "build-with-details": "next build --debug-prerender",
+    "start": "next start",
+    "lint": "next lint",
+    "format": "prettier . --write",
+    "mailing": "mailing"
+  },
+  "dependencies": {
+    "@react-three/drei": "^10.7.6",
+    "@react-three/fiber": "^9.3.0",
+    "@react-three/postprocessing": "^3.0.4",
+    "@react-three/uikit": "^0.8.21",
+    "gray-matter": "^4.0.3",
+    "lodash": "^4.17.21",
+    "next": "16.1.6",
+    "react": "19.2.4",
+    "react-dom": "19.2.4",
+    "react-error-boundary": "^4.0.13",
+    "react-markdown": "^9.0.1",
+    "sass": "^1.77.8",
+    "three": "^0.180.0"
+  },
+  "devDependencies": {
+    "@svgr/webpack": "^8.1.0",
+    "@types/node": "^20",
+    "@types/react": "19.2.11",
+    "@types/react-dom": "19.2.3",
+    "@types/three": "^0.180.0",
+    "eslint": "^9",
+    "eslint-config-next": "16.1.6",
+    "postcss": "^8",
+    "prettier": "3.3.3",
+    "tailwindcss": "^3.4.1",
+    "typescript": "^5"
+  },
+  "overrides": {
+    "@types/react": "19.2.11",
+    "@types/react-dom": "19.2.3"
+  }
 }

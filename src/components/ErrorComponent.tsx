@@ -1,6 +1,8 @@
 import { randomItem } from "@/clientlibs/random";
 import SpecialButton from "@/components/SpecialButton";
 
+import type { JSX } from "react";
+
 export type ErrorComponentPropType = {} & NextErrorComponentPropType &
     JSX.IntrinsicElements["div"];
 

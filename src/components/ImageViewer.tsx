@@ -5,7 +5,7 @@ import {
     StaticImport,
 } from "next/dist/shared/lib/get-img-props";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { useRef, useState, type JSX } from "react";
 import styles from "./ImageViewer.module.sass";
 
 type ImageViewerPropType = Omit<

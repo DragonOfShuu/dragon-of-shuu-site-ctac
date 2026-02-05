@@ -3,7 +3,7 @@ import styles from "./CheckBox.module.sass";
 
 type Props = {
     text?: string;
-    CheckboxRef?: React.RefObject<HTMLInputElement>;
+    CheckboxRef?: React.RefObject<HTMLInputElement | null>;
     onChange?: ChangeEventHandler<HTMLInputElement> | undefined;
     checked?: boolean;
 };
@@ -18,7 +18,7 @@ const CheckBox = (props: Props) => {
                 onChange={props.onChange}
                 checked={props.checked}
             />
-            <span className={`${styles.checkbox}`} />
+            {/* <span className={`${styles.checkbox}`} /> */}
             {props.text}
         </label>
     );
