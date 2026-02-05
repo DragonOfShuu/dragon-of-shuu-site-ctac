@@ -1,5 +1,33 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
+    turbopack: {
+        rules: {
+            // Handle SVG imports with ?url query as regular files
+            "*.svg": [
+                {
+                    condition: {
+                        all: [
+                            // Only for imports with ?url query
+                            { path: /\.svg\?url$/ },
+                        ],
+                    },
+                    // Use default file loader behavior (no custom loaders)
+                    loaders: [],
+                },
+                {
+                    condition: {
+                        all: [
+                            // For all other SVG imports (without ?url)
+                            { not: { path: /\.svg\?url$/ } },
+                        ],
+                    },
+                    // Convert to React components
+                    loaders: ["@svgr/webpack"],
+                    as: "*.js",
+                },
+            ],
+        },
+    },
     webpack(config) {
         // Grab the existing rule that handles SVG imports
         // @ts-ignore
