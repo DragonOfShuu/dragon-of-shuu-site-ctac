@@ -19,6 +19,10 @@ const Settings = (props: SettingsProps) => {
     const { sData, sDispatch } = useSettings();
     const [tempMagnetStrength, setTempMagnetStrength] = useState<string>('0')
 
+    useEffect(() => {
+        setTempMagnetStrength(sData.heuristicMultiplier.toString());
+    }, [sData.heuristicMultiplier]);
+
     return (
         <>
             <ToolBarButton
@@ -72,7 +76,10 @@ const Settings = (props: SettingsProps) => {
                         min={1}
                         max={30}
                         onBlur={(e) => {
-                            const newValue = Number.parseFloat(e.target.value) || 1;
+                            const potentialValue = Number.parseFloat(e.target.value);
+                            const newValue = isNaN(potentialValue)
+                                ? 1
+                                : potentialValue;
                             sDispatch({
                                 type: "u",
                                 heuristicMultiplier: newValue,
