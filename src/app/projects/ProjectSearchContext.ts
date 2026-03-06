@@ -1,4 +1,4 @@
-import { ProjectType } from "@/app/libs/projectsAPI";
+import { ProjectType } from "../libs/projectsAPI/types";
 import { createContext, Dispatch, SetStateAction, useContext } from "react";
 
 export type TagToColor = {

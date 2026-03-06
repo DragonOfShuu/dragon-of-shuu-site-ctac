@@ -1,8 +1,5 @@
-import {
-    ProjectType,
-    searchProjects,
-    getAllTags,
-} from "@/app/libs/projectsAPI";
+import { searchProjects, getAllTags } from "@/app/libs/projectsAPI";
+import { ProjectType } from "../libs/projectsAPI/types";
 import { useEffect, useRef, useState, useTransition } from "react";
 
 const useProjectSearch = (initialProjects: ProjectType[]) => {

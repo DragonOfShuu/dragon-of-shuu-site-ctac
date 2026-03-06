@@ -7,8 +7,8 @@ import styles from "./ProjectItem.module.sass";
 import Markdown from "react-markdown";
 import {
     ImageDataType as ProjectImageType,
-    ProjectType,
-} from "@/app/libs/projectsAPI";
+    ProjectType
+} from "../libs/projectsAPI/types";
 import GitHubIcon from "@/assets/lineIcons/socials/GitHub.svg";
 import ExternalLinkIcon from "@/assets/lineIcons/externalLink.svg";
 import Viewable3dDiv from "@/components/effects/Viewable3dDiv";
