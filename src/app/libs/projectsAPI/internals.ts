@@ -1,4 +1,4 @@
-"use server";
+// "use server";
 
 import {
     FrontMatterType,
@@ -24,10 +24,7 @@ export const rawToProcessed = (
     const imageData: Partial<ImageDataType> = {
         height: matter.height || undefined,
         width: matter.width || undefined,
-        filename: join(imageLocation ?? "", matter.image ?? "").replace(
-            /\\/g,
-            "/",
-        ),
+        src: join(imageLocation ?? "", matter.image ?? "").replace(/\\/g, "/"),
     };
 
     return {

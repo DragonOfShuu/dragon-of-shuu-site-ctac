@@ -7,9 +7,16 @@ export type FrontMatterType = {
     tags?: string;
 };
 
-export type ImageDataType = {
-    id: number | null; // null for projects that aren't in the database
+export type rawImageDataType = {
+    id: number;
     filename: string;
+    alt_text: string;
+    width: number;
+    height: number;
+};
+
+export type ImageDataType = {
+    src: string;
     alt_text: string;
     width: number;
     height: number;

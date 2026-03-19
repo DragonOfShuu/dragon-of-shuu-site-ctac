@@ -10,6 +10,7 @@ import {
     rawToProcessed,
     searchInternalProjects,
 } from "@/app/libs/projectsAPI/internals";
+import { getDatabaseProjects } from "./externals";
 
 // const extrasToProcessed = () => {
 //     const imageIsEmpty = (data: ProjectType["image"]) =>
@@ -33,12 +34,29 @@ import {
 
 // const processedExtras = extrasToProcessed();
 
-const getProjects = async (
-    page: number,
-    pageSize: number,
-): Promise<ProjectType[]> => {
+/**
+ * Get projects from the database, paginated. Will also
+ * include projects that are not in the database, but are
+ * in the file system.
+ * @param page 1-based index of the page we are needing
+ * @returns A list of projects, paginated
+ */
+const getProjects = async (page: number): Promise<ProjectType[]> => {
+    const pageSize = 10;
+    const internalProjects = await getAllInternal();
     // TODO: PLACEHOLDER
-    return await getAllInternal();
+    if (pageSize * page <= internalProjects.length)
+        return internalProjects.slice((page - 1) * pageSize, pageSize);
+
+    // Get start and end indices for slicing the database projects
+    const preDbStartIndex = pageSize * (page - 1) - internalProjects.length;
+    const dbStartIndex = Math.max(0, preDbStartIndex);
+    const dbEndIndex = preDbStartIndex + pageSize;
+    const databaseProjects = await getDatabaseProjects(
+        dbStartIndex,
+        dbEndIndex - dbStartIndex,
+    );
+    return [...internalProjects, ...databaseProjects];
 };
 
 const searchProjects = async (
