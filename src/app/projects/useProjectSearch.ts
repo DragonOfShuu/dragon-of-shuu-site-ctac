@@ -35,6 +35,7 @@ const useProjectSearch = (initialProjects: ProjectType[]) => {
         startSearchDelay.current = setTimeout(() => {
             startTransition(async () => {
                 const newProjects = await searchProjects(
+                    1,
                     newSearchText ?? searchText,
                     newSearchTags ?? searchTags,
                 );

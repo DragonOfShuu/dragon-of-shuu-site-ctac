@@ -37,18 +37,16 @@ export class Database {
     }
 
     async getOne<T = any>(
-        strings: TemplateStringsArray | string,
+        strings: string,
         ...values: any[]
     ): Promise<T | null> {
         const rows = await this.query<T>(strings, ...values);
         return rows[0] || null;
     }
 
-    async query<T = any>(
-        strings: TemplateStringsArray | string,
-        ...values: any[]
-    ): Promise<T[]> {
-        return (this.client as any)(strings, ...values);
+    async query<T = any>(strings: string, ...values: any[]): Promise<T[]> {
+        // return (this.client as any)(strings, ...values);
+        return this.client.query(strings, ...values) as Promise<T[]>;
     }
 }
 

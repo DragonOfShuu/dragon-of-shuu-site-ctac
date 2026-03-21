@@ -4,35 +4,9 @@ import sql from "@/app/libs/sql";
 import { ProjectType } from "@/app/libs/projectsAPI/types";
 import {
     getAllInternal,
-    imageLocation,
-    minisDir,
-    projectMetaFileName,
-    rawToProcessed,
     searchInternalProjects,
 } from "@/app/libs/projectsAPI/internals";
-import { getDatabaseProjects } from "./externals";
-
-// const extrasToProcessed = () => {
-//     const imageIsEmpty = (data: ProjectType["image"]) =>
-//         !data.src || !data.width || !data.height;
-
-//     return Object.entries(extraProjects).reduce<{
-//         [name: string]: ProjectType;
-//     }>((prev, [name, projectData]) => {
-//         const newProjectData: ProjectType = {
-//             ...projectData,
-//             image: {
-//                 ...projectData.image,
-//                 src: imageIsEmpty(projectData.image)
-//                     ? undefined
-//                     : imageLocation + projectData.image.src,
-//             },
-//         };
-//         return { ...prev, [name]: newProjectData };
-//     }, {});
-// };
-
-// const processedExtras = extrasToProcessed();
+import { getDatabaseProjects, searchDatabaseProjects } from "./externals";
 
 /**
  * Get projects from the database, paginated. Will also
@@ -44,7 +18,6 @@ import { getDatabaseProjects } from "./externals";
 const getProjects = async (page: number): Promise<ProjectType[]> => {
     const pageSize = 10;
     const internalProjects = await getAllInternal();
-    // TODO: PLACEHOLDER
     if (pageSize * page <= internalProjects.length)
         return internalProjects.slice((page - 1) * pageSize, pageSize);
 
@@ -60,12 +33,28 @@ const getProjects = async (page: number): Promise<ProjectType[]> => {
 };
 
 const searchProjects = async (
+    page: number,
     searchString: string,
     tags?: string[],
 ): Promise<ProjectType[]> => {
+    const pageSize = 10;
     const matchedInternal = await searchInternalProjects(searchString, tags);
     // TODO: PLACEHOLDER
-    return matchedInternal;
+    if (pageSize * page <= matchedInternal.length)
+        return matchedInternal.slice((page - 1) * pageSize, pageSize);
+
+    // Get start and end indices for slicing the database projects
+    const preDbStartIndex = pageSize * (page - 1) - matchedInternal.length;
+    const dbStartIndex = Math.max(0, preDbStartIndex);
+    const dbEndIndex = preDbStartIndex + pageSize;
+    const databaseProjects = await searchDatabaseProjects(
+        dbStartIndex,
+        dbEndIndex - dbStartIndex,
+        searchString,
+        tags,
+    );
+
+    return [...matchedInternal, ...databaseProjects];
 };
 
 const getAllTags = async (): Promise<string[]> => {

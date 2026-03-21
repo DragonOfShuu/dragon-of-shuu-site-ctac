@@ -15,24 +15,34 @@ export const minisDir = "src/app/projects/";
 export const projectMetaFileName = "project.md";
 export const imageLocation = "/projects/image-bucket/";
 
+const extractImageData = (
+    matterData: FrontMatterType,
+): ImageDataType | undefined => {
+    if (!matterData.image) return undefined;
+    if (!matterData.width || !matterData.height) return undefined;
+    return {
+        src: join(imageLocation ?? "", matterData.image ?? "").replace(
+            /\\/g,
+            "/",
+        ),
+        alt_text: matterData.name,
+        width: matterData.width,
+        height: matterData.height,
+    };
+};
+
 export const rawToProcessed = (
     matter: FrontMatterType,
     content: string,
     dirName: string,
     id: number,
 ): ProjectType => {
-    const imageData: Partial<ImageDataType> = {
-        height: matter.height || undefined,
-        width: matter.width || undefined,
-        src: join(imageLocation ?? "", matter.image ?? "").replace(/\\/g, "/"),
-    };
-
     return {
         id,
         name: matter.name,
         description: content,
         href: `/projects/${dirName}`,
-        image: imageData,
+        image: extractImageData(matter),
         tags:
             matter.tags === undefined
                 ? []
