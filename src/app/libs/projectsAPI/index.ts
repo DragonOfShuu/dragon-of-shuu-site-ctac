@@ -18,8 +18,12 @@ import { getDatabaseProjects, searchDatabaseProjects } from "./externals";
 const getProjects = async (page: number): Promise<ProjectType[]> => {
     const pageSize = 10;
     const internalProjects = await getAllInternal();
-    if (pageSize * page <= internalProjects.length)
-        return internalProjects.slice((page - 1) * pageSize, pageSize);
+
+    const sectionedInternal = internalProjects.slice(
+        (page - 1) * pageSize,
+        pageSize,
+    );
+    if (pageSize * page <= internalProjects.length) return sectionedInternal;
 
     // Get start and end indices for slicing the database projects
     const preDbStartIndex = pageSize * (page - 1) - internalProjects.length;
@@ -29,7 +33,7 @@ const getProjects = async (page: number): Promise<ProjectType[]> => {
         dbStartIndex,
         dbEndIndex - dbStartIndex,
     );
-    return [...internalProjects, ...databaseProjects];
+    return [...sectionedInternal, ...databaseProjects];
 };
 
 const searchProjects = async (
@@ -39,9 +43,12 @@ const searchProjects = async (
 ): Promise<ProjectType[]> => {
     const pageSize = 10;
     const matchedInternal = await searchInternalProjects(searchString, tags);
-    // TODO: PLACEHOLDER
-    if (pageSize * page <= matchedInternal.length)
-        return matchedInternal.slice((page - 1) * pageSize, pageSize);
+
+    const sectionedInternal = matchedInternal.slice(
+        (page - 1) * pageSize,
+        pageSize,
+    );
+    if (pageSize * page <= matchedInternal.length) return sectionedInternal;
 
     // Get start and end indices for slicing the database projects
     const preDbStartIndex = pageSize * (page - 1) - matchedInternal.length;
@@ -54,7 +61,7 @@ const searchProjects = async (
         tags,
     );
 
-    return [...matchedInternal, ...databaseProjects];
+    return [...sectionedInternal, ...databaseProjects];
 };
 
 const getAllTags = async (): Promise<string[]> => {

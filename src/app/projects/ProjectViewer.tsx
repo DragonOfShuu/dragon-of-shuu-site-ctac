@@ -1,10 +1,25 @@
+import { useIntersectionObserver } from "usehooks-ts";
 import ProjectItem from "./ProjectItem";
 import { useProjectSearchData } from "@/app/projects/ProjectSearchContext";
+import { Activity } from "react";
+import Loading from "@/components/Loading";
 
 type ProjectViewerPropType = {};
 
 const ProjectViewer = ({}: ProjectViewerPropType) => {
-    const { projectBuffer: projects, tagColorsTable } = useProjectSearchData();
+    const {
+        projectBuffer: projects,
+        tagColorsTable,
+        loadMore,
+        hasMore,
+    } = useProjectSearchData();
+    const { ref } = useIntersectionObserver({
+        threshold: 0.25,
+        onChange: (isIntersecting) => {
+            if (!isIntersecting) return;
+            loadMore();
+        },
+    });
 
     if (projects.length === 0)
         return (
@@ -21,15 +36,18 @@ const ProjectViewer = ({}: ProjectViewerPropType) => {
 
     return (
         <div className={`flex flex-col items-stretch gap-2`}>
-            {projects.map((proj) => {
-                return (
-                    <ProjectItem
-                        {...proj}
-                        tagColorsTable={tagColorsTable}
-                        key={proj.name}
-                    />
-                );
-            })}
+            {projects.map((proj, index) => (
+                <ProjectItem
+                    {...proj}
+                    tagColorsTable={tagColorsTable}
+                    key={`${proj.id} ${index}`}
+                />
+            ))}
+            <Activity mode={hasMore ? "visible" : "hidden"}>
+                <div ref={ref} className="h-48">
+                    <Loading></Loading>
+                </div>
+            </Activity>
         </div>
     );
 };

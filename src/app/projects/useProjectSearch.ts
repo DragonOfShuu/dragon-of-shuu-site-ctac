@@ -1,6 +1,6 @@
 import { searchProjects, getAllTags } from "@/app/libs/projectsAPI";
 import { ProjectType } from "../libs/projectsAPI/types";
-import { useEffect, useRef, useState, useTransition } from "react";
+import { useCallback, useEffect, useRef, useState, useTransition } from "react";
 
 const useProjectSearch = (initialProjects: ProjectType[]) => {
     const [isPending, startTransition] = useTransition();
@@ -11,6 +11,9 @@ const useProjectSearch = (initialProjects: ProjectType[]) => {
 
     const [searchText, _setSearchText] = useState("");
     const [searchTags, _setSearchTags] = useState<string[]>([]);
+
+    const [page, setPage] = useState(1);
+    const [hasMore, setHasMore] = useState(true);
 
     useEffect(() => {
         getAllTags().then((newTags) => {
@@ -39,7 +42,11 @@ const useProjectSearch = (initialProjects: ProjectType[]) => {
                     newSearchText ?? searchText,
                     newSearchTags ?? searchTags,
                 );
+                // Yes, this second start transition is necessary
+                // https://react.dev/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition
                 startTransition(() => {
+                    setPage(1);
+                    setHasMore(true);
                     setProjectBuffer(newProjects);
                 });
             });
@@ -59,6 +66,24 @@ const useProjectSearch = (initialProjects: ProjectType[]) => {
         });
     };
 
+    const loadMore = useCallback(async () => {
+        if (isPending) return;
+        if (!hasMore) return false;
+
+        const moreProjects = await searchProjects(
+            page + 1,
+            searchText,
+            searchTags,
+        );
+        if (moreProjects.length === 0) {
+            setHasMore(false);
+            return false;
+        }
+        setProjectBuffer((buffer) => [...buffer, ...moreProjects]);
+        setPage((page) => page + 1);
+        return true;
+    }, [isPending, hasMore, page, searchText, searchTags]);
+
     return {
         isPending,
         projectBuffer,
@@ -67,6 +92,8 @@ const useProjectSearch = (initialProjects: ProjectType[]) => {
         setSearchText,
         searchTags,
         setSearchTags,
+        hasMore,
+        loadMore,
     };
 };
 

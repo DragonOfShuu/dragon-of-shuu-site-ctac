@@ -9,14 +9,15 @@ import ProjectSearchDataContext from "@/app/projects/ProjectSearchContext";
 import useProjectSearch from "@/app/projects/useProjectSearch";
 import useGenerateTagColors from "@/app/projects/useGenerateTagColors";
 import ProjectTagSelector from "@/app/projects/ProjectTagSelector";
-import { useState } from "react";
+import { use, useState } from "react";
 import { ProjectType } from "../libs/projectsAPI/types";
 
 type ProjectViewerFilterPropType = {
-    initialProjectValue: ProjectType[];
+    initialProjectValue: Promise<ProjectType[]>;
 };
 
 const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
+    const initialProjects = use(props.initialProjectValue);
     const {
         isPending,
         projectBuffer,
@@ -24,7 +25,9 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
         setSearchText,
         searchTags,
         setSearchTags,
-    } = useProjectSearch(props.initialProjectValue);
+        hasMore,
+        loadMore,
+    } = useProjectSearch(initialProjects);
     const tagColorsTable = useGenerateTagColors(allTags);
 
     const [tagFiltersVisible, setTagFiltersVisible] = useState<boolean>(false);
@@ -36,6 +39,8 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                 tagColorsTable,
                 searchTags,
                 setSearchTags,
+                hasMore,
+                loadMore,
             }}
         >
             <div className={`flex flex-col flex-grow gap-3`}>

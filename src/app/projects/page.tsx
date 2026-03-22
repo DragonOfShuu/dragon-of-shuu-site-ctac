@@ -1,8 +1,9 @@
 import PageHeader from "@/components/PageHeader";
 import EmphasizedContent from "@/components/EmphasizedContent";
-import ProjectViewerFilterServer from "@/app/projects/ProjectViewerFilterServer";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
+import ProjectViewerFilter from "./ProjectViewerFilter";
+import getProjects from "../libs/projectsAPI";
 
 const MinisPage = async () => {
     return (
@@ -22,7 +23,7 @@ const MinisPage = async () => {
                         </div>
                     }
                 >
-                    <ProjectViewerFilterServer />
+                    <ProjectViewerFilter initialProjectValue={getProjects(1)} />
                 </Suspense>
             </div>
         </>

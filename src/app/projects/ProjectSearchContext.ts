@@ -10,6 +10,8 @@ type ProjectSearchDataContextType = {
     tagColorsTable: TagToColor;
     searchTags: string[];
     setSearchTags: Dispatch<SetStateAction<string[]>>;
+    hasMore: boolean;
+    loadMore: () => Promise<boolean | undefined>;
 };
 
 const ProjectSearchDataContext =
