@@ -2,7 +2,7 @@
 
 import sql from "../sql";
 import { ProjectType } from "./types";
-import { imageLocation } from "./internals";
+import { imageLocation } from "./constants";
 import { cacheLife } from "next/cache";
 
 const pullProjectsQuery = sql`

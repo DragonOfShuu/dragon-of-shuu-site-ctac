@@ -1,4 +1,4 @@
-// "use server";
+"use server";
 
 import {
     FrontMatterType,
@@ -9,11 +9,7 @@ import { join } from "path/posix";
 import fs from "fs/promises";
 import matter from "gray-matter";
 import { readdir } from "fs/promises";
-import sql from "@/app/libs/sql";
-
-export const minisDir = "src/app/projects/";
-export const projectMetaFileName = "project.md";
-export const imageLocation = "/projects/image-bucket/";
+import { imageLocation, minisDir, projectMetaFileName } from "./constants";
 
 const extractImageData = (
     matterData: FrontMatterType,
@@ -31,7 +27,7 @@ const extractImageData = (
     };
 };
 
-export const rawToProcessed = (
+const rawToProcessed = (
     matter: FrontMatterType,
     content: string,
     dirName: string,
@@ -87,6 +83,7 @@ const getProjectData = async (
 };
 
 export const getAllInternal = async () => {
+    "use cache";
     const projNames = await getProjectNames();
     const projData = await Promise.all(
         projNames.map((p, index) => getProjectData(p, -index - 1)),
@@ -102,7 +99,7 @@ export const searchInternalProjects = async (
     const projs = await getAllInternal();
     return projs.filter((project) => {
         const thisProjectTags = project.tags;
-        const searchStringParts = searchString.split(/\W+/);
+        const searchStringParts = searchString.split(/r\W+/);
         // console.table({ searchStringParts, tags });
         // If the search string could not be found, filter this project out
         if (

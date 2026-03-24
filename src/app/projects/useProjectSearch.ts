@@ -1,6 +1,7 @@
 import { searchProjects, getAllTags } from "@/app/libs/projectsAPI";
 import { ProjectType } from "../libs/projectsAPI/types";
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
+import { pageSize as projectPageSize } from "../libs/projectsAPI/constants";
 
 const useProjectSearch = (initialProjects: ProjectType[]) => {
     const [isPending, startTransition] = useTransition();
@@ -46,7 +47,7 @@ const useProjectSearch = (initialProjects: ProjectType[]) => {
                 // https://react.dev/reference/react/useTransition#react-doesnt-treat-my-state-update-after-await-as-a-transition
                 startTransition(() => {
                     setPage(1);
-                    setHasMore(true);
+                    setHasMore(newProjects.length === projectPageSize);
                     setProjectBuffer(newProjects);
                 });
             });
@@ -79,6 +80,7 @@ const useProjectSearch = (initialProjects: ProjectType[]) => {
             setHasMore(false);
             return false;
         }
+        if (moreProjects.length < projectPageSize) setHasMore(false);
         setProjectBuffer((buffer) => [...buffer, ...moreProjects]);
         setPage((page) => page + 1);
         return true;

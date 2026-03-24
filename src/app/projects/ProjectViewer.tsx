@@ -16,7 +16,7 @@ const ProjectViewer = ({}: ProjectViewerPropType) => {
     const { ref } = useIntersectionObserver({
         threshold: 0.25,
         onChange: (isIntersecting) => {
-            if (!isIntersecting) return;
+            if (!isIntersecting || !hasMore) return;
             loadMore();
         },
     });
