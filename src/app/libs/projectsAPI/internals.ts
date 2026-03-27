@@ -5,7 +5,7 @@ import {
     ProjectType,
     ImageDataType,
 } from "@/app/libs/projectsAPI/types";
-import { join } from "path/posix";
+import { join } from "path";
 import fs from "fs/promises";
 import matter from "gray-matter";
 import { readdir } from "fs/promises";
@@ -27,6 +27,26 @@ const extractImageData = (
     };
 };
 
+const candidateProjectRoots = [
+    join(process.cwd(), minisDir),
+    join(process.cwd(), ".next/server/app/projects"),
+];
+
+const resolveProjectRoot = async (): Promise<string> => {
+    for (const candidatePath of candidateProjectRoots) {
+        try {
+            const stat = await fs.stat(candidatePath);
+            if (stat.isDirectory()) return candidatePath;
+        } catch {
+            // Try the next candidate path.
+        }
+    }
+
+    throw new Error(
+        `Could not locate project markdown root. Tried: ${candidateProjectRoots.join(", ")}`,
+    );
+};
+
 const rawToProcessed = (
     matter: FrontMatterType,
     content: string,
@@ -46,24 +66,19 @@ const rawToProcessed = (
     };
 };
 
-const getProjectNames = async () => {
-    const folders = (
-        await readdir(`${process.cwd()}/${minisDir}`, { withFileTypes: true })
-    )
+const getProjectNames = async (projectRoot: string) => {
+    const folders = (await readdir(projectRoot, { withFileTypes: true }))
         .filter((file) => file.isDirectory())
         .map((file) => file.name);
     return [...folders];
 };
 
 const getProjectData = async (
+    projectRoot: string,
     projName: string,
     id: number,
 ): Promise<ProjectType | null> => {
-    const fullPath = join(
-        `${process.cwd()}/${minisDir}`,
-        projName,
-        projectMetaFileName,
-    );
+    const fullPath = join(projectRoot, projName, projectMetaFileName);
 
     let fileContent;
     try {
@@ -84,27 +99,28 @@ const getProjectData = async (
 
 export const getAllInternal = async () => {
     "use cache";
-    const cachePath = `${process.cwd()}/shuu_cache/`;
-    const cacheFileName = "internalProjects.json";
-    const fullCachePath = join(cachePath, cacheFileName);
-    try {
-        const cached = await fs.readFile(fullCachePath, "utf8");
-        return JSON.parse(cached) as ProjectType[];
-    } catch {
-        // No cache, or cache failed to read/parse, so we will regenerate it
-        const projNames = await getProjectNames();
-        const projData = await Promise.all(
-            projNames.map((p, index) => getProjectData(p, -index - 1)),
-        );
-        const projs = projData.filter((p) => p !== null) as ProjectType[];
-        await fs.mkdir(cachePath, { recursive: true });
-        await fs.writeFile(
-            fullCachePath,
-            JSON.stringify(projs, null, 2),
-            "utf8",
-        );
-        return projs;
-    }
+    // const cachePath = `${process.cwd()}/shuu_cache/`;
+    // const cacheFileName = "internalProjects.json";
+    // const fullCachePath = join(cachePath, cacheFileName);
+    // try {
+    //     const cached = await fs.readFile(fullCachePath, "utf8");
+    //     return JSON.parse(cached) as ProjectType[];
+    // } catch {
+    // No cache, or cache failed to read/parse, so we will regenerate it
+    const projectRoot = await resolveProjectRoot();
+    const projNames = await getProjectNames(projectRoot);
+    const projData = await Promise.all(
+        projNames.map((p, index) => getProjectData(projectRoot, p, -index - 1)),
+    );
+    const projs = projData.filter((p) => p !== null) as ProjectType[];
+    // await fs.mkdir(cachePath, { recursive: true });
+    // await fs.writeFile(
+    //     fullCachePath,
+    //     JSON.stringify(projs, null, 2),
+    //     "utf8",
+    // );
+    return projs;
+    // }
 };
 
 export const searchInternalProjects = async (
