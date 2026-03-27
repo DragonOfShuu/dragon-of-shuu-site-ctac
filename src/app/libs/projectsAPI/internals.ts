@@ -84,12 +84,27 @@ const getProjectData = async (
 
 export const getAllInternal = async () => {
     "use cache";
-    const projNames = await getProjectNames();
-    const projData = await Promise.all(
-        projNames.map((p, index) => getProjectData(p, -index - 1)),
-    );
-    const projs = projData.filter((p) => p !== null) as ProjectType[];
-    return projs;
+    const cachePath = `${process.cwd()}/shuu_cache/`;
+    const cacheFileName = "internalProjects.json";
+    const fullCachePath = join(cachePath, cacheFileName);
+    try {
+        const cached = await fs.readFile(fullCachePath, "utf8");
+        return JSON.parse(cached) as ProjectType[];
+    } catch {
+        // No cache, or cache failed to read/parse, so we will regenerate it
+        const projNames = await getProjectNames();
+        const projData = await Promise.all(
+            projNames.map((p, index) => getProjectData(p, -index - 1)),
+        );
+        const projs = projData.filter((p) => p !== null) as ProjectType[];
+        await fs.mkdir(cachePath, { recursive: true });
+        await fs.writeFile(
+            fullCachePath,
+            JSON.stringify(projs, null, 2),
+            "utf8",
+        );
+        return projs;
+    }
 };
 
 export const searchInternalProjects = async (
