@@ -27,26 +27,6 @@ const extractImageData = (
     };
 };
 
-const candidateProjectRoots = [
-    join(process.cwd(), minisDir),
-    join(process.cwd(), ".next/server/app/projects"),
-];
-
-const resolveProjectRoot = async (): Promise<string> => {
-    for (const candidatePath of candidateProjectRoots) {
-        try {
-            const stat = await fs.stat(candidatePath);
-            if (stat.isDirectory()) return candidatePath;
-        } catch {
-            // Try the next candidate path.
-        }
-    }
-
-    throw new Error(
-        `Could not locate project markdown root. Tried: ${candidateProjectRoots.join(", ")}`,
-    );
-};
-
 const rawToProcessed = (
     matter: FrontMatterType,
     content: string,
@@ -66,19 +46,25 @@ const rawToProcessed = (
     };
 };
 
-const getProjectNames = async (projectRoot: string) => {
-    const folders = (await readdir(projectRoot, { withFileTypes: true }))
+const getProjectNames = async () => {
+    const folders = (
+        await readdir(join(process.cwd(), minisDir), { withFileTypes: true })
+    )
         .filter((file) => file.isDirectory())
         .map((file) => file.name);
     return [...folders];
 };
 
 const getProjectData = async (
-    projectRoot: string,
     projName: string,
     id: number,
 ): Promise<ProjectType | null> => {
-    const fullPath = join(projectRoot, projName, projectMetaFileName);
+    const fullPath = join(
+        process.cwd(),
+        minisDir,
+        projName,
+        projectMetaFileName,
+    );
 
     let fileContent;
     try {
@@ -107,10 +93,9 @@ export const getAllInternal = async () => {
     //     return JSON.parse(cached) as ProjectType[];
     // } catch {
     // No cache, or cache failed to read/parse, so we will regenerate it
-    const projectRoot = await resolveProjectRoot();
-    const projNames = await getProjectNames(projectRoot);
+    const projNames = await getProjectNames();
     const projData = await Promise.all(
-        projNames.map((p, index) => getProjectData(projectRoot, p, -index - 1)),
+        projNames.map((p, index) => getProjectData(p, -index - 1)),
     );
     const projs = projData.filter((p) => p !== null) as ProjectType[];
     // await fs.mkdir(cachePath, { recursive: true });
