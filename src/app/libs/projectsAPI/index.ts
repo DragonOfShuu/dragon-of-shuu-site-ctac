@@ -1,178 +1,73 @@
 "use server";
 
-import { readdir } from "fs/promises";
-import fs from "fs/promises";
-import matter from "gray-matter";
-import { join } from "path";
+import sql from "@/app/libs/sql";
+import { ProjectType } from "@/app/libs/projectsAPI/types";
+import {
+    getAllInternal,
+    searchInternalProjects,
+} from "@/app/libs/projectsAPI/internals";
+import { getDatabaseProjects, searchDatabaseProjects } from "./externals";
 
-import extraProjects from "@/app/libs/projectsAPI/extras";
+/**
+ * Get projects from the database, paginated. Will also
+ * include projects that are not in the database, but are
+ * in the file system.
+ * @param page 1-based index of the page we are needing
+ * @returns A list of projects, paginated
+ */
+const getProjects = async (page: number): Promise<ProjectType[]> => {
+    const pageSize = 10;
+    const internalProjects = await getAllInternal();
 
-const minisDir = "src/app/projects/";
-const projectMetaFileName = "project.md";
-const imageLocation = "/projects/image-bucket/";
-
-type FrontMatterType = {
-    name: string;
-    image: string;
-    width: number;
-    height: number;
-    /** Example: "website, typescript, text translation" */
-    tags?: string;
-};
-
-export type ImageDataType = {
-    src: string;
-    width: number;
-    height: number;
-};
-
-export type ProjectType = {
-    name: string;
-    href: string;
-    extraLinks?: { [name: string]: string };
-    image: Partial<ImageDataType>;
-    description: string;
-    tags?: string[];
-};
-
-const extrasToProcessed = () => {
-    const imageIsEmpty = (data: ProjectType["image"]) =>
-        !data.src || !data.width || !data.height;
-
-    return Object.entries(extraProjects).reduce<{
-        [name: string]: ProjectType;
-    }>((prev, [name, projectData]) => {
-        const newProjectData: ProjectType = {
-            ...projectData,
-            image: {
-                ...projectData.image,
-                src: imageIsEmpty(projectData.image)
-                    ? undefined
-                    : imageLocation + projectData.image.src,
-            },
-        };
-        return { ...prev, [name]: newProjectData };
-    }, {});
-};
-
-const processedExtras = extrasToProcessed();
-
-const getProjectNames = async () => {
-    const folders = (
-        await readdir(`${process.cwd()}/${minisDir}`, { withFileTypes: true })
-    )
-        .filter((file) => file.isDirectory())
-        .map((file) => file.name);
-    return [
-        ...folders,
-        ...Object.values(processedExtras).map((project) => project.name),
-    ];
-};
-
-const rawToProcessed = (
-    matter: FrontMatterType,
-    content: string,
-    dirName: string,
-): ProjectType => {
-    const imageData: Partial<ImageDataType> = {
-        height: matter.height || undefined,
-        width: matter.width || undefined,
-        src: join(imageLocation ?? "", matter.image ?? "").replace(/\\/g, "/"),
-    };
-
-    return {
-        description: content,
-        href: `/projects/${dirName}`,
-        image: imageData,
-        name: matter.name,
-        tags:
-            matter.tags === undefined
-                ? []
-                : matter.tags.split(",").map((v) => v.trim()),
-    };
-};
-
-const getProjectData = async (
-    projName: string,
-): Promise<ProjectType | null> => {
-    const fullPath = join(
-        `${process.cwd()}/${minisDir}`,
-        projName,
-        projectMetaFileName,
+    const sectionedInternal = internalProjects.slice(
+        (page - 1) * pageSize,
+        pageSize,
     );
+    if (pageSize * page <= internalProjects.length) return sectionedInternal;
 
-    let fileContent;
-    try {
-        fileContent = await fs.readFile(fullPath, "utf8");
-    } catch {
-        return processedExtras[projName] ?? null;
-    }
-
-    const { data: frontmatter, content } = matter(fileContent);
-
-    return rawToProcessed(frontmatter as FrontMatterType, content, projName);
-};
-
-const getAllProjects = async (): Promise<ProjectType[]> => {
-    const projNames = await getProjectNames();
-
-    const projData = await Promise.all(projNames.map((p) => getProjectData(p)));
-
-    return projData.filter((p) => p !== null);
+    // Get start and end indices for slicing the database projects
+    const preDbStartIndex = pageSize * (page - 1) - internalProjects.length;
+    const dbStartIndex = Math.max(0, preDbStartIndex);
+    const dbEndIndex = preDbStartIndex + pageSize;
+    const databaseProjects = await getDatabaseProjects(
+        dbStartIndex,
+        dbEndIndex - dbStartIndex,
+    );
+    return [...sectionedInternal, ...databaseProjects];
 };
 
 const searchProjects = async (
+    page: number,
     searchString: string,
     tags?: string[],
 ): Promise<ProjectType[]> => {
-    const projs = await getAllProjects();
-    const newProjs = projs.filter((project) => {
-        const thisProjectTags = project.tags;
-        const searchStringParts = searchString.split(/\W+/);
-        // console.table({ searchStringParts, tags });
-        // If the search string could not be found, filter this project out
-        if (
-            searchString !== "" &&
-            searchStringParts.some(
-                (part) =>
-                    !project.name.toLowerCase().includes(part.toLowerCase()),
-            )
-        )
-            return false;
-        // If tags are required, but this project doesn't have tags, filter this project out
-        if (tags && tags.length > 0 && !thisProjectTags) return false;
-        // If there are any missing tags, filter this project out
-        if (
-            tags &&
-            thisProjectTags &&
-            tags.some((t) => !thisProjectTags.includes(t))
-        )
-            return false;
-        // Return true otherwise
-        return true;
-    });
-    // FOR TESTING
-    // return new Promise((resolve) => setTimeout(() => resolve(newProjs), 500));
-    return newProjs;
+    const pageSize = 10;
+    const matchedInternal = await searchInternalProjects(searchString, tags);
+
+    const sectionedInternal = matchedInternal.slice(
+        (page - 1) * pageSize,
+        pageSize,
+    );
+    if (pageSize * page <= matchedInternal.length) return sectionedInternal;
+
+    // Get start and end indices for slicing the database projects
+    const preDbStartIndex = pageSize * (page - 1) - matchedInternal.length;
+    const dbStartIndex = Math.max(0, preDbStartIndex);
+    const dbEndIndex = preDbStartIndex + pageSize;
+    const databaseProjects = await searchDatabaseProjects(
+        dbStartIndex,
+        dbEndIndex - dbStartIndex,
+        searchString,
+        tags,
+    );
+
+    return [...sectionedInternal, ...databaseProjects];
 };
 
 const getAllTags = async (): Promise<string[]> => {
-    const projects = await getAllProjects();
-
-    return projects
-        .reduce<string[]>((newTagList, project) => {
-            const projectTags = project.tags;
-            if (!projectTags) return newTagList;
-
-            projectTags.forEach((newTag) => {
-                if (newTagList.includes(newTag)) return;
-                newTagList.push(newTag);
-            });
-
-            return newTagList;
-        }, [])
-        .sort();
+    const rows = await sql`SELECT name FROM tags`;
+    return rows.map((row) => row.name);
 };
 
-export default getAllProjects;
-export { getProjectData, getProjectNames, searchProjects, getAllTags };
+export default getProjects;
+export { searchProjects, getAllTags };

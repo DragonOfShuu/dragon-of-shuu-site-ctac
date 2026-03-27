@@ -8,7 +8,7 @@ import Markdown from "react-markdown";
 import {
     ImageDataType as ProjectImageType,
     ProjectType,
-} from "@/app/libs/projectsAPI";
+} from "../libs/projectsAPI/types";
 import GitHubIcon from "@/assets/lineIcons/socials/GitHub.svg";
 import ExternalLinkIcon from "@/assets/lineIcons/externalLink.svg";
 import Viewable3dDiv from "@/components/effects/Viewable3dDiv";
@@ -55,18 +55,24 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                 </Markdown>
                 <div className={`${styles.interactables}`}>
                     <AdaptiveLink href={props.href} text={"Open"} />
-                    {!props.extraLinks ? (
+                    {!props.extra_links ? (
                         <></>
                     ) : (
-                        Object.entries(props.extraLinks).map(([name, link]) => (
-                            <AdaptiveLink href={link} text={name} key={name} />
-                        ))
+                        Object.entries(props.extra_links).map(
+                            ([name, link]) => (
+                                <AdaptiveLink
+                                    href={link}
+                                    text={name}
+                                    key={name}
+                                />
+                            ),
+                        )
                     )}
                 </div>
 
                 {/* Background elements */}
                 <div className="absolute inset-0 -z-10 bg-gradient-to-r from-amber-950 via-orange-900 via-40%" />
-                {props.image.height && props.image.width ? (
+                {props.image && props.image.height && props.image.width ? (
                     <div className="absolute inset-0 -z-20">
                         <Image
                             {...(props.image as ProjectImageType)}
