@@ -45,11 +45,11 @@ const NavBar = (props: Props) => {
             href: "/about",
             icon: iIcon,
         },
-        // {
-        //     text: "Contact Us",
-        //     href: "/contact",
-        //     // icon: mailIcon,
-        // },
+        {
+            text: "Contact Us",
+            href: "/contact",
+            icon: mailIcon,
+        },
         {
             text: "Projects",
             href: "/projects",

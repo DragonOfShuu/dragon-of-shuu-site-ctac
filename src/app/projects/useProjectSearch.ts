@@ -1,7 +1,7 @@
-import { searchProjects, getAllTags } from "@/app/libs/projectsAPI";
-import { ProjectType } from "../libs/projectsAPI/types";
+import { searchProjects, getAllTags } from "@/app/api/projectsAPI";
+import { ProjectType } from "../lib/projects/types";
 import { useCallback, useEffect, useRef, useState, useTransition } from "react";
-import { pageSize as projectPageSize } from "../libs/projectsAPI/constants";
+import { pageSize as projectPageSize } from "../lib/projects/constants";
 
 const useProjectSearch = (initialProjects: ProjectType[]) => {
     const [isPending, startTransition] = useTransition();

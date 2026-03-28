@@ -2,11 +2,8 @@
 
 import useEpicRow from "@/components/epicForms/contexts/EpicFormRowContext";
 import { DetailedHTMLProps, InputHTMLAttributes } from "react";
-
-type Verifier = {
-    regex: RegExp;
-    error: string;
-};
+import { findErrorInRegex } from "../../../app/lib/userVerification/findErrorInRegex";
+import { Verifier } from "@/app/lib/userVerification/types";
 
 export type EpicFormRegExInputPropType = {
     regexes: Verifier[];
@@ -31,20 +28,7 @@ const EpicFormRegExInput = (props: EpicFormRegExInputPropType) => {
         setFormError(message);
     };
 
-    const findError = (text: string): string | null =>
-        verifiers.find((verifier, index) => {
-            const found = text.match(verifier.regex);
-            // If regex not found...
-            if (found === null) {
-                // Return an error
-                return true;
-            }
-            // If this regex is the last one, and does not fully match...
-            if (index === verifiers.length - 1 && found[0] !== text) {
-                // Return an error
-                return true;
-            }
-        })?.error || null;
+    const findError = (text: string) => findErrorInRegex(verifiers, text);
 
     const onBlur = (e: React.FocusEvent<HTMLInputElement, Element>) => {
         // What to do if the user attempts to submit the form, but haven't even

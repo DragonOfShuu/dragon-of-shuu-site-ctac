@@ -4,7 +4,7 @@ import {
     contactSubmissionDisplay,
     contactSubmissionKeys,
     ContactSubmissionType,
-} from "@/app/contact/contactTypes";
+} from "@/app/lib/contact/types";
 import { useSearchParams } from "next/navigation";
 import { useMemo } from "react";
 import styles from "./SubmissionViewer.module.sass";
@@ -14,7 +14,7 @@ type SubmissionViewerPropType = {};
 
 const SubmissionViewer = (props: SubmissionViewerPropType) => {
     const params = useSearchParams();
-    
+
     const submitted: { [x: string]: string | undefined } = useMemo(
         () =>
             contactSubmissionKeys.reduce<{ [x: string]: string | undefined }>(

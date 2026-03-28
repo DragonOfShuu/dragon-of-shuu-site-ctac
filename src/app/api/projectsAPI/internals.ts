@@ -4,12 +4,16 @@ import {
     FrontMatterType,
     ProjectType,
     ImageDataType,
-} from "@/app/libs/projectsAPI/types";
+} from "@/app/lib/projects/types";
 import { join } from "path";
 import fs from "fs/promises";
 import matter from "gray-matter";
 import { readdir } from "fs/promises";
-import { imageLocation, minisDir, projectMetaFileName } from "./constants";
+import {
+    imageLocation,
+    minisDir,
+    projectMetaFileName,
+} from "../../lib/projects/constants";
 
 const extractImageData = (
     matterData: FrontMatterType,
@@ -85,27 +89,12 @@ const getProjectData = async (
 
 export const getAllInternal = async () => {
     "use cache";
-    // const cachePath = `${process.cwd()}/shuu_cache/`;
-    // const cacheFileName = "internalProjects.json";
-    // const fullCachePath = join(cachePath, cacheFileName);
-    // try {
-    //     const cached = await fs.readFile(fullCachePath, "utf8");
-    //     return JSON.parse(cached) as ProjectType[];
-    // } catch {
-    // No cache, or cache failed to read/parse, so we will regenerate it
     const projNames = await getProjectNames();
     const projData = await Promise.all(
         projNames.map((p, index) => getProjectData(p, -index - 1)),
     );
     const projs = projData.filter((p) => p !== null) as ProjectType[];
-    // await fs.mkdir(cachePath, { recursive: true });
-    // await fs.writeFile(
-    //     fullCachePath,
-    //     JSON.stringify(projs, null, 2),
-    //     "utf8",
-    // );
     return projs;
-    // }
 };
 
 export const searchInternalProjects = async (

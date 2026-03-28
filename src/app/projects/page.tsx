@@ -3,7 +3,7 @@ import EmphasizedContent from "@/components/EmphasizedContent";
 import { Suspense } from "react";
 import Loading from "@/components/Loading";
 import ProjectViewerFilter from "./ProjectViewerFilter";
-import getProjects from "../libs/projectsAPI";
+import getProjects from "../api/projectsAPI";
 
 const MinisPage = async () => {
     return (

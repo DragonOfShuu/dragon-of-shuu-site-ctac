@@ -10,7 +10,7 @@ import useProjectSearch from "@/app/projects/useProjectSearch";
 import useGenerateTagColors from "@/app/projects/useGenerateTagColors";
 import ProjectTagSelector from "@/app/projects/ProjectTagSelector";
 import { use, useState } from "react";
-import { ProjectType } from "../libs/projectsAPI/types";
+import { ProjectType } from "../lib/projects/types";
 
 type ProjectViewerFilterPropType = {
     initialProjectValue: Promise<ProjectType[]>;
