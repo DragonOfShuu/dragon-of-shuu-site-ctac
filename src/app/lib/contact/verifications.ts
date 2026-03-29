@@ -31,4 +31,8 @@ export const emailAddressVerifier = [
         error: `Must be a valid email address (must also be all lowercase)`,
         regex: emailAddrRegex,
     },
+    {
+        error: `Email address cannot be longer than 256 characters`,
+        regex: new RegExp(`.{1,256}`),
+    },
 ];
