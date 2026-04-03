@@ -9,7 +9,9 @@ import { join } from "path";
 import fs from "fs/promises";
 import matter from "gray-matter";
 import { readdir } from "fs/promises";
-import { imageLocation, minisDir, projectMetaFileName } from "./constants";
+import { imageLocation, projectMetaFileName } from "./constants";
+
+const projectsRoot = join(process.cwd(), "src", "app", "projects");
 
 const extractImageData = (
     matterData: FrontMatterType,
@@ -47,9 +49,7 @@ const rawToProcessed = (
 };
 
 const getProjectNames = async () => {
-    const folders = (
-        await readdir(join(process.cwd(), minisDir), { withFileTypes: true })
-    )
+    const folders = (await readdir(projectsRoot, { withFileTypes: true }))
         .filter((file) => file.isDirectory())
         .map((file) => file.name);
     return [...folders];
@@ -59,12 +59,7 @@ const getProjectData = async (
     projName: string,
     id: number,
 ): Promise<ProjectType | null> => {
-    const fullPath = join(
-        process.cwd(),
-        minisDir,
-        projName,
-        projectMetaFileName,
-    );
+    const fullPath = join(projectsRoot, projName, projectMetaFileName);
 
     let fileContent;
     try {
