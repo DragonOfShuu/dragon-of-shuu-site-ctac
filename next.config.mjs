@@ -70,7 +70,7 @@ const nextConfig = {
     },
     cacheComponents: true,
     outputFileTracingIncludes: {
-        "/*": ["./src/app/projects/**/project.md"],
+        "/projects": ["./src/app/projects/*/project.md"],
     },
 };
 

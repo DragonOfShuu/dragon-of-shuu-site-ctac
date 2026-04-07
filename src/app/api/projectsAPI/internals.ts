@@ -15,6 +15,8 @@ import {
     projectMetaFileName,
 } from "../../lib/projects/constants";
 
+const projectsRoot = join(process.cwd(), "src", "app", "projects");
+
 const extractImageData = (
     matterData: FrontMatterType,
 ): ImageDataType | undefined => {
@@ -51,9 +53,7 @@ const rawToProcessed = (
 };
 
 const getProjectNames = async () => {
-    const folders = (
-        await readdir(join(process.cwd(), minisDir), { withFileTypes: true })
-    )
+    const folders = (await readdir(projectsRoot, { withFileTypes: true }))
         .filter((file) => file.isDirectory())
         .map((file) => file.name);
     return [...folders];
@@ -63,12 +63,7 @@ const getProjectData = async (
     projName: string,
     id: number,
 ): Promise<ProjectType | null> => {
-    const fullPath = join(
-        process.cwd(),
-        minisDir,
-        projName,
-        projectMetaFileName,
-    );
+    const fullPath = join(projectsRoot, projName, projectMetaFileName);
 
     let fileContent;
     try {
