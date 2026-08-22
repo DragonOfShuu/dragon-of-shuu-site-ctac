@@ -17,7 +17,7 @@ const Settings = (props: SettingsProps) => {
     const diaglogBox = useRef<HTMLDialogElement>(null);
 
     const { sData, sDispatch } = useSettings();
-    const [tempMagnetStrength, setTempMagnetStrength] = useState<string>('0')
+    const [tempMagnetStrength, setTempMagnetStrength] = useState<string>("0");
 
     useEffect(() => {
         setTempMagnetStrength(sData.heuristicMultiplier.toString());
@@ -76,14 +76,16 @@ const Settings = (props: SettingsProps) => {
                         min={1}
                         max={30}
                         onBlur={(e) => {
-                            const potentialValue = Number.parseFloat(e.target.value);
+                            const potentialValue = Number.parseFloat(
+                                e.target.value,
+                            );
                             const newValue = isNaN(potentialValue)
                                 ? 1
                                 : potentialValue;
                             sDispatch({
                                 type: "u",
                                 heuristicMultiplier: newValue,
-                            })
+                            });
                             setTempMagnetStrength(newValue.toString());
                         }}
                         onChange={(e) => setTempMagnetStrength(e.target.value)}

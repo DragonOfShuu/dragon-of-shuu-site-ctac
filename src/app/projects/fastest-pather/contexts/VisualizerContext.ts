@@ -1,5 +1,5 @@
 import { createContext, useContext } from "react";
-import { Block, Coord, SettingsType } from "../CommonTypes";
+import { Block, Coord } from "../CommonTypes";
 
 export type StartEnd = {
     start: Coord;
@@ -42,7 +42,10 @@ export type VisualizerActionType =
     | { type: "toolbar"; enabled: boolean }
     | { type: "blocks"; newBlocks: Block[][] }
     | { type: "block"; newBlock: Block }
-    | { type: "setVisualizerRef"; newRef: React.RefObject<HTMLDivElement | null> };
+    | {
+          type: "setVisualizerRef";
+          newRef: React.RefObject<HTMLDivElement | null>;
+      };
 
 export const VisualizerReducer = (
     prevState: VisualizerDataType,
