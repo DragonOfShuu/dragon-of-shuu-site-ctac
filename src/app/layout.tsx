@@ -5,6 +5,8 @@ import NavBar from "../components/nav/navBar/NavBar";
 import Footer from "@/components/nav/footer/Footer";
 import NavBarProvider from "@/components/nav/navBar/NavBarProvider";
 
+
+
 const strikingFont = Libre_Baskerville({
     weight: "400",
     subsets: ["latin"],

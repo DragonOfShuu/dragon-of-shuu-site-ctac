@@ -5,6 +5,7 @@ import SpecialButton from "@/components/SpecialButton";
 import Link from "next/link";
 import { Suspense } from "react";
 
+
 const ThankYou = () => {
     return (
         <>

@@ -11,11 +11,9 @@ import matter from "gray-matter";
 import { readdir } from "fs/promises";
 import {
     imageLocation,
-    minisDir,
     projectMetaFileName,
+    projectsRoot
 } from "../../lib/projects/constants";
-
-const projectsRoot = join(process.cwd(), "src", "app", "projects");
 
 const extractImageData = (
     matterData: FrontMatterType,

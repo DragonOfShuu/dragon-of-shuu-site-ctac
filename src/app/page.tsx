@@ -3,6 +3,8 @@ import DisableableHeaderCanvas from "../components/headerCanvas/DisableableHeade
 import EmphasizedContent from "@/components/EmphasizedContent";
 import SpaceshipWithControls from "@/app/SpaceshipWithControls";
 
+
+
 export default function Home() {
     return (
         <>

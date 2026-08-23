@@ -7,6 +7,8 @@ import CodingPatternFeature from "@/app/about/CodingPatternFeature";
 import EmphasizedContent from "@/components/EmphasizedContent";
 import TimelineFeature from "@/app/about/TimelineFeature";
 
+
+
 const AboutMe = () => {
     return (
         <>
