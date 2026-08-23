@@ -1,4 +1,4 @@
-import { useIntersectionObserver } from "usehooks-ts";
+import useIntersectionObserver from "@/components/hooks/useIntersectionObserver";
 import ProjectItem from "./ProjectItem";
 import { useProjectSearchData } from "@/app/projects/ProjectSearchContext";
 import { Activity } from "react";
