@@ -1,13 +1,18 @@
 "use client";
 
-import { DetailedHTMLProps, FormHTMLAttributes } from "react";
+import { DetailedHTMLProps, FormHTMLAttributes, useActionState } from "react";
 import styles from "./EpicForms.module.sass";
 import EpicFormContextComp from "@/components/epicForms/contexts/EpicFormContextComp";
+import useEpicFormData from "../contexts/EpicFormContext";
 
-type EpicFormPropType = {} & DetailedHTMLProps<
+type EpicFormPropType = DetailedHTMLProps<
     FormHTMLAttributes<HTMLFormElement>,
     HTMLFormElement
->;
+> & {
+    epicAction: (
+        formdata: FormData,
+    ) => Promise<{ message: string }> | { message: string };
+};
 
 /**
  * Acts as a wrapper for Epic Forms, and adds context
@@ -22,11 +27,24 @@ const EpicForm = (props: EpicFormPropType) => {
 };
 
 const EpicFormInner = (props: EpicFormPropType) => {
-    const { className, ...formProps } = props;
+    const { className, epicAction, ...formProps } = props;
+    const { epicFormDataDispatch } = useEpicFormData();
+
+    const formAction = async (formdata: FormData) => {
+        const result = await epicAction(formdata);
+        epicFormDataDispatch({
+            type: "setSubmissionError",
+            error: result.message,
+        });
+    };
 
     return (
         <div className={className}>
-            <form {...formProps} className={`${styles.formRoot}`} />
+            <form
+                {...formProps}
+                action={formAction}
+                className={`${styles.formRoot}`}
+            />
         </div>
     );
 };

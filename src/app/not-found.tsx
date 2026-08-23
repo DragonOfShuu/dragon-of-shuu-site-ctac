@@ -42,7 +42,7 @@ export default function NotFound() {
             </div>
         </>
     );
-};
+}
 
 const useRandomShift = (low: number, high: number, ms: number) => {
     const [shiftX, setShiftX] = useState<number>(0);

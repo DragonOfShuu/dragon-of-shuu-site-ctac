@@ -2,6 +2,7 @@ import PageHeader from "@/components/PageHeader";
 import EmphasizedContent from "@/components/EmphasizedContent";
 import Translations from "@/app/projects/runes/Translations";
 
+
 const Page = () => {
     return (
         <>

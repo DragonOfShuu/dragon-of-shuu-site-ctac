@@ -1,11 +1,11 @@
 "use server";
 
-import sql from "@/app/libs/sql";
-import { ProjectType } from "@/app/libs/projectsAPI/types";
+import sql from "@/app/api/sql";
+import { ProjectType } from "@/app/lib/projects/types";
 import {
     getAllInternal,
     searchInternalProjects,
-} from "@/app/libs/projectsAPI/internals";
+} from "@/app/api/projectsAPI/internals";
 import { getDatabaseProjects, searchDatabaseProjects } from "./externals";
 
 /**

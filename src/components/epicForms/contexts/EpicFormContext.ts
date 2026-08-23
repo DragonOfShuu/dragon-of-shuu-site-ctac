@@ -4,11 +4,13 @@ import { createContext, useContext } from "react";
 
 export type EpicFormDataType = {
     errors: { [param: string]: string };
+    submissionError?: string;
 };
 
 export type EpicFormDataAction =
     | { type: "editError"; param: string; error: string }
-    | { type: "removeError"; param: string };
+    | { type: "removeError"; param: string }
+    | { type: "setSubmissionError"; error: string };
 
 export type EpicFormContextType = {
     epicFormData: EpicFormDataType;
@@ -42,6 +44,11 @@ export const epicFormReducer = (
                 return oldState;
             const { [action.param]: _, ...allElse } = newState.errors;
             newState.errors = allElse;
+            return newState;
+        }
+        case "setSubmissionError": {
+            if (oldState.submissionError === action.error) return oldState;
+            newState.submissionError = action.error;
             return newState;
         }
     }

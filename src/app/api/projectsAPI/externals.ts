@@ -1,8 +1,8 @@
 "use server";
 
 import sql from "../sql";
-import { ProjectType } from "./types";
-import { imageLocation } from "./constants";
+import { ProjectType } from "../../lib/projects/types";
+import { imageLocation } from "../../lib/projects/constants";
 import { cacheLife } from "next/cache";
 
 const pullProjectsQuery = sql`
