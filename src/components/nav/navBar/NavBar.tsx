@@ -15,9 +15,20 @@ import iIcon from "@/assets/lineIcons/iIcon.svg";
 import useWindowScroll from "@/components/hooks/useWindowScroll";
 import styles from "./NavBar.module.sass";
 import useNavBar from "@/components/nav/navBar/NavBarContext";
+import { ReactNode } from "react";
 
-type Props = {};
+// Navbar component provides responsive navigation with:
+// - Desktop: horizontal nav links + Sign In button on right
+// - Mobile: hamburger menu + optional Sign In button
+// - Auto-hide on scroll + manual collapse/expand
 
+// NavBar component props
+type Props = {
+    /** Server-rendered login button passed as a slot to keep auth server-side */
+    loginButton: ReactNode;
+};
+
+// Hook to manage mobile nav visibility - closes nav when screen resizes above md breakpoint
 const useMobileNavOnlySmall = () => {
     const { width } = useWindowDimensions();
     const [mobileNavVis, setMobileNavVis] = useState<boolean>(false);
@@ -27,13 +38,16 @@ const useMobileNavOnlySmall = () => {
 
         if (!aboveMd(width)) return;
 
+        // Close mobile nav when viewport goes above md breakpoint
         setMobileNavVis(false);
     }, [width, mobileNavVis]);
 
     return { mobileNavVis, setMobileNavVis };
 };
 
-const NavBar = (props: Props) => {
+// Main navbar component - responsive design with desktop and mobile layouts
+const NavBar = ({ loginButton }: Props) => {
+    // Main navigation links that appear in desktop nav and mobile menu
     const navLinks: NavLinkType[] = [
         {
             text: "Home",
@@ -57,14 +71,19 @@ const NavBar = (props: Props) => {
         },
     ];
 
+    // Mobile nav state management
     const { mobileNavVis, setMobileNavVis } = useMobileNavOnlySmall();
+    // Track scroll position for navbar background effect
     const { scrollY } = useWindowScroll();
+    // Global navbar visibility state (for show/hide toggle)
     const { navBarData, setNavBarData } = useNavBar();
 
+    // Toggle mobile nav visibility when hamburger is clicked
     function menuIconClick() {
         setMobileNavVis(!mobileNavVis);
     }
 
+    // Close mobile nav when a link is clicked, with slight delay for animation
     const navClicked = () => {
         setTimeout(() => setMobileNavVis(false), 500);
     };
@@ -76,9 +95,11 @@ const NavBar = (props: Props) => {
             data-visible={navBarData.forceVisible ? true : navBarData.isVisible}
         >
             <div className={`pointer-events-auto`}>
+                {/* Main navbar header - contains logo, desktop nav, and Sign In button */}
                 <div
                     className={`flex items-center lg:grid grid-flow-col lg:grid-cols-[25%_50%_25%] px-3 md:py-2 h-nav-margin ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
                 >
+                    {/* Logo/Branding - Left section */}
                     <Link
                         href={`/`}
                         className={`text-lg sm:text-3xl text-amber-500 text-glow shadow-amber-500 text-nowrap`}
@@ -86,6 +107,7 @@ const NavBar = (props: Props) => {
                         Dragon of Shuu
                     </Link>
 
+                    {/* Desktop navigation links - Center section (hidden on mobile) */}
                     <div
                         className={`ml-4 gap-2 hidden md:flex justify-end lg:justify-center flex-grow`}
                     >
@@ -94,9 +116,20 @@ const NavBar = (props: Props) => {
                         ))}
                     </div>
 
+                    {/* Desktop login button - Right section (only on md+ screens) */}
                     <div
-                        className={`md:hidden flex justify-end h-full flex-grow`}
+                        className={`hidden md:flex justify-end items-center gap-2`}
                     >
+                        {loginButton}
+                    </div>
+
+                    {/* Mobile hamburger menu - Right section (only on mobile) */}
+                    <div
+                        className={`md:hidden flex justify-end h-full flex-grow gap-2 items-center`}
+                    >
+                        {/* Mobile login button */}
+                        {loginButton}
+                        {/* Hamburger menu icon to toggle mobile nav */}
                         <LineIconButton
                             svg={HamburgerMenuIcon}
                             className={`w-14`}
@@ -104,6 +137,7 @@ const NavBar = (props: Props) => {
                         />
                     </div>
                 </div>
+                {/* Collapse/Expand button - appears when nav is hidden */}
                 <button
                     className={`${navBarData.isVisible || mobileNavVis ? `hidden` : `block`} rounded-b-lg w-12 py-2 ml-auto mr-4 bg-orange-950 flex items-center justify-center`}
                     onClick={() =>
@@ -120,6 +154,7 @@ const NavBar = (props: Props) => {
                     </span>
                 </button>
             </div>
+            {/* Mobile navigation menu - slides in from right when hamburger is clicked */}
             <div
                 className={`${styles.mobileLinkList}`}
                 data-mobile-vis={mobileNavVis}

@@ -1,6 +1,6 @@
 import { neon } from "@neondatabase/serverless";
 
-const connectionString = process.env.NEON_DATABASE_URL;
+export const connectionString = process.env.NEON_DATABASE_URL;
 
 if (!connectionString) {
     throw new Error("NEON_DATABASE_URL environment variable is not defined");
@@ -45,7 +45,6 @@ export class Database {
     }
 
     async query<T = any>(strings: string, ...values: any[]): Promise<T[]> {
-        // return (this.client as any)(strings, ...values);
         return this.client.query(strings, ...values) as Promise<T[]>;
     }
 }

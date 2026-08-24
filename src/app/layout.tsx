@@ -4,8 +4,8 @@ import "./globals.sass";
 import NavBar from "../components/nav/navBar/NavBar";
 import Footer from "@/components/nav/footer/Footer";
 import NavBarProvider from "@/components/nav/navBar/NavBarProvider";
-
-
+import LoginButton from "@/components/nav/navBar/LoginButton";
+import { Suspense } from "react";
 
 const strikingFont = Libre_Baskerville({
     weight: "400",
@@ -40,7 +40,7 @@ export default function RootLayout({
                 className={`${strikingFont.variable} ${simpleFont.variable} ${simpleFont.className}`}
             >
                 <NavBarProvider>
-                    <NavBar />
+                    <NavBar loginButton={<LoginButton />} />
                     <div className={`min-h-screen flex flex-col`}>
                         {children}
                     </div>

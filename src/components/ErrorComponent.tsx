@@ -24,9 +24,7 @@ const ErrorComponent = (props: ErrorComponentPropType) => {
                 >
                     ERROR
                 </h1>
-                <div
-                    className={`flex flex-col p-4 h-full bg-orange-950 border-orange-700 border-2 rounded-md`}
-                >
+                <div className={`flex flex-col p-4 h-full non-prominent-frame`}>
                     <h2>Oh No, Something Went Wrong!</h2>
                     <p>{snarkyComment}</p>
                     <div

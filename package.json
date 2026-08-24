@@ -13,7 +13,8 @@
     "mailing": "mailing"
   },
   "dependencies": {
-    "@neondatabase/serverless": "^1.0.2",
+    "@auth/neon-adapter": "^1.11.3",
+    "@neondatabase/serverless": "^1.1.0",
     "@react-three/drei": "^10.7.6",
     "@react-three/fiber": "^9.3.0",
     "@react-three/postprocessing": "^3.0.4",
@@ -21,6 +22,7 @@
     "gray-matter": "^4.0.3",
     "lodash": "^4.17.21",
     "next": "16.3.2",
+    "next-auth": "^5.0.0-beta.32",
     "react": "19.2.8",
     "react-dom": "19.2.8",
     "react-error-boundary": "^4.0.13",
