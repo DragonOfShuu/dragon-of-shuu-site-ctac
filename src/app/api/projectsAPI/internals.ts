@@ -12,7 +12,7 @@ import { readdir } from "fs/promises";
 import {
     imageLocation,
     projectMetaFileName,
-    projectsRoot
+    projectsRoot,
 } from "../../lib/projects/constants";
 
 const extractImageData = (

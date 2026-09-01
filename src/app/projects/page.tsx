@@ -5,8 +5,6 @@ import Loading from "@/components/Loading";
 import ProjectViewerFilter from "./ProjectViewerFilter";
 import getProjects from "../api/projectsAPI";
 
-
-
 const MinisPage = async () => {
     return (
         <>

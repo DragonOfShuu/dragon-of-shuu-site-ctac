@@ -5,7 +5,7 @@ import NavLink, { NavLinkType } from "./NavLink";
 import LineIconButton from "../../LineIconButton";
 import HamburgerMenuIcon from "@/assets/lineIcons/hamburgerMenu.svg";
 import ProjectIcon from "@/assets/lineIcons/projectIcon.svg";
-import { Suspense, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import useWindowDimensions, {
     aboveMd,
 } from "@/components/hooks/useWindowDimensions";

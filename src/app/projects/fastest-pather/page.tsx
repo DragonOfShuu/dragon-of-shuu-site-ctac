@@ -3,7 +3,6 @@ import HowOnStart from "./help/HowOnStart";
 import SettingsContextComp from "./contexts/SettingsContextComp";
 import NavMargin from "@/components/nav/navBar/NavMargin";
 
-
 const Page = () => {
     return (
         <>
