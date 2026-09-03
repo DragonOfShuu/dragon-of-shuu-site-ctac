@@ -1,4 +1,4 @@
-import { ButtonHTMLAttributes, DetailedHTMLProps, FC, SVGProps } from "react";
+import { ButtonHTMLAttributes, DetailedHTMLProps } from "react";
 
 type Props = {
     svg: SVGRPropsType;
