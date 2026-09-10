@@ -21,7 +21,8 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
     const [open, setOpen] = useState(false);
 
     return (
-        <Viewable3dDiv maxTurn={5}>
+        <div>
+            {/* <Viewable3dDiv maxTurn={5}> */}
             <div
                 className={`${styles.item}`}
                 onClick={() => setOpen((o) => !o)}
@@ -84,7 +85,8 @@ const ProjectItem = (props: ProjectDisplayPropType) => {
                     <></>
                 )}
             </div>
-        </Viewable3dDiv>
+            {/* </Viewable3dDiv> */}
+        </div>
     );
 };
 
