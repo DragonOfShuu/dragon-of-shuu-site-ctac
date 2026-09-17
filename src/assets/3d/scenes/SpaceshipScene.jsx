@@ -17,13 +17,19 @@ export default function SpaceshipScene(props) {
     const { nodes, materials } = useGraph(clone);
     const { actions } = useAnimations(animations, group);
 
-    useRandomSelection(Object.keys(actions), 100, (animName) => {
-        // Written like this so in case all the anims
-        // are null at first, then we can still pull
-        // the new data
-        const anim = actions[animName];
-        anim?.play();
-    });
+    // Stabilise the dependency values so useRandomSelection's effect doesn't
+    // re-run (and reset its interval) on every render.
+    const actionKeys = React.useMemo(() => Object.keys(actions), [actions]);
+    const playRandom = React.useCallback(
+        (animName) => {
+            // Access actions via the ref so the callback never goes stale.
+            const anim = actions[animName];
+            anim?.play();
+        },
+        [actions],
+    );
+
+    useRandomSelection(actionKeys, 100, playRandom);
 
     return (
         <group ref={group} {...props} dispose={null}>
