@@ -90,12 +90,12 @@ const NavBarClient = ({ loginButton }: Props) => {
             <div className={`pointer-events-auto`}>
                 {/* Main navbar header - contains logo, desktop nav, and Sign In button */}
                 <div
-                    className={`flex items-center lg:grid grid-flow-col lg:grid-cols-[25%_50%_25%] px-3 md:py-2 h-nav-margin ${scrollY > 0 && !mobileNavVis ? `bg-orange-975 bg-opacity-80 backdrop-blur-md` : ``} transition-colors`}
+                    className={`flex items-center lg:grid grid-flow-col lg:grid-cols-[25%_50%_25%] px-3 md:py-2 h-nav-margin border-b ${scrollY > 0 && !mobileNavVis ? `bg-black/70 backdrop-blur-md border-orange-500/40` : `border-transparent`} transition-colors`}
                 >
                     {/* Logo/Branding - Left section */}
                     <Link
                         href={`/`}
-                        className={`text-lg sm:text-3xl text-amber-500 text-glow shadow-amber-500 text-nowrap`}
+                        className={`font-striking text-lg sm:text-2xl md:text-3xl bg-gradient-to-r from-amber-400 via-amber-500 to-orange-600 bg-clip-text text-transparent drop-shadow-[0_0_12px_rgba(245,158,11,0.5)] whitespace-nowrap`}
                     >
                         Dragon of Shuu
                     </Link>
@@ -132,7 +132,7 @@ const NavBarClient = ({ loginButton }: Props) => {
                 </div>
                 {/* Collapse/Expand button - appears when nav is hidden */}
                 <button
-                    className={`${navBarData.isVisible || mobileNavVis ? `hidden` : `block`} rounded-b-lg w-12 py-2 ml-auto mr-4 bg-orange-950 flex items-center justify-center`}
+                    className={`${navBarData.isVisible || mobileNavVis ? `hidden` : `block`} rounded-b-lg w-12 py-2 ml-auto mr-4 bg-black/80 border-x border-b border-orange-500/40 flex items-center justify-center`}
                     onClick={() =>
                         setNavBarData({
                             type: "setForceVisible",

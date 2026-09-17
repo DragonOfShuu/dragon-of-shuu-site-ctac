@@ -22,10 +22,16 @@ const config: Config = {
             fontFamily: {
                 striking: ["var(--striking-font)"],
                 simple: ["var(--simple-font)"],
+                mono: [
+                    "var(--mono-font)",
+                    "ui-monospace",
+                    "monospace",
+                ],
             },
             colors: {
                 orange: {
-                    "975": "#170703",
+                    // Near-black warm base; kept dark for max contrast with amber accents
+                    "975": "#0A0401",
                 },
             },
             spacing: {

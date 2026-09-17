@@ -20,7 +20,7 @@ const ErrorComponent = (props: ErrorComponentPropType) => {
         <div {...divProps}>
             <div className={`size-full relative`}>
                 <h1
-                    className={`hidden md:block absolute -z-10 md:-top-12 md:-left-12 md:text-7xl font-bold font-sans text-orange-950/90`}
+                    className={`hidden md:block absolute -z-10 md:-top-12 md:-left-12 md:text-7xl font-bold font-mono text-amber-500/15`}
                 >
                     ERROR
                 </h1>
@@ -28,7 +28,7 @@ const ErrorComponent = (props: ErrorComponentPropType) => {
                     <h2>Oh No, Something Went Wrong!</h2>
                     <p>{snarkyComment}</p>
                     <div
-                        className={`bg-orange-975 rounded-md p-2 my-4 grow overflow-auto`}
+                        className={`bg-black/60 border border-red-500/40 rounded-md p-2 my-4 grow overflow-auto`}
                     >
                         <pre className={``}>{error.stack}</pre>
                     </div>

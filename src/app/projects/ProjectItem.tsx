@@ -95,18 +95,18 @@ const AdaptiveLink = (props: { text: string; href: string }) => {
     let icon = null;
 
     if (!isLocal) {
-        icon = <ExternalLinkIcon className={`h-6 w-auto fill-white`} />;
+        icon = <ExternalLinkIcon className={`h-6 w-auto fill-current`} />;
     }
 
     if (isGithub) {
-        icon = <GitHubIcon className={`h-6 w-auto fill-white`} />;
+        icon = <GitHubIcon className={`h-6 w-auto fill-current`} />;
     }
 
     return (
         <Link
             href={props.href}
             target={isLocal ? `_self` : `_blank`}
-            className={`special-button shadow-md shadow-gray-900/50 flex gap-2`}
+            className={`special-button flex gap-2`}
         >
             {props.text}
             {icon}

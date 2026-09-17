@@ -1,7 +1,6 @@
 import SubmissionViewer from "@/app/contact/thank-you/SubmissionViewer";
 import Loading from "@/components/Loading";
 import PageHeader from "@/components/PageHeader";
-import SpecialButton from "@/components/SpecialButton";
 import Link from "next/link";
 import { Suspense } from "react";
 
@@ -17,19 +16,19 @@ const ThankYou = () => {
                 >
                     <div>
                         <h2>Response Received</h2>
-                        <h3 className={`text-orange-800 text-xl`}>
+                        <h3 className={`text-orange-300 text-xl`}>
                             We will get to you as soon as possible
                         </h3>
                     </div>
                     <div>
-                        <SpecialButton>
-                            <Link href={"/"}>Return Home</Link>
-                        </SpecialButton>
+                        <Link className={`special-button`} href={"/"}>
+                            Return Home
+                        </Link>
                     </div>
                 </div>
 
                 <div
-                    className={`w-full lg:w-[700px] border-2 rounded-md border-orange-900 p-4`}
+                    className={`w-full lg:w-[700px] bg-black/60 backdrop-blur-sm border border-orange-500/40 rounded-lg p-4`}
                 >
                     <Suspense fallback={<Loading />}>
                         <SubmissionViewer />

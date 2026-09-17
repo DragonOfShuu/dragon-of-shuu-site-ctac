@@ -36,7 +36,7 @@ const LoggedInDropdown = ({ name, email, image }: Props) => {
         <div className="relative">
             <div
                 onClick={handleToggle}
-                className="flex items-center gap-4 rounded-full xl:rounded-xl bg-orange-950/75 hover:bg-orange-900 p-1 xl:px-4 xl:py-1 max-w-80 overflow-hidden cursor-pointer"
+                className="flex items-center gap-4 rounded-full xl:rounded-xl bg-black/60 border border-orange-500/40 hover:border-amber-500/70 backdrop-blur-md p-1 xl:px-4 xl:py-1 max-w-80 overflow-hidden cursor-pointer transition-colors"
             >
                 <Image
                     src={image || "/default-profile.png"}
@@ -66,7 +66,7 @@ const LoggedInDropdown = ({ name, email, image }: Props) => {
 
             {(isOpen || isClosing) && (
                 <div
-                    className={`absolute right-0 top-full mt-2 w-48 bg-orange-950 rounded-lg shadow-lg p-2 overflow-hidden ${
+                    className={`absolute right-0 top-full mt-2 w-48 bg-black/90 border border-orange-500/40 backdrop-blur-md rounded-lg shadow-[0_8px_32px_rgba(0,0,0,0.6)] p-2 overflow-hidden ${
                         !isClosing
                             ? styles.dropdownOpen
                             : styles.dropdownClosing
@@ -75,13 +75,13 @@ const LoggedInDropdown = ({ name, email, image }: Props) => {
                 >
                     <Link
                         href="/dashboard"
-                        className="block w-full text-left px-3 py-2 rounded-md hover:bg-orange-900 transition-colors"
+                        className="block w-full text-left px-3 py-2 rounded-md hover:bg-orange-500/15 hover:text-amber-400 transition-colors"
                     >
                         Dashboard
                     </Link>
                     <button
                         onClick={() => handleSignOut()}
-                        className="w-full text-left px-3 py-2 rounded-md hover:bg-orange-900 transition-colors"
+                        className="w-full text-left px-3 py-2 rounded-md hover:bg-orange-500/15 hover:text-amber-400 transition-colors"
                     >
                         Logout
                     </button>

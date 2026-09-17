@@ -1,13 +1,12 @@
 .navLink
-    @apply p-2 flex gap-2 items-center hover:text-amber-400 stroke-white hover:stroke-amber-400 stroke-2 h-10
+    @apply px-3 py-2 flex gap-2 items-center h-10 uppercase tracking-[0.2em] text-xs md:text-sm font-semibold border-b-2 border-transparent stroke-slate-300 hover:text-amber-400 hover:stroke-amber-400 transition-colors stroke-2
 
     &[data-curr-path=true]
-        text-shadow: 0px 0px 10px var(--tw-shadow-color)
-        background: radial-gradient(theme('colors.orange.500' / 40%), transparent 75%)
-        @apply shadow-amber-500 text-orange-500 stroke-orange-500
-    
+        filter: drop-shadow(0 0 6px rgba(245,158,11,0.6))
+        @apply text-amber-400 stroke-amber-400 border-b-amber-400
+
     &[data-mobile=true]
-        @apply text-2xl sm:text-6xl font-striking border-l-4 border-transparent h-24 stroke-2
+        @apply normal-case tracking-normal text-2xl sm:text-6xl font-striking border-b-0 border-l-4 h-24 px-4
 
         &[data-curr-path=true]
-            @apply border-amber-600
+            @apply border-l-amber-500

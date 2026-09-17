@@ -1,5 +1,9 @@
 import type { Metadata } from "next";
-import { Open_Sans, Libre_Baskerville } from "next/font/google";
+import {
+    Open_Sans,
+    Libre_Baskerville,
+    JetBrains_Mono,
+} from "next/font/google";
 import "./globals.sass";
 import NavBar from "../components/nav/navBar/NavBar";
 import Footer from "@/components/nav/footer/Footer";
@@ -14,6 +18,11 @@ const strikingFont = Libre_Baskerville({
 const simpleFont = Open_Sans({
     subsets: ["latin"],
     variable: "--simple-font",
+});
+
+const monoFont = JetBrains_Mono({
+    subsets: ["latin"],
+    variable: "--mono-font",
 });
 
 export const metadata: Metadata = {
@@ -35,7 +44,7 @@ export default function RootLayout({
                 viewers of this troubled world
             */}
             <body
-                className={`${strikingFont.variable} ${simpleFont.variable} ${simpleFont.className}`}
+                className={`${strikingFont.variable} ${simpleFont.variable} ${monoFont.variable} ${simpleFont.className}`}
             >
                 <NavBarProvider>
                     <NavBar />

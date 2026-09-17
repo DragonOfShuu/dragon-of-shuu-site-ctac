@@ -35,7 +35,7 @@ const EmphasizedContent = ({
             >
                 {children}
                 <div
-                    className={`w-24 border-2 border-amber-400 ${flexAlign[alignment]}`}
+                    className={`h-1 w-24 bg-gradient-to-r from-amber-400 to-orange-600 shadow-[0_0_12px_rgba(245,158,11,0.5)] ${flexAlign[alignment]}`}
                 />
             </div>
         </div>

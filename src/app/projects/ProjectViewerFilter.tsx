@@ -46,14 +46,14 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
             <div className={`flex flex-col flex-grow gap-3`}>
                 <form className="flex flex-row flex-wrap gap-2">
                     <div
-                        className={`grow rounded-full h-12 bg-orange-900 hover:bg-orange-800 border-2 border-orange-700 flex flex-row items-center px-2 gap-1 group`}
+                        className={`grow rounded-full h-12 bg-black/60 hover:bg-black/40 border-2 border-orange-500/40 focus-within:border-amber-400 flex flex-row items-center px-3 gap-2 group transition-colors`}
                     >
                         <SearchIcon
-                            className={`h-3/4 w-auto stroke-orange-700 group-hover:stroke-orange-600`}
+                            className={`h-3/4 w-auto stroke-orange-300 group-hover:stroke-amber-400`}
                         />
                         <input
                             placeholder={"Search..."}
-                            className={`border-none bg-transparent grow outline-none self-stretch text-lg placeholder-orange-700 group-hover:stroke-orange-600`}
+                            className={`border-none bg-transparent grow outline-none self-stretch text-lg placeholder:text-orange-300/60`}
                             type={`text`}
                             onChange={(e) => setSearchText(e.target.value)}
                         />
@@ -61,10 +61,10 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                     <SpecialButton
                         type={"button"}
                         onClick={() => setTagFiltersVisible((value) => !value)}
-                        className={`h-12`}
+                        className={`h-12 px-4`}
                     >
                         <FilterIcon
-                            className={`h-full w-auto m-auto stroke-white`}
+                            className={`h-full w-auto m-auto stroke-current`}
                         />
                     </SpecialButton>
                 </form>
@@ -73,7 +73,7 @@ const ProjectViewerFilter = (props: ProjectViewerFilterPropType) => {
                 />
                 {isPending || projectBuffer === null ? (
                     <div
-                        className={`flex-grow flex flex-col items-center justify-center bg-orange-950/30 m-10 rounded-xl`}
+                        className={`flex-grow flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm border border-orange-500/20 m-10 rounded-xl`}
                     >
                         <Loading />
                     </div>

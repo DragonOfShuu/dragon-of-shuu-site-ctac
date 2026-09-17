@@ -12,7 +12,7 @@ const Loading = (props: LoadingScreenProps) => {
             className={`size-full flex flex-col items-center justify-center gap-4`}
         >
             <div className={`${styles.loadingCircle}`} />
-            <SnarkyComment className={`text-orange-800 capitalize`} />
+            <SnarkyComment className={`text-orange-300 capitalize`} />
         </div>
     );
 };

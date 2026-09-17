@@ -37,13 +37,13 @@ const MarkdownTextbox = (props: MarkdownTextboxPropType) => {
             />
             {/* Create a reusable class named "docs" that allows you to have margins beneath headings, etc */}
             <Markdown
-                className={`w-full h-48 overflow-y-scroll ${isMarkdown ? `hidden` : ``}`}
+                className={`w-full h-48 overflow-y-scroll bg-black/40 border border-orange-500/20 rounded-md p-3 ${isMarkdown ? `hidden` : ``}`}
             >
                 {textAreaText}
             </Markdown>
             <div className={`flex flex-col-reverse md:flex-row gap-2`}>
                 <p
-                    className={`ml-1 text-orange-800 italic font-sans`}
+                    className={`ml-1 font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/70`}
                 >{`Markdown Enabled. ${props.maxLength} char limit.`}</p>
                 <div className="md:grow" />
                 <div className="flex gap-2">

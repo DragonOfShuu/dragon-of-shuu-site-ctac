@@ -1,0 +1,121 @@
+// "Write on the page" editor styles for BlogEditorForm.
+// Fields are borderless and transparent so the post feels like it is being
+// written directly onto the page; amber/orange marks interactive accents only.
+
+.wrapper
+    @apply flex w-full max-w-4xl mx-auto flex-col gap-4 p-4 md:gap-6 md:p-6 lg:p-8
+
+.topbar
+    @apply flex flex-wrap items-center gap-2 rounded-lg border border-orange-500/40 bg-black/60 p-2 backdrop-blur-md shadow-[0_0_30px_rgba(245,158,11,0.1)] md:gap-3 md:p-3
+
+.backBtn
+    @apply font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/70 hover:text-white transition-colors whitespace-nowrap
+
+.modeLabel
+    @apply hidden sm:block font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-amber-400 whitespace-nowrap
+
+.toolBtn
+    @apply px-3 py-2 rounded-md border-2 border-orange-500/40 font-mono uppercase tracking-[0.15em] text-xs md:px-4 md:text-sm transition-all hover:border-amber-400 whitespace-nowrap
+
+.toolBtnActive
+    @apply border-amber-400 bg-amber-600/20 shadow-[0_0_16px_rgba(245,158,11,0.3)]
+
+// --- Title: no box at all, just a gradient underline that draws in on hover/focus
+.titleWrap
+    @apply relative w-full pb-2
+
+    &::after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: 0
+        right: 0
+        height: 2px
+        background: linear-gradient(90deg, #fbbf24, #f97316 55%, transparent)
+        transform: scaleX(0)
+        transform-origin: left center
+        transition: transform 0.3s ease
+
+    &:hover::after,
+    &:focus-within::after
+        transform: scaleX(1)
+
+.titleInput
+    @apply w-full border-0 bg-transparent p-0 font-striking text-4xl leading-tight outline-none md:text-5xl capitalize placeholder:text-orange-100/25
+
+// --- Image zone: giant outlined placeholder, or the real image (full width, auto height)
+.imageZone
+    @apply flex w-full flex-col gap-2
+
+.imageBox
+    @apply relative flex min-h-[14rem] w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-orange-500/40 bg-black/30 transition-all duration-200 md:min-h-[20rem] hover:border-amber-400/70 hover:bg-black/40 hover:shadow-[0_0_30px_rgba(245,158,11,0.12)]
+
+.imageBoxLabel
+    @apply font-mono uppercase tracking-[0.3em] text-xs md:text-sm text-orange-300/60
+
+.imageShown
+    @apply h-auto w-full cursor-pointer rounded-lg transition-shadow duration-200 hover:shadow-[0_0_35px_rgba(245,158,11,0.2)]
+
+@keyframes blogEditorPopDown
+    from
+        opacity: 0
+        transform: translateY(-8px)
+
+    to
+        opacity: 1
+        transform: translateY(0)
+
+.imageNameRow
+    @apply flex w-full items-center gap-2
+    animation: blogEditorPopDown 0.25s ease
+
+// --- Content: the page itself is the textbox (no border, no scrollbar; it grows with the text)
+.contentBox
+    @apply min-h-[40vh] w-full resize-none overflow-hidden border-0 bg-transparent p-0 text-lg leading-[1.8] outline-none md:text-xl placeholder:text-orange-100/25
+
+// --- Details drawer: right sidebar for the description (and future metadata)
+.drawerBackdrop
+    @apply fixed inset-0 z-40 bg-black/60 backdrop-blur-[2px] transition-opacity duration-300
+
+.drawer
+    @apply fixed top-0 right-0 z-50 flex h-full w-full max-w-sm flex-col gap-4 overflow-y-auto border-l-2 border-orange-500/40 bg-black/85 p-4 backdrop-blur-xl transition-transform duration-300 ease-out md:p-6
+
+.drawerOpen
+    @apply translate-x-0
+
+.drawerClosed
+    @apply pointer-events-none translate-x-full
+
+.drawerHeader
+    @apply flex items-center justify-between gap-3
+
+.drawerTitle
+    @apply font-mono uppercase tracking-[0.2em] text-xs md:text-sm text-amber-400
+
+.closeBtn
+    @apply font-mono uppercase tracking-[0.15em] text-xs text-orange-300/70 hover:text-white transition-colors
+
+.drawerField
+    @apply flex grow flex-col gap-1.5
+
+.label
+    @apply font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/70
+
+// --- Preview: mirrors /dashboard/blog/[id] so what you see is what gets published
+.previewArticle
+    @apply flex w-full flex-col gap-4 md:gap-6
+
+.previewBanner
+    @apply relative aspect-video w-full overflow-hidden rounded-lg border border-orange-500/40 bg-gradient-to-br from-amber-950 via-black to-black shadow-[0_0_30px_rgba(245,158,11,0.15)] flex items-center justify-center
+
+.previewTitle
+    @apply text-3xl md:text-4xl font-striking capitalize
+
+.previewMeta
+    @apply mt-2 font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/60
+
+.previewEmpty
+    @apply text-orange-300/50 italic font-mono text-sm
+
+.status
+    @apply font-mono text-xs md:text-sm text-amber-400

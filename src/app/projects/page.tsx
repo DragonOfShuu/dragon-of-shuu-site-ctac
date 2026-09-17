@@ -17,7 +17,7 @@ const MinisPage = async () => {
                 <Suspense
                     fallback={
                         <div
-                            className={`flex-grow flex flex-col items-center justify-center bg-orange-950/30 m-10 rounded-xl`}
+                            className={`flex-grow flex flex-col items-center justify-center bg-black/40 backdrop-blur-sm border border-orange-500/20 m-10 rounded-xl`}
                         >
                             <Loading />
                         </div>

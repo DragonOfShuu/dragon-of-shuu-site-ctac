@@ -8,8 +8,8 @@ type Props = {
 const DashboardShell = ({ children }: Props) => {
     return (
         <>
-            <div className="h-nav-margin bg-orange-950/50" />
-            <div className="flex flex-row flex-grow items-stretch bg-orange-950/50">
+            <div className="h-nav-margin bg-black/60 backdrop-blur-sm border-b border-orange-500/30" />
+            <div className="flex flex-row flex-grow items-stretch bg-black/40">
                 <DashboardSidebar />
                 <div className="flex-grow bg-orange-975 rounded-tl-xl">{children}</div>
             </div>

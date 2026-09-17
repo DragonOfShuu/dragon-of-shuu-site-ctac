@@ -1,0 +1,37 @@
+// Note: the `group` marker class is added in BlogCard.tsx,
+// since Tailwind does not allow @apply-ing it
+.card
+    @apply relative flex flex-col overflow-hidden rounded-lg border border-orange-500/40 bg-black/60 backdrop-blur-md transition-all duration-200
+
+    &:hover
+        @apply -translate-y-0.5 border-amber-400/70 shadow-[0_0_30px_rgba(245,158,11,0.2)]
+
+.selected
+    @apply border-amber-400 shadow-[0_0_28px_rgba(245,158,11,0.3)]
+
+.imageWrap
+    @apply relative aspect-video overflow-hidden border-b border-orange-500/30 bg-gradient-to-br from-amber-950 via-black to-black flex items-center justify-center
+
+.image
+    @apply w-full h-full object-cover transition-transform duration-300 group-hover:scale-105
+
+.fallbackIcon
+    @apply w-12 h-12 opacity-40
+
+.body
+    @apply flex flex-col gap-2 p-4 grow
+
+.title
+    @apply text-xl leading-snug
+
+.desc
+    @apply text-sm text-orange-100/70 leading-relaxed line-clamp-3
+
+.date
+    @apply mt-auto pt-2 font-mono uppercase tracking-[0.15em] text-xs text-orange-300/60
+
+.checkboxWrap
+    @apply absolute top-2 left-2 z-10 flex items-center justify-center w-8 h-8 rounded-md bg-black/70 backdrop-blur border border-orange-500/40 cursor-pointer transition-colors group-hover:border-amber-400/70
+
+.checkbox
+    @apply w-5 h-5 accent-amber-500 cursor-pointer

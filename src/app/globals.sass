@@ -12,7 +12,6 @@
     @apply bg-orange-975 text-white
     scrollbar-color: theme("colors.orange.500") transparent
 
-/* Interestingly commas didn't work; decided to use mixins */
 @mixin selection-list
     background-color: theme('colors.orange.500')
     color: white
@@ -23,7 +22,7 @@
 ::-moz-selection
     @include selection-list
     
-@media (screen(lg))
+@media (min-width: 1024px)
     :root
         scrollbar-width: thin
 
@@ -50,12 +49,19 @@
         text-shadow: 0px 0px 5px var(--tw-shadow-color)
     .background-dark-double-shade
         background: rgb(0,0,0)
-        background: linear-gradient(0deg, rgba(0,0,0,0.6) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.6) 100%)
+        background: linear-gradient(0deg, rgba(0,0,0,0.85) 0%, rgba(0,0,0,0) 50%, rgba(0,0,0,0.85) 100%)
     .nav-margin
       height: globalvars.$nav-margin
 
+    // Web3 overline label: mono, uppercase, wide tracking
+    .kicker
+        @apply font-mono uppercase tracking-[0.35em] text-amber-400 text-xs md:text-sm
+
+    .glass-panel
+        @apply bg-black/60 backdrop-blur-md border border-orange-500/40 rounded-lg
+
     .non-prominent-frame
-      @apply bg-orange-950 border-orange-700 border-2 rounded-md
+      @apply bg-black/60 backdrop-blur-md border border-orange-500/40 rounded-lg shadow-[0_0_30px_rgba(245,158,11,0.15)]
     
     @keyframes hover-submit-button-anim
         0%
@@ -72,21 +78,21 @@
         @apply rounded-md px-4 py-2
         
         &[data-prominent = true], &:not([data-prominent])
-            @apply bg-amber-500
+            @apply bg-amber-500 text-black font-semibold shadow-[0_0_24px_rgba(245,158,11,0.4)]
 
             &:hover
-                @apply bg-amber-400
+                @apply bg-amber-400 shadow-[0_0_32px_rgba(245,158,11,0.6)]
                 &[type='submit']
                     animation: 0.5s infinite hover-submit-button-anim
-            
+
             &:active
-                @apply bg-amber-600
+                @apply bg-amber-600 shadow-[0_0_16px_rgba(245,158,11,0.3)]
 
         &[data-prominent = false]
-            @apply border-amber-500 border-2 transition-colors
+            @apply border-amber-500 border-2 text-amber-400 transition-colors hover:text-black
 
             &:hover
-                @apply bg-amber-600
+                @apply bg-amber-600 shadow-[0_0_24px_rgba(245,158,11,0.3)]
             
             &:active
                 @apply border-amber-600
@@ -97,10 +103,47 @@
             @apply border-gray-700
     
     .input-box
-        @apply p-2 rounded-md border-2 border-transparent bg-orange-700 placeholder:text-orange-300 outline-none
+        @apply p-2 rounded-md border-2 border-orange-500/40 bg-black/60 placeholder:text-orange-300/60 outline-none transition-colors
 
         &:hover
             @apply border-orange-400
         
         &:focus
-            @apply border-x-orange-300
+            @apply border-amber-400 shadow-[0_0_16px_rgba(245,158,11,0.25)]
+    
+    // Typography for rendered markdown (blog posts, previews)
+    .markdown-docs
+        @apply text-base leading-relaxed space-y-4 break-words
+
+        p
+            @apply my-0
+
+        h1,h2,h3,h4,h5,h6
+            @apply mt-6 mb-2 first:mt-0
+
+        a
+            @apply text-amber-400 underline decoration-amber-400/40 hover:text-amber-300 transition-colors
+
+        ul, ol
+            @apply pl-6 my-0 space-y-1
+
+        ul
+            @apply list-disc marker:text-orange-500/70
+
+        ol
+            @apply list-decimal marker:text-orange-500/70
+
+        blockquote
+            @apply border-l-4 border-amber-500/60 bg-black/40 rounded-r-md px-4 py-2 italic text-orange-100/80 my-0
+
+        pre
+            @apply bg-black/70 border border-orange-500/30 rounded-md p-4 overflow-x-auto my-0
+
+        code
+            @apply font-mono text-sm text-amber-300 bg-black/60 px-1.5 py-0.5 rounded
+
+        pre code
+            @apply bg-transparent p-0 text-orange-100
+
+        img
+            @apply rounded-lg border border-orange-500/30 max-w-full my-0

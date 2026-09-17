@@ -21,7 +21,9 @@ export default function NotFound() {
                 >
                     NOT FOUND
                 </h1>
-                <p>The Requested Resource Does Not Exist</p>
+                <p className={`font-mono uppercase tracking-[0.2em] text-orange-300/80 text-xs md:text-sm`}>
+                    The Requested Resource Does Not Exist
+                </p>
                 <Link href={`/`} className={`special-button mt-4`}>
                     Return Home
                 </Link>

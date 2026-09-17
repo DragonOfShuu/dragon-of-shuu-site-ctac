@@ -11,7 +11,7 @@ export type PageHeaderProps = {
 const PageHeader = (props: PageHeaderProps) => {
     return (
         <div
-            className={`relative w-full ${props.fullscreen ? `min-h-screen` : `h-52 md:h-72`}`}
+            className={`relative w-full border-b border-orange-500/30 ${props.fullscreen ? `min-h-screen` : `h-52 md:h-72`}`}
         >
             <div className={`absolute inset-0 -z-10`}>
                 {props.background ?? (

@@ -11,7 +11,7 @@ const AboutMe = () => {
     return (
         <>
             <PageHeader fullscreen>
-                <div className={`h-screen flex flex-col size-full p-4 md:p-14`}>
+                <div className={`relative h-screen flex flex-col size-full p-4 md:p-14`}>
                     <NavMargin className={`md:hidden`} />
                     <EmphasizedContent alignment={"center"}>
                         <h1>About Me</h1>
@@ -29,6 +29,12 @@ const AboutMe = () => {
                         >
                             {`A motivated developer who finds joy in coding great projects and more.`}
                         </h1>
+                    </div>
+                    <div className={`absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 pointer-events-none`}>
+                        <span className={`kicker`}>Scroll</span>
+                        <div
+                            className={`w-px h-10 bg-gradient-to-b from-amber-400 to-transparent animate-pulse`}
+                        />
                     </div>
                 </div>
             </PageHeader>

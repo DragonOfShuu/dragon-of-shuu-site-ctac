@@ -9,10 +9,13 @@ export default function LoginPage() {
     };
 
     return (
-        <div className="flex items-center justify-center min-h-screen">
-            <div className="non-prominent-frame flex flex-col items-stretch p-5">
+        <div className="flex items-center justify-center min-h-screen p-4">
+            <div className="non-prominent-frame flex flex-col items-stretch w-full max-w-md p-6 md:p-8">
+                <span className={`kicker self-start`}>Authentication</span>
                 <h1>Sign In / Sign Up</h1>
-                <div className="mt-8 mb-2 mx-4 h-[2px] bg-orange-400" />
+                <div
+                    className={`mt-4 mb-6 h-[2px] bg-gradient-to-r from-amber-400 to-orange-600/0`}
+                />
                 <SpecialButton onClick={googleSignIn}>
                     Google Sign In
                 </SpecialButton>

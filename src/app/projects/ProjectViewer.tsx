@@ -27,7 +27,7 @@ const ProjectViewer = ({}: ProjectViewerPropType) => {
                 className={`size-full flex items-center justify-center md:grow`}
             >
                 <p
-                    className={`font-bold text-2xl md:text-4xl xl:text-6xl text-center text-orange-900`}
+                    className={`font-bold text-2xl md:text-4xl xl:text-6xl text-center text-orange-300`}
                 >
                     No Projects Found
                 </p>
