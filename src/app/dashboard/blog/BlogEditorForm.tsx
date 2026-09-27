@@ -8,7 +8,8 @@ import ReactMarkdown from "react-markdown";
 import { createBlog, updateBlog } from "@/app/api/blogAPI";
 import BookIcon from "@/assets/lineIcons/bookIcon.svg";
 import { formatBlogDateTime } from "@/app/lib/blog/utils";
-import styles from "./BlogEditorForm.module.sass";
+import dashStyles from "../dashboard.module.sass";
+import styles from "./BlogSection.module.sass";
 
 type Props = {
     /** Null when creating a new post; the id when editing */
@@ -112,13 +113,15 @@ const BlogEditorForm = ({
     };
 
     return (
-        <div className={styles.wrapper}>
+        <div className={`${dashStyles.wrapper} ${dashStyles.narrow}`}>
             {/* Details drawer: description + future metadata live here */}
             <div
                 aria-hidden={!detailsOpen}
                 onClick={() => setDetailsOpen(false)}
                 className={`${styles.drawerBackdrop} ${
-                    detailsOpen ? "opacity-100" : "pointer-events-none opacity-0"
+                    detailsOpen
+                        ? "opacity-100"
+                        : "pointer-events-none opacity-0"
                 }`}
             />
             <aside
@@ -154,15 +157,21 @@ const BlogEditorForm = ({
 
             <div>
                 <span className="kicker">Dashboard / Blog</span>
-                <h1 className="text-3xl md:text-4xl font-striking capitalize mt-2">
+                <h1 className={dashStyles.pageTitle}>
                     {isEdit ? "Edit Post" : "New Post"}
                 </h1>
-                <div className="mt-3 h-px w-full bg-gradient-to-r from-orange-500/60 via-amber-500/30 to-transparent" />
+                <div className={dashStyles.headerRule} />
             </div>
 
-            <form onSubmit={handleSubmit} className="flex flex-col gap-4 md:gap-5">
-                <div className={styles.topbar}>
-                    <Link href="/dashboard/blog" className={styles.backBtn}>
+            <form
+                onSubmit={handleSubmit}
+                className="flex flex-col gap-4 md:gap-5"
+            >
+                <div className={dashStyles.toolbar}>
+                    <Link
+                        href="/dashboard/blog"
+                        className={dashStyles.backLink}
+                    >
                         &larr; Back
                     </Link>
                     <span className={styles.modeLabel}>
@@ -255,7 +264,7 @@ const BlogEditorForm = ({
                         </div>
 
                         {/* Image: giant outlined placeholder, or the real image. Click to (re)open the name box. */}
-                        <div className={styles.imageZone}>
+                        <div className="flex w-full flex-col gap-2">
                             {showImage && imageSrc ? (
                                 <img
                                     src={imageSrc}
@@ -267,9 +276,7 @@ const BlogEditorForm = ({
                             ) : (
                                 <button
                                     type="button"
-                                    onClick={() =>
-                                        setImageNameOpen((o) => !o)
-                                    }
+                                    onClick={() => setImageNameOpen((o) => !o)}
                                     className={styles.imageBox}
                                 >
                                     <span className={styles.imageBoxLabel}>

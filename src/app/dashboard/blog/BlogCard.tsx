@@ -5,7 +5,7 @@ import Link from "next/link";
 import { BlogType } from "@/app/lib/blog/types";
 import { formatBlogDate } from "@/app/lib/blog/utils";
 import BookIcon from "@/assets/lineIcons/bookIcon.svg";
-import styles from "./BlogCard.module.sass";
+import styles from "./BlogSection.module.sass";
 
 type Props = {
     blog: BlogType;
@@ -26,7 +26,7 @@ const BlogCard = ({ blog, selected, onToggleSelect }: Props) => {
             >
                 <input
                     type="checkbox"
-                    className={styles.checkbox}
+                    className="w-5 h-5 accent-amber-500 cursor-pointer"
                     checked={selected}
                     onChange={() => onToggleSelect(blog.id)}
                     aria-label={`Select "${blog.title}"`}
@@ -43,20 +43,22 @@ const BlogCard = ({ blog, selected, onToggleSelect }: Props) => {
                             alt={`${blog.title} cover image`}
                             fill
                             sizes="(min-width: 1024px) 33vw, (min-width: 768px) 50vw, 100vw"
-                            className={styles.image}
+                            className="w-full h-full object-cover transition-transform duration-300 group-hover:scale-105"
                         />
                     ) : (
                         <BookIcon
-                            className={`${styles.fallbackIcon} line-icon`}
+                            className="line-icon w-12 h-12 opacity-40"
                         />
                     )}
                 </div>
-                <div className={styles.body}>
-                    <h3 className={styles.title}>{blog.title}</h3>
+                <div className="flex flex-col gap-2 p-4 grow">
+                    <h3 className="text-xl leading-snug">{blog.title}</h3>
                     {blog.description ? (
-                        <p className={styles.desc}>{blog.description}</p>
+                        <p className="text-sm text-orange-100/70 leading-relaxed line-clamp-3">
+                            {blog.description}
+                        </p>
                     ) : null}
-                    <span className={styles.date}>
+                    <span className="mt-auto pt-2 font-mono uppercase tracking-[0.15em] text-xs text-orange-300/60">
                         {formatBlogDate(blog.dateWritten)}
                     </span>
                 </div>

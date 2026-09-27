@@ -1,0 +1,26 @@
+// Shared primitives for pages under /dashboard. Import from any dashboard
+// route, e.g.: import dashStyles from "../dashboard.module.sass"
+
+// Page container. Pair with .narrow to center and cap the width (article
+// and form pages); list pages use .wrapper alone.
+.wrapper
+    @apply flex w-full flex-col gap-4 p-4 md:gap-6 md:p-6 lg:p-8
+
+.narrow
+    @apply mx-auto max-w-4xl
+
+// Toolbar bar for search + actions (blog list, editor topbar, ...)
+.toolbar
+    @apply flex flex-wrap items-center gap-2 rounded-lg md:gap-3 md:p-3
+
+// "← Back" link for detail pages (add `self-start` where the page is a
+// flex column and the link should hug the left edge)
+.backLink
+    @apply font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/70 hover:text-white transition-colors whitespace-nowrap
+
+// Page header: kicker (global class) + .pageTitle, finished with this rule
+.pageTitle
+    @apply mt-2 text-3xl md:text-4xl
+
+.headerRule
+    @apply mt-3 h-px w-full bg-gradient-to-r from-orange-500/60 via-amber-500/30 to-transparent

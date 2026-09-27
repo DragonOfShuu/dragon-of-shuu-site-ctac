@@ -24,7 +24,7 @@ const SidebarTab = ({ href, label, children }: Props) => {
     return (
         <Link
             href={href}
-            className={`flex flex-row items-center gap-4 py-2 px-4 hover:bg-orange-200/20 rounded-md cursor-pointer ${isActive ? "text-orange-500" : ""}`}
+            className={`flex flex-row items-center gap-4 py-2 px-4 hover:bg-orange-200/20 rounded-r-lg cursor-pointer ${isActive ? "text-orange-500" : ""}`}
         >
             {cloneElement(children, {
                 className: `${isActive ? "line-icon-orange" : "line-icon"} h-8 w-auto`,

@@ -1,17 +1,10 @@
-.wrapper
-    @apply flex flex-col gap-4 md:gap-6 p-4 md:p-6 lg:p-8
+// Blog-specific styles shared by the list page, cards and editor form.
+// Page-level primitives (wrapper, toolbar, back link, header) live in
+// ../dashboard.module.sass
 
-.toolbar
-    @apply flex flex-row items-center gap-2 md:gap-3 rounded-lg border border-orange-500/40 bg-black/60 backdrop-blur-md p-2 md:p-3 shadow-[0_0_30px_rgba(245,158,11,0.1)]
-
-.searchWrap
-    @apply relative flex-grow
-
-.searchIcon
-    @apply absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 pointer-events-none
-
+// --- List toolbar buttons (BlogSection.tsx) ---
 .actionBtn
-    @apply w-9 h-9 shrink-0 flex items-center justify-center rounded-md border-2 border-orange-500/40 transition-all hover:border-amber-400 hover:shadow-[0_0_16px_rgba(245,158,11,0.3)]
+    @apply w-auto h-full shrink-0 flex items-center justify-center rounded-md border-2 border-orange-500/40 transition-all hover:border-amber-400 hover:shadow-[0_0_16px_rgba(245,158,11,0.3)]
 
 .dangerBtn
     @apply w-9 h-9 shrink-0 flex items-center justify-center rounded-md border-2 border-orange-500/40 transition-all hover:border-red-500/70 hover:shadow-[0_0_16px_rgba(239,68,68,0.35)]
@@ -26,5 +19,124 @@
 .empty
     @apply flex flex-col items-center justify-center gap-3 rounded-lg border border-dashed border-orange-500/40 bg-black/40 py-16 px-6 text-center
 
-.emptyIcon
-    @apply w-10 h-10 opacity-50
+// --- Blog card (BlogCard.tsx) ---
+// Note: the `group` marker class is added in BlogCard.tsx, since Tailwind
+// does not allow @apply-ing it.
+.card
+    @apply relative flex flex-col overflow-hidden rounded-lg border border-orange-500/40 bg-black/60 backdrop-blur-md transition-all duration-200
+
+    &:hover
+        @apply -translate-y-0.5 border-amber-400/70 shadow-[0_0_30px_rgba(245,158,11,0.2)]
+
+.selected
+    @apply border-amber-400 shadow-[0_0_28px_rgba(245,158,11,0.3)]
+
+.imageWrap
+    @apply relative aspect-video overflow-hidden border-b border-orange-500/30 bg-gradient-to-br from-amber-950 via-black to-black flex items-center justify-center
+
+.checkboxWrap
+    @apply absolute top-2 left-2 z-10 flex items-center justify-center w-8 h-8 rounded-md bg-black/70 backdrop-blur border border-orange-500/40 cursor-pointer transition-colors group-hover:border-amber-400/70
+
+// --- Editor toolbar (BlogEditorForm.tsx) ---
+.toolBtn
+    @apply px-3 py-2 rounded-md border-2 border-orange-500/40 font-mono uppercase tracking-[0.15em] text-xs md:px-4 md:text-sm transition-all hover:border-amber-400 whitespace-nowrap
+
+.toolBtnActive
+    @apply border-amber-400 bg-amber-600/20 shadow-[0_0_16px_rgba(245,158,11,0.3)]
+
+.modeLabel
+    @apply hidden sm:block font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-amber-400 whitespace-nowrap
+
+// --- Title: no box at all, just a gradient underline that draws in on hover/focus
+.titleWrap
+    @apply relative w-full pb-2
+
+    &::after
+        content: ""
+        position: absolute
+        bottom: 0
+        left: 0
+        right: 0
+        height: 2px
+        background: linear-gradient(90deg, #fbbf24, #f97316 55%, transparent)
+        transform: scaleX(0)
+        transform-origin: left center
+        transition: transform 0.3s ease
+
+    &:hover::after,
+    &:focus-within::after
+        transform: scaleX(1)
+
+.titleInput
+    @apply w-full border-0 bg-transparent p-0 font-striking text-4xl leading-tight outline-none md:text-5xl capitalize placeholder:text-orange-100/25
+
+// --- Image zone (BlogEditorForm.tsx): giant outlined placeholder, or the real image
+.imageBox
+    @apply relative flex min-h-[14rem] w-full cursor-pointer items-center justify-center rounded-lg border-2 border-dashed border-orange-500/40 bg-black/30 transition-all duration-200 md:min-h-[20rem] hover:border-amber-400/70 hover:bg-black/40 hover:shadow-[0_0_30px_rgba(245,158,11,0.12)]
+
+.imageShown
+    @apply h-auto w-full cursor-pointer rounded-lg transition-shadow duration-200 hover:shadow-[0_0_35px_rgba(245,158,11,0.2)]
+
+@keyframes blogEditorPopDown
+    from
+        opacity: 0
+        transform: translateY(-8px)
+
+    to
+        opacity: 1
+        transform: translateY(0)
+
+.imageNameRow
+    @apply flex w-full items-center gap-2
+    animation: blogEditorPopDown 0.25s ease
+
+// --- Content: the page itself is the textbox (no border, no scrollbar; it grows with the text)
+.contentBox
+    @apply min-h-[40vh] w-full resize-none overflow-hidden border-0 bg-transparent p-0 text-lg leading-[1.8] outline-none md:text-xl placeholder:text-orange-100/25
+
+// --- Details drawer (BlogEditorForm.tsx): right sidebar for the description
+.drawerBackdrop
+    @apply fixed inset-0 z-40 bg-black/60 backdrop-blur-[2px] transition-opacity duration-300
+
+.drawer
+    @apply fixed top-0 right-0 z-50 flex h-full w-full max-w-sm flex-col gap-4 overflow-y-auto border-l-2 border-orange-500/40 bg-black/85 p-4 backdrop-blur-xl transition-transform duration-300 ease-out md:p-6
+
+.drawerOpen
+    @apply translate-x-0
+
+.drawerClosed
+    @apply pointer-events-none translate-x-full
+
+.drawerHeader
+    @apply flex items-center justify-between gap-3
+
+.drawerTitle
+    @apply font-mono uppercase tracking-[0.2em] text-xs md:text-sm text-amber-400
+
+.closeBtn
+    @apply font-mono uppercase tracking-[0.15em] text-xs text-orange-300/70 hover:text-white transition-colors
+
+.drawerField
+    @apply flex grow flex-col gap-1.5
+
+.label
+    @apply font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/70
+
+// --- Preview (BlogEditorForm.tsx): mirrors /dashboard/blog/[id] so what you see is what gets published
+.previewArticle
+    @apply flex w-full flex-col gap-4 md:gap-6
+
+.previewBanner
+    @apply relative aspect-video w-full overflow-hidden rounded-lg border border-orange-500/40 bg-gradient-to-br from-amber-950 via-black to-black shadow-[0_0_30px_rgba(245,158,11,0.15)] flex items-center justify-center
+
+.previewTitle
+    @apply text-3xl md:text-4xl font-striking capitalize
+
+.previewMeta
+    @apply mt-2 font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/60
+
+.previewEmpty
+    @apply text-orange-300/50 italic font-mono text-sm
+
+.status
+    @apply font-mono text-xs md:text-sm text-amber-400

@@ -30,6 +30,7 @@ const NavLink = (props: Props) => {
         <Link
             {...anchorProps}
             href={href}
+            title={text}
             className={`${styles.navLink}`}
             data-mobile={isMobile}
             data-curr-path={pathname === props.href}
@@ -37,7 +38,12 @@ const NavLink = (props: Props) => {
             {!props.icon ? null : (
                 <props.icon className={`h-full w-auto object-contain`} />
             )}
-            {text}
+            {/* Hide labels below xl so desktop tabs are icon-only; mobile panel keeps text */}
+            {isMobile ? (
+                text
+            ) : (
+                <span className="hidden xl:inline">{text}</span>
+            )}
         </Link>
     );
 };

@@ -7,6 +7,7 @@ import { getBlogById } from "@/app/api/blogAPI";
 import DashboardShell from "@/components/DashboardShell";
 import BookIcon from "@/assets/lineIcons/bookIcon.svg";
 import { formatBlogDate } from "@/app/lib/blog/utils";
+import dashStyles from "../../dashboard.module.sass";
 
 // This route has a dynamic segment, so its static shell can't be
 // prerendered (the root layout's NavBarProvider calls usePathname(),
@@ -30,10 +31,10 @@ const BlogViewPage = async ({ params }: Props) => {
 
     return (
         <DashboardShell>
-            <div className="flex flex-col gap-4 md:gap-6 p-4 md:p-6 lg:p-8 w-full max-w-4xl mx-auto">
+            <div className={`${dashStyles.wrapper} ${dashStyles.narrow}`}>
                 <Link
                     href="/dashboard/blog"
-                    className="font-mono uppercase tracking-[0.15em] text-xs md:text-sm text-orange-300/70 hover:text-white transition-colors self-start"
+                    className={`${dashStyles.backLink} self-start`}
                 >
                     &larr; Back to Blog
                 </Link>

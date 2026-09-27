@@ -11,6 +11,7 @@ import TrashIcon from "@/assets/lineIcons/trashIcon.svg";
 import PencilIcon from "@/assets/lineIcons/pencilIcon.svg";
 import BookIcon from "@/assets/lineIcons/bookIcon.svg";
 import BlogCard from "./BlogCard";
+import dashStyles from "../dashboard.module.sass";
 import styles from "./BlogSection.module.sass";
 
 type Props = {
@@ -66,24 +67,22 @@ const BlogSection = ({ blogs: initialBlogs }: Props) => {
     }, [blogs, searchText]);
 
     return (
-        <div className={styles.wrapper}>
+        <div className={dashStyles.wrapper}>
             <div>
                 <span className="kicker">Dashboard / Blog</span>
-                <h1 className="text-3xl md:text-4xl font-striking capitalize mt-2">
-                    Blog
-                </h1>
-                <div className="mt-3 h-px w-full bg-gradient-to-r from-orange-500/60 via-amber-500/30 to-transparent" />
+                <h1 className={dashStyles.pageTitle}>Blog</h1>
+                <div className={dashStyles.headerRule} />
             </div>
 
-            <div className={styles.toolbar}>
-                <div className={styles.searchWrap}>
-                    <SearchIcon className={`${styles.searchIcon} line-icon`} />
+            <div className="flex items-center h-12 gap-3">
+                <div className="flex-grow rounded-full h-full bg-black/60 hover:bg-black/40 border-2 border-orange-500/40 focus-within:border-amber-400 flex flex-row items-center px-2 gap-2 group transition-colors">
+                    <SearchIcon className="h-3/4 w-auto stroke-orange-300 group-hover:stroke-amber-400" />
                     <input
                         type="text"
                         value={searchText}
                         onChange={(e) => setSearchText(e.target.value)}
                         placeholder="Search your blogs..."
-                        className="input-box w-full pl-9"
+                        className="border-none bg-transparent grow outline-none self-stretch text-lg placeholder:text-orange-300/60"
                     />
                 </div>
 
@@ -126,7 +125,7 @@ const BlogSection = ({ blogs: initialBlogs }: Props) => {
 
             {filteredBlogs.length === 0 ? (
                 <div className={styles.empty}>
-                    <BookIcon className={`${styles.emptyIcon} line-icon`} />
+                    <BookIcon className="line-icon w-10 h-10 opacity-50" />
                     <p className="text-orange-100/70">
                         {searchText.trim()
                             ? "No blogs match your search."
